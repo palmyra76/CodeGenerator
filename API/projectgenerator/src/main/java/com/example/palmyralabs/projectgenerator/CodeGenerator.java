@@ -15,15 +15,65 @@ import freemarker.template.TemplateException;
 
 public class CodeGenerator {
 
-	protected static void generateServiceFolders(String resourcePath, String modelPath, String handlerPath) {
+	private static void generateServiceFolders(String resourcePath, String modelPath, String handlerPath,
+			String configPath, String controllerPath, String entityPath, String repoPath) {
 		FileUtil.createDir(resourcePath);
 		FileUtil.createDir(modelPath);
 		FileUtil.createDir(handlerPath);
+		FileUtil.createDir(configPath);
+		FileUtil.createDir(controllerPath);
+		FileUtil.createDir(entityPath);
+		FileUtil.createDir(repoPath);
 
 	}
 
+	private static void generateConfigFiles(Inputs inputs) throws IOException, TemplateException {
+		String configPath = inputs.getConfigPath();
+		Template auditableConfig = TemplateUtil.getAuditableTemplate();
+		writeInputData(auditableConfig, inputs, configPath + "/Auditable.java");
+		Template auditListenerConfig = TemplateUtil.getAuditListenerTemplate();
+		writeInputData(auditListenerConfig, inputs, configPath + "/AuditListener.java");
+		Template securityConfig = TemplateUtil.getSecurityConfigTemplate();
+		writeInputData(securityConfig, inputs, configPath + "/SecurityConfig.java");
+		Template securityConfigRepositoryConfig = TemplateUtil.getSecurityConfigRepositoryConfigTemplate();
+		writeInputData(securityConfigRepositoryConfig, inputs, configPath + "/SecurityConfigRepositoryConfig.java");
+		Template userPasswordRepoImplConfig = TemplateUtil.getUserPasswordRepoImplTemplate();
+		writeInputData(userPasswordRepoImplConfig, inputs, configPath + "/UserPasswordRepoImpl.java");
+	}
+
+	private static void generateControllerFiles(Inputs inputs) throws IOException, TemplateException {
+		String controllerPath = inputs.getControllerPath();
+		Template authenticationController = TemplateUtil.getAuthenticationControllerTemplate();
+		writeInputData(authenticationController, inputs, controllerPath + "/AuthenticationController.java");
+		Template baseController = TemplateUtil.getBaseControllerTemplate();
+		writeInputData(baseController, inputs, controllerPath + "/BaseController.java");
+	}
+
+	private static void generateEntityFiles(Inputs inputs) throws IOException, TemplateException {
+		String entityPath = inputs.getEntityPath();
+		Template timestampsEntity = TemplateUtil.getTimestampsTemplate();
+		writeInputData(timestampsEntity, inputs, entityPath + "/Timestamps.java");
+		Template userEntity = TemplateUtil.getUserEntityTemplate();
+		writeInputData(userEntity, inputs, entityPath + "/UserEntity.java");
+	}
+
+	private static void generateRepoFiles(Inputs inputs) throws IOException, TemplateException {
+		String repoPath = inputs.getRepoPath();
+		Template userRepository = TemplateUtil.getUserRepositoryTemplate();
+		writeInputData(userRepository, inputs, repoPath + "/UserRepository.java");
+	}
+
+	private static void generateModelFiles(Inputs inputs) throws IOException, TemplateException {
+		String modelPath = inputs.getModelPath();
+		Template errorResponse = TemplateUtil.getErrorResponseTemplate();
+		writeInputData(errorResponse, inputs, modelPath + "/ErrorResponse.java");
+//		Template loginRequest = TemplateUtil.getLoginRequestTemplate();
+//		writeInputData(loginRequest, inputs, modelPath + "/LoginRequest.java");
+	}
+
 	protected static void generateDefaultFiles(Inputs inputs) throws IOException, TemplateException {
-		generateServiceFolders(inputs.getResourcePath(), inputs.getModelPath(), inputs.getHandlerPath());
+		generateServiceFolders(inputs.getResourcePath(), inputs.getModelPath(), inputs.getHandlerPath(),
+				inputs.getConfigPath(), inputs.getControllerPath(), inputs.getEntityPath(), inputs.getRepoPath());
 		Template applicationTemplate = TemplateUtil.getApplicationTemplate();
 		writeInputData(applicationTemplate, inputs, inputs.getApplicationPath());
 		Template mainClassTemplate = TemplateUtil.getMainClassTemplate();
@@ -36,7 +86,11 @@ public class CodeGenerator {
 		writeInputData(settingsGradle, inputs, inputs.getSettingsGradlePath());
 		Template abstractHandler = TemplateUtil.getAbstractHandlerTemplate();
 		writeInputData(abstractHandler, inputs, inputs.getAbstractHandlerPath());
-
+		generateConfigFiles(inputs);
+		generateControllerFiles(inputs);
+		generateEntityFiles(inputs);
+		generateModelFiles(inputs);
+		generateRepoFiles(inputs);
 	}
 
 	protected static void writeData(Template template, Table table, String filePath)

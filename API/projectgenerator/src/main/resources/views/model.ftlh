@@ -4,7 +4,7 @@ import com.palmyralabs.palmyra.base.annotations.PalmyraField;
 import com.palmyralabs.palmyra.base.annotations.PalmyraType;
 	<#list fields as field>
 		<#if field["isForeignKey"]!=0>
-import com.palmyralabs.${database["name"]}.model.${field["targetTable"]}Model;	
+import ${packageName}.model.${field["targetTable"]}Model;	
 		</#if>
 		<#if field["dataType"]=="LocalDate">
 import java.time.LocalDate;

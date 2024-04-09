@@ -60,4 +60,77 @@ public class TemplateUtil {
 		Configuration cfg = TemplateConfig.getFMTemplateConfig();
 		return cfg.getTemplate("application.ftlh");
 	}
+
+	public static Template getAuditableTemplate() throws TemplateException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException {
+		Configuration cfg = TemplateConfig.getFMTemplateConfig();
+		return cfg.getTemplate("auditable.ftlh");
+	}
+
+	public static Template getAuthenticationControllerTemplate() throws TemplateException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException {
+		Configuration cfg = TemplateConfig.getFMTemplateConfig();
+		return cfg.getTemplate("authenticationController.ftlh");
+	}
+
+	public static Template getBaseControllerTemplate() throws TemplateException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException {
+		Configuration cfg = TemplateConfig.getFMTemplateConfig();
+		return cfg.getTemplate("baseController.ftlh");
+	}
+
+	public static Template getErrorResponseTemplate() throws TemplateException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException {
+		Configuration cfg = TemplateConfig.getFMTemplateConfig();
+		return cfg.getTemplate("errorResponse.ftlh");
+	}
+
+	public static Template getLoginRequestTemplate() throws TemplateException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException {
+		Configuration cfg = TemplateConfig.getFMTemplateConfig();
+		return cfg.getTemplate("loginRequest.ftlh");
+	}
+
+	public static Template getSecurityConfigTemplate() throws TemplateException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException {
+		Configuration cfg = TemplateConfig.getFMTemplateConfig();
+		return cfg.getTemplate("securityConfig.ftlh");
+	}
+
+	public static Template getSecurityConfigRepositoryConfigTemplate() throws TemplateException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException {
+		Configuration cfg = TemplateConfig.getFMTemplateConfig();
+		return cfg.getTemplate("securityConfigRepositoryConfig.ftlh");
+	}
+
+	public static Template getTimestampsTemplate() throws TemplateException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException {
+		Configuration cfg = TemplateConfig.getFMTemplateConfig();
+		return cfg.getTemplate("timestamps.ftlh");
+	}
+
+	public static Template getUserEntityTemplate() throws TemplateException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException {
+		Configuration cfg = TemplateConfig.getFMTemplateConfig();
+		return cfg.getTemplate("userEntity.ftlh");
+	}
+
+	public static Template getUserPasswordRepoImplTemplate() throws TemplateException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException {
+		Configuration cfg = TemplateConfig.getFMTemplateConfig();
+		return cfg.getTemplate("userPasswordRepoImpl.ftlh");
+	}
+
+	public static Template getUserRepositoryTemplate() throws TemplateException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException {
+		Configuration cfg = TemplateConfig.getFMTemplateConfig();
+		return cfg.getTemplate("userRepository.ftlh");
+	}
+
+	public static Template getAuditListenerTemplate() throws TemplateException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException {
+		Configuration cfg = TemplateConfig.getFMTemplateConfig();
+		return cfg.getTemplate("auditListener.ftlh");
+	}
+
 }

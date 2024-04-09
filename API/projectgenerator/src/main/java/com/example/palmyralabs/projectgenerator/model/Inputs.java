@@ -1,5 +1,7 @@
 package com.example.palmyralabs.projectgenerator.model;
 
+import java.util.ArrayList;
+
 import com.example.palmyralabs.projectgenerator.util.DataUtil;
 import com.zitlab.palmyra.common.util.TextUtil;
 
@@ -16,6 +18,7 @@ public class Inputs {
 	private String group;
 	private String projectName;
 	private String projectPath;
+	private String[] projectList;
 	private String packageName;
 	private String convertedProjectName;
 	private String filePath;
@@ -24,6 +27,10 @@ public class Inputs {
 	private String resourcePath;
 	private String modelPath;
 	private String handlerPath;
+	private String configPath;
+	private String controllerPath;
+	private String entityPath;
+	private String repoPath;
 	private String applicationPath;
 	private String mainClassPath;
 	private String buildGradlePath;
@@ -38,8 +45,12 @@ public class Inputs {
 		this.password = password;
 		this.driverClassName = driverClassName;
 		this.group = group;
-		this.projectName = projectName.toLowerCase();
 		this.projectPath = projectPath;
+		this.projectList=projectName.split(",");
+	}
+	
+	public void setPaths(String schema) {
+		this.projectName = schema.toLowerCase();
 		this.packageName = group + "." + projectName;
 		this.convertedProjectName = TextUtil.camelCaseFirstLetterUpperCase(projectName);
 		this.filePath = DataUtil.splitData(packageName);
@@ -48,6 +59,10 @@ public class Inputs {
 		this.resourcePath = path + "/src/main/resources";
 		this.modelPath = javaPath + "/model";
 		this.handlerPath = javaPath + "/handler";
+		this.configPath = javaPath + "/config";
+		this.controllerPath = javaPath + "/controller";
+		this.entityPath = javaPath + "/entity";
+		this.repoPath = javaPath + "/repo";
 		this.applicationPath = resourcePath + "/" + "application.yaml";
 		this.mainClassPath = javaPath + "/" + convertedProjectName + "Application.java";
 		this.buildGradlePath = path + "/" + "build.gradle";

@@ -32,7 +32,8 @@ dependencies {
 	implementation 'org.apache.commons:commons-lang3:3.12.0'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
 	implementation 'org.modelmapper:modelmapper:3.1.1'
-     
+    
+    implementation deps.palmyra.extn.pwdmgmt 
     implementation deps.springboot.web
     implementation deps.springboot.jpa
     implementation deps.spring.core
