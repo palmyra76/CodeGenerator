@@ -37,6 +37,11 @@ public class Inputs {
 	private String depsGradlePath;
 	private String settingsGradlePath;
 	private String abstractHandlerPath;
+	private String gridPath;
+	private String formPath;
+	private String typeScriptPath;
+	private String summaryGrid;
+	private String webPath;
 
 	public Inputs(String url, String userName, String password, String driverClassName, String group,
 			String projectName, String projectPath) {
@@ -55,8 +60,11 @@ public class Inputs {
 		this.convertedProjectName = TextUtil.camelCaseFirstLetterUpperCase(projectName);
 		this.filePath = DataUtil.splitData(packageName);
 		this.path = projectPath + "/" + projectName + "/Service";
+		this.webPath = projectPath + "/" + projectName + "/Web";
 		this.javaPath = path + "/src/main/java/" + filePath;
+		this.typeScriptPath = webPath + "/src/templates/default";
 		this.resourcePath = path + "/src/main/resources";
+		this.gridPath = typeScriptPath + "/grid";
 		this.modelPath = javaPath + "/model";
 		this.handlerPath = javaPath + "/handler";
 		this.configPath = javaPath + "/config";
@@ -69,6 +77,7 @@ public class Inputs {
 		this.depsGradlePath = path + "/" + "deps.gradle";
 		this.settingsGradlePath = path + "/" + "settings.gradle";
 		this.abstractHandlerPath = handlerPath + "/" + "AbstractHandler.java";
+		this.formPath = typeScriptPath + "/grid";
 	}
 
 }

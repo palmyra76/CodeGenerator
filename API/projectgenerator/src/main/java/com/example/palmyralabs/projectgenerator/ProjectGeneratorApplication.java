@@ -61,18 +61,6 @@ public class ProjectGeneratorApplication {
 		connection.close();
 	}
 
-	public static void main(String[] args) throws SQLException, IOException, TemplateException {
 
-		String url = "jdbc:mariadb://192.168.1.103:3306";
-		String userName = "hema";
-		String password = "secret";
-		String driverClassName = "org.mariadb.jdbc.Driver";
-		String group = "com.palmyralabs";
-		String projectName = "sample";
-		String projectPath = "/home/pavithra/Desktop/new/Test2";
-		Inputs inputs = new Inputs(url, userName, password, driverClassName, group, projectName, projectPath);
-		ProjectGeneratorApplication projectGeneration = new ProjectGeneratorApplication();
-		projectGeneration.generateNewProject(inputs);
-	}
 
 }

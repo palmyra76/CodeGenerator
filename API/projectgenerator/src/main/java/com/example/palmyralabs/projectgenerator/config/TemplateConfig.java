@@ -9,6 +9,7 @@ public class TemplateConfig  {
 	public static Configuration getFMTemplateConfig()throws TemplateException {
 		var cfg = new Configuration(new Version("2.3.31"));
 		cfg.setClassForTemplateLoading(TemplateConfig.class, "/views");
+//		cfg.setClassForTemplateLoading(TemplateConfig.class, "/react-ui");
 		cfg.setDefaultEncoding("UTF-8");
 		return cfg;
 	}

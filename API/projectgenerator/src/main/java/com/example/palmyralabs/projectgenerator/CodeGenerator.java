@@ -4,11 +4,13 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.Map;
 
 import com.example.palmyralabs.projectgenerator.model.Inputs;
 import com.example.palmyralabs.projectgenerator.model.Table;
 import com.example.palmyralabs.projectgenerator.util.FileUtil;
 import com.example.palmyralabs.projectgenerator.util.TemplateUtil;
+import com.zitlab.palmyra.sqlstore.base.dbmeta.TupleType;
 
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -24,7 +26,15 @@ public class CodeGenerator {
 		FileUtil.createDir(controllerPath);
 		FileUtil.createDir(entityPath);
 		FileUtil.createDir(repoPath);
+	}
 
+	protected static void generateServiceFolders(String resourcePath, String modelPath, String handlerPath , String gridPath
+			,String formPath) {
+		FileUtil.createDir(resourcePath);
+		FileUtil.createDir(modelPath);
+		FileUtil.createDir(handlerPath);
+		FileUtil.createDir(gridPath);
+		FileUtil.createDir(formPath);
 	}
 
 	private static void generateConfigFiles(Inputs inputs) throws IOException, TemplateException {
@@ -74,6 +84,12 @@ public class CodeGenerator {
 	protected static void generateDefaultFiles(Inputs inputs) throws IOException, TemplateException {
 		generateServiceFolders(inputs.getResourcePath(), inputs.getModelPath(), inputs.getHandlerPath(),
 				inputs.getConfigPath(), inputs.getControllerPath(), inputs.getEntityPath(), inputs.getRepoPath());
+		generateServiceFolders(inputs.getResourcePath(), inputs.getModelPath(), inputs.getHandlerPath() , inputs.getGridPath() , inputs.getFormPath());
+		generateConfigFiles(inputs);
+		generateControllerFiles(inputs);
+		generateEntityFiles(inputs);
+		generateModelFiles(inputs);
+		generateRepoFiles(inputs);
 		Template applicationTemplate = TemplateUtil.getApplicationTemplate();
 		writeInputData(applicationTemplate, inputs, inputs.getApplicationPath());
 		Template mainClassTemplate = TemplateUtil.getMainClassTemplate();
@@ -86,11 +102,10 @@ public class CodeGenerator {
 		writeInputData(settingsGradle, inputs, inputs.getSettingsGradlePath());
 		Template abstractHandler = TemplateUtil.getAbstractHandlerTemplate();
 		writeInputData(abstractHandler, inputs, inputs.getAbstractHandlerPath());
-		generateConfigFiles(inputs);
-		generateControllerFiles(inputs);
-		generateEntityFiles(inputs);
-		generateModelFiles(inputs);
-		generateRepoFiles(inputs);
+//		Template packageDotJSONTemplate = TemplateUtil.getPackageDotJSONTemplate();
+//		writeInputData(packageDotJSONTemplate, inputs, inputs.getWebPath());
+//		Template viteConfigTemplate = TemplateUtil.getViteConfigTemplate();
+//		writeInputData(viteConfigTemplate, inputs, inputs.getWebPath());
 	}
 
 	protected static void writeData(Template template, Table table, String filePath)
@@ -128,7 +143,16 @@ public class CodeGenerator {
 		Template handlerTemplate = TemplateUtil.getHandlerTemplate();
 		String handlerFilePath = inputs.getHandlerPath() + "/" + table.getName() + "Handler.java";
 		writeData(handlerTemplate, table, handlerFilePath);
+		Template gridTemplate = TemplateUtil.getGridTemplate();
+		String gridFilePath = inputs.getGridPath() + "/" + table.getName() + "Grid.tsx";
+		writeData(gridTemplate, table, gridFilePath);
+//		String formFilePath = inputs.getFormPath() + "/" + table.getName() + "Form.tsx";
+//		writeData(gridTemplate, table, gridFilePath);
 
 	}
+	
+//	private static void generateAppDotTsxFile(Map<String, TupleType> schemas) {
+//		
+//	}
 
 }

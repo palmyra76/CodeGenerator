@@ -2,9 +2,12 @@ package com.example.palmyralabs.projectgenerator.util;
 
 import java.io.IOException;
 
+import org.springframework.security.access.event.PublicInvocationEvent;
+
 import com.example.palmyralabs.projectgenerator.config.TemplateConfig;
 
 import freemarker.core.ParseException;
+import freemarker.ext.beans.TemplateAccessible;
 import freemarker.template.Configuration;
 import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.Template;
@@ -60,7 +63,6 @@ public class TemplateUtil {
 		Configuration cfg = TemplateConfig.getFMTemplateConfig();
 		return cfg.getTemplate("application.ftlh");
 	}
-
 	public static Template getAuditableTemplate() throws TemplateException, TemplateNotFoundException,
 			MalformedTemplateNameException, ParseException, IOException {
 		Configuration cfg = TemplateConfig.getFMTemplateConfig();
@@ -133,4 +135,34 @@ public class TemplateUtil {
 		return cfg.getTemplate("auditListener.ftlh");
 	}
 
+	
+	public static Template getGridTemplate() throws TemplateException, TemplateNotFoundException,
+			MalformedTemplateNameException, ParseException, IOException {
+		Configuration cfg = TemplateConfig.getFMTemplateConfig();
+		return cfg.getTemplate("grid.ftlh");
+	}
+	
+//	public static Template getAppTemplate() throws TemplateNotFoundException, MalformedTemplateNameException, 
+//			ParseException, IOException, TemplateException {
+//		Configuration cfg = TemplateConfig.getFMTemplateConfig();
+//		return cfg.getTemplate("app.ftlh");
+//	}
+//	
+//	public static Template getPackageDotJSONTemplate() throws TemplateException, TemplateNotFoundException,
+//			MalformedTemplateNameException, ParseException, IOException {
+//		Configuration cfg = TemplateConfig.getFMTemplateConfig();
+//		return cfg.getTemplate("packageDotJSON.ftlh");
+//	}
+//	
+//	public static Template getViteConfigTemplate() throws TemplateException, TemplateNotFoundException,
+//			MalformedTemplateNameException, ParseException, IOException {
+//		Configuration cfgConfiguration = TemplateConfig.getFMTemplateConfig();
+//		return cfgConfiguration.getTemplate("viteConfig.ftlh");
+//	}
+//	
+//	public static Template getFormTemplate() throws TemplateException, TemplateNotFoundException,
+//			MalformedTemplateNameException, ParseException, IOException {
+//		Configuration cfgConfiguration = TemplateConfig.getFMTemplateConfig();
+//		return cfgConfiguration.getTemplate("form.ftlh");
+//	}
 }
