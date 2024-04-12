@@ -1,0 +1,10 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:mariadb://<ipaddress>:3306/<database>
+    username: 
+    password: 
+    driverClassName: org.mariadb.jdbc.Driver

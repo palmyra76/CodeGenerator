@@ -11,14 +11,13 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.example.palmyralabs.projectgenerator.config.DataSourceConfig;
 import com.example.palmyralabs.projectgenerator.config.DataSourceConfiguration;
 import com.example.palmyralabs.projectgenerator.model.Inputs;
 import com.example.palmyralabs.projectgenerator.model.Table;
-import com.palmyralabs.palmyra.spring.config.DataSourceConnectionProvider;
+import com.palmyralabs.palmyra.spring.cmdline.config.DataSourceConnectionProvider;
 import com.zitlab.palmyra.sqlstore.base.dbmeta.TupleType;
 import com.zitlab.palmyra.sqlstore.schema.metadata.MetaDataUtil;
 
@@ -27,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
-public class ProjectGeneratorApplication {
+public class ProjectGeneratorApplication implements CommandLineRunner{
 //
 //	@Autowired
 //	DataSource dataSource;
@@ -62,5 +61,20 @@ public class ProjectGeneratorApplication {
 	}
 
 
+
+	@Override
+	public void run(String... args) throws Exception {
+		String url = "jdbc:mariadb://192.168.1.103:3306";
+		String userName = "hema";
+		String password = "secret";
+		String driverClassName = "org.mariadb.jdbc.Driver";
+		String group = "com.palmyralabs";
+		String projectName = "sample";
+		String projectPath = "/home/ksvraja/Desktop/new/Test2";
+		Inputs inputs = new Inputs(url, userName, password, driverClassName, group, projectName, projectPath);
+		ProjectGeneratorApplication projectGeneration = new ProjectGeneratorApplication();
+		projectGeneration.generateNewProject(inputs);	
+		
+	}
 
 }
