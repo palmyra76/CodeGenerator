@@ -1,158 +1,91 @@
 package com.example.palmyralabs.projectgenerator;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringWriter;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import javax.sql.DataSource;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.example.palmyralabs.projectgenerator.config.DataSourceConfiguration;
 import com.example.palmyralabs.projectgenerator.model.Inputs;
 import com.example.palmyralabs.projectgenerator.model.Table;
-import com.example.palmyralabs.projectgenerator.util.FileUtil;
 import com.example.palmyralabs.projectgenerator.util.TemplateUtil;
+import com.palmyralabs.palmyra.spring.cmdline.config.DataSourceConnectionProvider;
 import com.zitlab.palmyra.sqlstore.base.dbmeta.TupleType;
+import com.zitlab.palmyra.sqlstore.schema.metadata.MetaDataUtil;
 
-import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import lombok.RequiredArgsConstructor;
 
-public class CodeGenerator {
+@Component
+@RequiredArgsConstructor
+public class CodeGenerator implements CommandLineRunner{
+//
+//	@Autowired
+//	DataSource dataSource;
 
-	private static void generateServiceFolders(String resourcePath, String modelPath, String handlerPath,
-			String configPath, String controllerPath, String entityPath, String repoPath) {
-		FileUtil.createDir(resourcePath);
-		FileUtil.createDir(modelPath);
-		FileUtil.createDir(handlerPath);
-		FileUtil.createDir(configPath);
-		FileUtil.createDir(controllerPath);
-		FileUtil.createDir(entityPath);
-		FileUtil.createDir(repoPath);
-	}
-
-	protected static void generateServiceFolders(String resourcePath, String modelPath, String handlerPath , String gridPath
-			,String formPath) {
-		FileUtil.createDir(resourcePath);
-		FileUtil.createDir(modelPath);
-		FileUtil.createDir(handlerPath);
-		FileUtil.createDir(gridPath);
-		FileUtil.createDir(formPath);
-	}
-
-	private static void generateConfigFiles(Inputs inputs) throws IOException, TemplateException {
-		String configPath = inputs.getConfigPath();
-		Template auditableConfig = TemplateUtil.getAuditableTemplate();
-		writeInputData(auditableConfig, inputs, configPath + "/Auditable.java");
-		Template auditListenerConfig = TemplateUtil.getAuditListenerTemplate();
-		writeInputData(auditListenerConfig, inputs, configPath + "/AuditListener.java");
-		Template securityConfig = TemplateUtil.getSecurityConfigTemplate();
-		writeInputData(securityConfig, inputs, configPath + "/SecurityConfig.java");
-		Template securityConfigRepositoryConfig = TemplateUtil.getSecurityConfigRepositoryConfigTemplate();
-		writeInputData(securityConfigRepositoryConfig, inputs, configPath + "/SecurityConfigRepositoryConfig.java");
-		Template userPasswordRepoImplConfig = TemplateUtil.getUserPasswordRepoImplTemplate();
-		writeInputData(userPasswordRepoImplConfig, inputs, configPath + "/UserPasswordRepoImpl.java");
-	}
-
-	private static void generateControllerFiles(Inputs inputs) throws IOException, TemplateException {
-		String controllerPath = inputs.getControllerPath();
-		Template authenticationController = TemplateUtil.getAuthenticationControllerTemplate();
-		writeInputData(authenticationController, inputs, controllerPath + "/AuthenticationController.java");
-		Template baseController = TemplateUtil.getBaseControllerTemplate();
-		writeInputData(baseController, inputs, controllerPath + "/BaseController.java");
-	}
-
-	private static void generateEntityFiles(Inputs inputs) throws IOException, TemplateException {
-		String entityPath = inputs.getEntityPath();
-		Template timestampsEntity = TemplateUtil.getTimestampsTemplate();
-		writeInputData(timestampsEntity, inputs, entityPath + "/Timestamps.java");
-		Template userEntity = TemplateUtil.getUserEntityTemplate();
-		writeInputData(userEntity, inputs, entityPath + "/UserEntity.java");
-	}
-
-	private static void generateRepoFiles(Inputs inputs) throws IOException, TemplateException {
-		String repoPath = inputs.getRepoPath();
-		Template userRepository = TemplateUtil.getUserRepositoryTemplate();
-		writeInputData(userRepository, inputs, repoPath + "/UserRepository.java");
-	}
-
-	private static void generateModelFiles(Inputs inputs) throws IOException, TemplateException {
-		String modelPath = inputs.getModelPath();
-		Template errorResponse = TemplateUtil.getErrorResponseTemplate();
-		writeInputData(errorResponse, inputs, modelPath + "/ErrorResponse.java");
-//		Template loginRequest = TemplateUtil.getLoginRequestTemplate();
-//		writeInputData(loginRequest, inputs, modelPath + "/LoginRequest.java");
-	}
-
-	protected static void generateDefaultFiles(Inputs inputs) throws IOException, TemplateException {
-		generateServiceFolders(inputs.getResourcePath(), inputs.getModelPath(), inputs.getHandlerPath(),
-				inputs.getConfigPath(), inputs.getControllerPath(), inputs.getEntityPath(), inputs.getRepoPath());
-		generateServiceFolders(inputs.getResourcePath(), inputs.getModelPath(), inputs.getHandlerPath() , inputs.getGridPath() , inputs.getFormPath());
-		generateConfigFiles(inputs);
-		generateControllerFiles(inputs);
-		generateEntityFiles(inputs);
-		generateModelFiles(inputs);
-		generateRepoFiles(inputs);
-		Template applicationTemplate = TemplateUtil.getApplicationTemplate();
-		writeInputData(applicationTemplate, inputs, inputs.getApplicationPath());
-		Template mainClassTemplate = TemplateUtil.getMainClassTemplate();
-		writeInputData(mainClassTemplate, inputs, inputs.getMainClassPath());
-		Template buildGradleTemplate = TemplateUtil.getBuildGradleTemplate();
-		writeInputData(buildGradleTemplate, inputs, inputs.getBuildGradlePath());
-		Template depsGradleTemplate = TemplateUtil.getDepsGradleTemplate();
-		writeInputData(depsGradleTemplate, inputs, inputs.getDepsGradlePath());
-		Template settingsGradle = TemplateUtil.getSettingsGradleTemplate();
-		writeInputData(settingsGradle, inputs, inputs.getSettingsGradlePath());
-		Template abstractHandler = TemplateUtil.getAbstractHandlerTemplate();
-		writeInputData(abstractHandler, inputs, inputs.getAbstractHandlerPath());
-//		Template packageDotJSONTemplate = TemplateUtil.getPackageDotJSONTemplate();
-//		writeInputData(packageDotJSONTemplate, inputs, inputs.getWebPath());
-//		Template viteConfigTemplate = TemplateUtil.getViteConfigTemplate();
-//		writeInputData(viteConfigTemplate, inputs, inputs.getWebPath());
-	}
-
-	protected static void writeData(Template template, Table table, String filePath)
-			throws IOException, TemplateException {
-		File file = new File(filePath);
-		if (file.createNewFile()) {
-			FileWriter fileWriter = new FileWriter(file);
-			try (StringWriter out = new StringWriter()) {
-				template.process(table, out);
-				fileWriter.write(out.getBuffer().toString());
-				fileWriter.close();
-				out.flush();
+	public void generateNewProject(Inputs inputs) throws SQLException, IOException, TemplateException {
+		DataSourceConfiguration dataSourceConfig = new DataSourceConfiguration();
+		DataSource dataSource = dataSourceConfig.getDataSource(inputs.getUrl(), inputs.getUserName(),
+				inputs.getPassword(), inputs.getDriverClassName());
+		DataSourceConnectionProvider connectionProvider = new DataSourceConnectionProvider(dataSource, null, null);
+		Connection connection = connectionProvider.getConnection();
+		DatabaseMetaData metaData = connection.getMetaData();
+		ResultSet resultSet = metaData.getCatalogs();
+		List<String> schemas = new ArrayList<>();
+		String[] projectLits = inputs.getProjectList();
+		for (String schema : projectLits) {
+			inputs.setPaths(schema);
+			while (resultSet.next()) {
+				String schemaName = resultSet.getString(1);
+				if (schemaName.equalsIgnoreCase(schema))
+					schemas.add(schemaName);
+				break;
+			}
+			CodeGenerat.generateDefaultFiles(inputs);
+			MetaDataUtil metaDataUtil = new MetaDataUtil(metaData);
+			Map<String, TupleType> map = metaDataUtil.getAllTablesAsMap(schemas);
+			CodeGenerat.generateAppDotTsx(TemplateUtil.getAppTemplate(), map, inputs.getAppDotTsxPath());
+			for (TupleType tuple : map.values()) {
+				Table table = new Table(tuple, inputs.getPackageName());
+				CodeGenerat.generateFile(inputs, table);
 			}
 		}
+		connection.close();
 	}
 
-	protected static void writeInputData(Template template, Inputs inputs, String filePath)
-			throws IOException, TemplateException {
-		File file = new File(filePath);
-		if (file.createNewFile()) {
-			FileWriter fileWriter = new FileWriter(file);
-			try (StringWriter out = new StringWriter()) {
-				template.process(inputs, out);
-				fileWriter.write(out.getBuffer().toString());
-				fileWriter.close();
-				out.flush();
-			}
-		}
-	}
 
-	protected static void generateFile(Inputs inputs, Table table) throws IOException, TemplateException {
-		Template modelTemplate = TemplateUtil.getModelTemplate();
-		String modelFilePath = inputs.getModelPath() + "/" + table.getName() + "Model.java";
-		writeData(modelTemplate, table, modelFilePath);
-		Template handlerTemplate = TemplateUtil.getHandlerTemplate();
-		String handlerFilePath = inputs.getHandlerPath() + "/" + table.getName() + "Handler.java";
-		writeData(handlerTemplate, table, handlerFilePath);
-		Template gridTemplate = TemplateUtil.getGridTemplate();
-		String gridFilePath = inputs.getGridPath() + "/" + table.getName() + "Grid.tsx";
-		writeData(gridTemplate, table, gridFilePath);
-//		String formFilePath = inputs.getFormPath() + "/" + table.getName() + "Form.tsx";
-//		writeData(gridTemplate, table, gridFilePath);
 
-	}
 	
-//	private static void generateAppDotTsxFile(Map<String, TupleType> schemas) {
-//		
-//	}
+	public static void  main(String []args) throws SQLException, IOException, TemplateException  {
+		String url = "jdbc:mariadb://localhost:3306";
+		String userName = "";
+		String password = "";
+		String driverClassName = "org.mariadb.jdbc.Driver";
+		String group = "com.palmyralabs";
+		String projectName = "accounting";
+		String projectPath = "";
+		Inputs inputs = new Inputs(url, userName, password, driverClassName, group, projectName, projectPath);
+		CodeGenerator projectGeneration = new CodeGenerator();
+		projectGeneration.generateNewProject(inputs);	
+		
+	}
+
+
+
+
+	@Override
+	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
