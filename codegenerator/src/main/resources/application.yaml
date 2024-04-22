@@ -4,7 +4,7 @@ spring:
     hibernate:
       ddl-auto: validate
   datasource:
-    url: jdbc:mariadb://192.168.1.103:3306
-    username: hema
-    password: secret
+    url: jdbc:mariadb://<ipaddress>:3306/<database>
+    username: 
+    password: 
     driverClassName: org.mariadb.jdbc.Driver
