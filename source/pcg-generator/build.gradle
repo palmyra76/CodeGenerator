@@ -1,0 +1,4 @@
+
+dependencies {
+	implementation project(':pcg-commons')
+}

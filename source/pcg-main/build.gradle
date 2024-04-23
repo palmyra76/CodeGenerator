@@ -1,0 +1,9 @@
+
+dependencies {
+	implementation project(':pcg-commons')
+    implementation project(':pcg-generator')
+    implementation project(':pcg-inputvalidator')
+    implementation project(':pcg-reactgen')
+    implementation project(':pcg-springgen')
+    implementation project(':pcg-sqlmetareader')
+}
