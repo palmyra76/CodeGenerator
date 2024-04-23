@@ -2,7 +2,7 @@ def versions = [ spring_boot: '3.2.1',spring:'6.1.2',
     HikariCP:'5.0.1',log4j2:'2.22.0',slf4j:"2.0.9", 
     persistence_api:'3.1.0',servlet_api:'5.0.0', 
     jackson:'2.15.2', slf4j:"2.0.9",
-    lombok:'1.18.30', jdbc_mariadb:'3.2.0',sqlstore:'0.1.0']
+    lombok:'1.18.30', jdbc_mariadb:'3.2.0',sqlstore:'0.1.0', freemarker:'2.3.31']
 
 def palmyra = [
     spring:"com.palmyralabs.palmyra:palmyra-spring:0.1.0",
@@ -49,7 +49,8 @@ def apache = [
 
 def org = [
     lombok : "org.projectlombok:lombok:${versions.lombok}",
-    slf4j: [ api:"org.slf4j:slf4j-api:${versions.slf4j}"]
+    slf4j: [ api:"org.slf4j:slf4j-api:${versions.slf4j}"],
+    freemarker: "org.freemarker:freemarker:${versions.freemarker}"
 ]
 
 def jakarta = [
