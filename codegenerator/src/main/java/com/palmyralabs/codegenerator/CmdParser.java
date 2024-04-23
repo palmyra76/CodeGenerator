@@ -9,6 +9,10 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.springframework.stereotype.Component;
 
+enum ProjectFramework {
+	SPRING, REACT
+}
+
 @Component
 public class CmdParser {
 
@@ -16,9 +20,10 @@ public class CmdParser {
 
 	public CommandLine parseCmd(String[] args) {
 		options = new Options();
-		
-		options.addOption(new Option("l", "language", false, "project language"));
-		options.addOption(new Option("f", "framework", true, "project framework (spring, react...)"));
+
+		Option frameworkOption = Option.builder("f").longOpt("framework").argName("framework").hasArg().required(true)
+				.desc("project framework (spring, react...)").type(ProjectFramework.class).optionalArg(false)
+				.numberOfArgs(1).build();
 		options.addOption(new Option("b", "build", false, "build file details"));
 		options.addOption(new Option("p", "project", true, "project name"));
 		options.addOption(new Option("m", "mode", false, "project creation mode (minimal/full/extended"));

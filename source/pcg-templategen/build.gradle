@@ -1,4 +1,5 @@
 
 dependencies {
 	implementation project(':pcg-commons')
+	implementation 'org.freemarker:freemarker:2.3.31'
 }
