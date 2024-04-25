@@ -12,5 +12,5 @@ plugins {
 }
 
 rootProject.name = 'CodeGenerator'
-include('pcg-commons', 'pcg-inputvalidator', 'pcg-generator')
+include('pcg-commons', 'pcg-inputvalidator', 'pcg-generator', 'pcg-main')
 include ('pcg-springgen', 'pcg-reactgen',  'pcg-sqlmetareader', 'pcg-templategen')

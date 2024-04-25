@@ -1,5 +1,5 @@
 
 dependencies {
 	implementation project(':pcg-commons')
-	implementation 'org.freemarker:freemarker'
+	implementation deps.org.freemarker
 }
