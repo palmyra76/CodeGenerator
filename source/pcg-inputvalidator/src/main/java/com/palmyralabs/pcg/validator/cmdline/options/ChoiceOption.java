@@ -1,22 +1,33 @@
 package com.palmyralabs.pcg.validator.cmdline.options;
 
-import org.apache.commons.cli.Option;
+import com.palmyralabs.pcg.validator.ValidOption;
+import com.palmyralabs.pcg.validator.impl.ChoiceInputReader;
 
-import org.apache.commons.cli.Option;
+public class ChoiceOption extends ValidOption {
+	private static final long serialVersionUID = 1L;
 
-public class ChoiceOption extends Option {
-    private String[] choices;
+	private String[] choices;
 
-    public ChoiceOption(String opt, String longOpt, boolean hasArg, String description) {
-        super(opt, longOpt, hasArg, description);
-    }
+	public ChoiceOption(String opt, String longOpt, boolean hasArg, String description, String choices[],
+			String invalidMessage) {
+		super(opt, longOpt, hasArg, description, new ChoiceInputReader(invalidMessage, choices));
+		this.choices = choices;
+	}
 
-    public String[] getChoices() {
-        return choices;
-    }
+	public String[] getChoices() {
+		return choices;
+	}
 
-    public void setChoices(String[] choices) {
-        this.choices = choices;
-    }
+	@Override
+	public boolean isValid(String option) {
+		if (null == option)
+			return false;
+
+		for (String c : choices) {
+			if (c.equalsIgnoreCase(option))
+				return true;
+		}
+		return false;
+	}
+
 }
-

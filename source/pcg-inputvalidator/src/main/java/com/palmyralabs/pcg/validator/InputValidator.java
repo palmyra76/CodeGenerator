@@ -1,10 +1,9 @@
 package com.palmyralabs.pcg.validator;
 
-import org.apache.commons.cli.Options;
+import java.util.List;
 
 public interface InputValidator {
 
+	List<KeyValue> validate(OptionsProvider optionsProvider, String[] command);
 
-	public String validate(Options options, String[] command);
-	
 }
