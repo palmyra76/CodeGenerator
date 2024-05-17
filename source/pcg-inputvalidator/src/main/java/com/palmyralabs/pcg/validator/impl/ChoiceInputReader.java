@@ -16,11 +16,19 @@ public class ChoiceInputReader extends SystemInReader implements InputReader {
 	public String readInput(String oldValue) {
 		System.out.println(invalidMessage);
 		int count = 1;
-		for(String c: choices) {
+		for (String c : choices) {
 			System.out.println(count + " " + c);
 			count++;
 		}
-		return readSystemIn();
+		String input = readSystemIn();
+		try {
+			Integer index = Integer.parseInt(input);
+			if (index > 0 && index <= choices.length)
+				return choices[index - 1].toLowerCase();
+		} catch (NumberFormatException e) {
+
+		}
+		return input.toLowerCase();
 	}
 
 }

@@ -14,7 +14,7 @@ public class StringInputReader extends SystemInReader implements InputReader {
 	@Override
 	public String readInput(String oldValue) {
 		System.out.println(invalidMessage);
-		return readSystemIn();
+		return readSystemIn().toLowerCase();
 	}
 
 }

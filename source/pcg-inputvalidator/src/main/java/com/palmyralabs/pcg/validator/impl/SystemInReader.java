@@ -6,7 +6,7 @@ public abstract class SystemInReader {
 		String sl = null;
 		do {
 			sl = SysUtils.readLineFromConsole();
-		} while (null == sl);
+		} while (null == sl || sl.isEmpty() );
 		return sl;
 	}
 }
