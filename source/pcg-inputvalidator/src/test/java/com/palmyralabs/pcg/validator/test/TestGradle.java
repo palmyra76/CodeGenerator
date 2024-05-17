@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import com.github.stefanbirkner.systemlambda.SystemLambda;
-import com.palmyralabs.pcg.validator.KeyValue;
+import com.palmyralabs.pcg.commons.KeyValue;
 import com.palmyralabs.pcg.validator.cmdline.CommandLineValidator;
 import com.palmyralabs.pcg.validator.cmdline.options.ChoiceOption;
 import com.palmyralabs.pcg.validator.impl.DefaultOptionsProvider;
@@ -29,7 +29,7 @@ public class TestGradle {
 				1 maven
 				2 gradle
 				3
-				[b maven, f spring, m full]""";
+				[build maven, framework spring, mode full]""";
 
 		String commandInput = " -f spring -m full";
 		Options options = new Options();

@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 
+import com.palmyralabs.pcg.commons.KeyValue;
 import com.palmyralabs.pcg.validator.InputValidator;
-import com.palmyralabs.pcg.validator.KeyValue;
 import com.palmyralabs.pcg.validator.OptionsProvider;
 import com.palmyralabs.pcg.validator.ValidOption;
 import com.palmyralabs.pcg.validator.exception.PrimaryOptionNotFoundException;
@@ -35,11 +35,15 @@ public class CommandLineValidator implements InputValidator {
 		for (ValidOption vo : options) {
 			String v = cmd.getOptionValue(vo);
 			String value = validate(vo, v);
-			KeyValue kv = new KeyValue(vo.getKey(), value);
+			KeyValue kv = new KeyValue(getKey(vo), value);
 			result.add(kv);
 		}
 
 		return result;
+	}
+
+	public String getKey(ValidOption vo) {
+		return null != vo.getLongOpt() ? vo.getLongOpt() : vo.getOpt();
 	}
 
 	private String validate(ValidOption vo, String v) {

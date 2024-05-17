@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.validator;
+package com.palmyralabs.pcg.commons;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
