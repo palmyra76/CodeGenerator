@@ -1,15 +1,12 @@
 package com.palmyralabs.pcg.validator.test;
 
 import java.util.List;
-import java.util.Scanner;
 
 import org.apache.commons.cli.Options;
 
-import com.palmyralabs.pcg.validator.KeyValue;
-import com.palmyralabs.pcg.validator.OptionsProvider;
+import com.palmyralabs.pcg.commons.KeyValue;
 import com.palmyralabs.pcg.validator.cmdline.CommandLineValidator;
 import com.palmyralabs.pcg.validator.cmdline.options.ChoiceOption;
-import com.palmyralabs.pcg.validator.cmdline.options.NumberOption;
 import com.palmyralabs.pcg.validator.cmdline.options.PortNumberOption;
 import com.palmyralabs.pcg.validator.cmdline.options.StringOption;
 import com.palmyralabs.pcg.validator.impl.DefaultOptionsProvider;

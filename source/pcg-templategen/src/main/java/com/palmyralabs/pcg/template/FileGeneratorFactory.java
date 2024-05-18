@@ -1,21 +1,21 @@
 package com.palmyralabs.pcg.template;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ServiceLoader;
 
-public class FileGeneratorFactory {
-	public static FileGenerator<Object> getFileGenerator(String framework, String outputFolder) {
-		TemplateStore ts = getStore(framework);
-		TemplateFactory tf = new TemplateFactory(ts);
-		return new FileGeneratorImpl(tf, outputFolder);
-	}
+import com.palmyralabs.pcg.commons.UserOptions;
 
-	private static TemplateStore getStore(String framework) {
+public class FileGeneratorFactory {
+
+	public static List<TemplateStore> getStore(UserOptions options) {
 		ServiceLoader<TemplateStoreProvider> loaders = ServiceLoader.load(TemplateStoreProvider.class);
+		List<TemplateStore> result = new ArrayList<TemplateStore>();
 
 		for (TemplateStoreProvider tsp : loaders) {
-			if (tsp.isSupported(framework))
-				return tsp.getStore();
+			if (tsp.isSupported(options))
+				result.addAll(tsp.getStores(options));
 		}
-		throw new RuntimeException("Given framework " + framework + " is not supported");
+		return result;
 	}
 }

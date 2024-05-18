@@ -1,6 +1,11 @@
 package com.palmyralabs.pcg.template;
 
+import java.util.List;
+
+import com.palmyralabs.pcg.commons.UserOptions;
+
 public interface TemplateStoreProvider {
-	TemplateStore getStore();
-	boolean isSupported(String framework); // TODO framework to be ENUM
+	List<TemplateStore> getStores(UserOptions options);
+
+	boolean isSupported(UserOptions options);
 }
