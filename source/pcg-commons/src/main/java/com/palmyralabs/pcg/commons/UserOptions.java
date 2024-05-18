@@ -13,4 +13,6 @@ public interface UserOptions {
 	String getPackage();
 
 	String getFolder();
+	
+	String getBaseOutputFolder();
 }

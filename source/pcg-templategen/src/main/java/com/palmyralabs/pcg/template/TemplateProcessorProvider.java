@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.palmyralabs.pcg.commons.UserOptions;
 
-public interface TemplateStoreProvider {
-	List<TemplateStore> getStores(UserOptions options);
+public interface TemplateProcessorProvider {
+	List<TemplateProcessor> getProcessors(UserOptions options);
 
 	boolean isSupported(UserOptions options);
 }

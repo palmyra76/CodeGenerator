@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.template;
+package com.palmyralabs.pcg.template.generator;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,9 +12,9 @@ import freemarker.template.TemplateException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-class FileGeneratorImpl implements FileGenerator<Object> {
+public class FileGeneratorImpl implements FileGenerator<Object> {
 
-	private final TemplateFactory templateStore;
+	private final TemplateFactory templateStore = new TemplateFactory();
 	private final String baseFolder;
 
 	@Override

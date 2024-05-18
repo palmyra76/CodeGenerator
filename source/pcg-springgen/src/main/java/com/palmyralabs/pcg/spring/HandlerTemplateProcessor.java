@@ -5,10 +5,9 @@ import java.util.List;
 
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
-import com.palmyralabs.pcg.commons.options.TemplateType;
-import com.palmyralabs.pcg.template.TemplateStore;
+import com.palmyralabs.pcg.template.processor.DataModelTemplateProcessor;
 
-public class EntityTemplateStore implements TemplateStore {
+public class HandlerTemplateProcessor extends DataModelTemplateProcessor {
 
 	List<TemplateInfo> templates = new ArrayList<>();
 
@@ -18,13 +17,14 @@ public class EntityTemplateStore implements TemplateStore {
 	}
 
 	@Override
-	public String suggestedOutputPath(UserOptions options, TemplateInfo templateInfo) {
-		return "tbd";
+	protected String getOutputPath(TemplateInfo template, UserOptions options) {		
+		return "hello"; // TODO  change accordingly
 	}
 
 	@Override
-	public TemplateType getTemplateType() {
-		return TemplateType.DataModel;
+	public String getName() {
+		return "handler";
 	}
+
 
 }

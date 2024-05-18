@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.template;
+package com.palmyralabs.pcg.template.generator;
 
 import java.io.IOException;
 import java.util.List;
