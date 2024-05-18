@@ -10,7 +10,6 @@ import com.palmyralabs.pcg.commons.KeyValue;
 import com.palmyralabs.pcg.validator.InputValidator;
 import com.palmyralabs.pcg.validator.OptionsProvider;
 import com.palmyralabs.pcg.validator.ValidOption;
-import com.palmyralabs.pcg.validator.exception.PrimaryOptionNotFoundException;
 
 import lombok.SneakyThrows;
 
@@ -24,22 +23,33 @@ public class CommandLineValidator implements InputValidator {
 		CommandLineParser parser = new CommandParser();
 		CommandLine cmd = parser.parse(optionsProvider.getOptions(), command);
 
-		String primaryOptionValue = cmd.getOptionValue(optionsProvider.getPrimaryOption());
+		ValidOption primaryOption = optionsProvider.getPrimaryOption();
+
+		String primaryOptionValue = cmd.getOptionValue(primaryOption);
 
 		if (null == primaryOptionValue) {
-			throw new PrimaryOptionNotFoundException(optionsProvider.getPrimaryOption());
+			KeyValue kv = getValue(cmd, primaryOption);
+			result.add(kv);
+			primaryOptionValue = kv.getValue();
 		}
 
 		List<ValidOption> options = optionsProvider.getOptions(primaryOptionValue);
 
 		for (ValidOption vo : options) {
-			String v = cmd.getOptionValue(vo);
-			String value = validate(vo, v);
-			KeyValue kv = new KeyValue(getKey(vo), value);
-			result.add(kv);
+			if (vo != primaryOption) {
+				KeyValue kv = getValue(cmd, vo);
+				result.add(kv);
+			}
 		}
 
 		return result;
+	}
+
+	private KeyValue getValue(CommandLine cmd, ValidOption vo) {
+		String v = cmd.getOptionValue(vo);
+		String value = validate(vo, v);
+		KeyValue kv = new KeyValue(getKey(vo), value);
+		return kv;
 	}
 
 	public String getKey(ValidOption vo) {

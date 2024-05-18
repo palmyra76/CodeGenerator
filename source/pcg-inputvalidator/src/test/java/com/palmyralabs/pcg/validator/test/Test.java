@@ -17,10 +17,10 @@ public class Test {
 		String commandInput = " -f react -m full";
 		Options options = new Options();
 
-		ChoiceOption frameOption = new ChoiceOption("f", "framework", true, "Framework option",
+		ChoiceOption frameworkOption = new ChoiceOption("f", "framework", true, "Framework option",
 				new String[] { "spring", "react" }, "Enter valid framework");
-		frameOption.setRequired(true);
-		options.addOption(frameOption);
+		frameworkOption.setRequired(true);
+		options.addOption(frameworkOption);
 
 		ChoiceOption springBuildOption = new ChoiceOption("b", "build", true, "Build tool option",
 				new String[] { "maven", "gradle" }, "Enter valid Build");
@@ -63,10 +63,10 @@ public class Test {
 
 		CommandLineValidator validator = new CommandLineValidator();
 
-		DefaultOptionsProvider optionsProvider = new DefaultOptionsProvider("framework");
+		DefaultOptionsProvider optionsProvider = new DefaultOptionsProvider(frameworkOption);
 		optionsProvider.addOption(springBuildOption, "spring");
 		optionsProvider.addOption(reactBuildOption, "react");
-		optionsProvider.addOption(frameOption, "spring", "react");
+		optionsProvider.addOption(frameworkOption, "spring", "react");
 		optionsProvider.addOption(modeOption, "spring", "react");
 		optionsProvider.addOption(packageName, "spring");
 		optionsProvider.addOption(databaseType, "spring", "react");

@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 public class KeyValue {
 	private final String key;
 	private final String value;
-	
+
 	public String toString() {
 		return key + " " + value;
 	}

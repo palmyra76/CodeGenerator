@@ -34,10 +34,10 @@ public class TestGradle {
 		String commandInput = " -f spring -m full";
 		Options options = new Options();
 
-		ChoiceOption frameOption = new ChoiceOption("f", "framework", true, "Framework option",
+		ChoiceOption frameworkOption = new ChoiceOption("f", "framework", true, "Framework option",
 				new String[] { "spring", "react" }, "Enter valid framework");
-		frameOption.setRequired(true);
-		options.addOption(frameOption);
+		frameworkOption.setRequired(true);
+		options.addOption(frameworkOption);
 
 		ChoiceOption springBuildOption = new ChoiceOption("b", "build", true, "Build tool option",
 				new String[] { "maven", "gradle" }, "Enter valid Build");
@@ -48,9 +48,9 @@ public class TestGradle {
 				new String[] { "Minimal", "Full", "Extended" }, "Enter generation mode");
 		options.addOption(modeOption);
 
-		DefaultOptionsProvider optionsProvider = new DefaultOptionsProvider("framework");
+		DefaultOptionsProvider optionsProvider = new DefaultOptionsProvider(frameworkOption);
 		optionsProvider.addOption(springBuildOption, "spring");
-		optionsProvider.addOption(frameOption, "spring", "react");
+		optionsProvider.addOption(frameworkOption, "spring", "react");
 		optionsProvider.addOption(modeOption, "spring", "react");
 
 		String text = SystemLambda.tapSystemOut(() -> {

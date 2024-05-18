@@ -25,5 +25,5 @@ public interface OptionsProvider {
 	 * Returns the name of the primary Option.
 	 * @return
 	 */
-	String getPrimaryOption();
+	ValidOption getPrimaryOption();
 }

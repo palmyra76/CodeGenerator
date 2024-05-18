@@ -1,11 +1,11 @@
 package com.palmyralabs.pcg.commons.options;
 
-public enum Mode {
-	Minimal("minimal"), Extended("extended");
+public enum BuildTool {
+	GRADLE("gradle"), MAVEN("maven"), VITE("vite"), ROLLUP("rollup");
 
 	public final String value;
 
-	private Mode(String value) {
+	private BuildTool(String value) {
 		this.value = value;
 	}
 
@@ -13,8 +13,8 @@ public enum Mode {
 		return this.value;
 	}
 	
-	public static Mode byValue(String v) {
-        for (Mode b : Mode.values()) {
+	public static BuildTool byValue(String v) {
+        for (BuildTool b : BuildTool.values()) {
             if (b.value.equalsIgnoreCase(v)) {
                 return b;
             }

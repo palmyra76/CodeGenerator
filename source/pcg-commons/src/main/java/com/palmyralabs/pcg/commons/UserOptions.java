@@ -1,18 +1,17 @@
 package com.palmyralabs.pcg.commons;
 
+import com.palmyralabs.pcg.commons.options.BuildTool;
 import com.palmyralabs.pcg.commons.options.Framework;
 import com.palmyralabs.pcg.commons.options.Mode;
 
 public interface UserOptions {
 	Framework getFramework();
 
-	String getBuildTool();
+	BuildTool getBuildTool();
 
 	Mode getMode();
 
-	String getPackage();
+	String getPackageName();
 
-	String getFolder();
-	
 	String getBaseOutputFolder();
 }

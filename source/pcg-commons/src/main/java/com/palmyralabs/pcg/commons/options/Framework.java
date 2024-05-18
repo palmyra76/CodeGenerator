@@ -12,4 +12,13 @@ public enum Framework {
 	public String getValue() {
 		return this.value;
 	}
+	
+	public static Framework byValue(String v) {
+        for (Framework b : Framework.values()) {
+            if (b.value.equalsIgnoreCase(v)) {
+                return b;
+            }
+        }
+        return null;
+    }
 }
