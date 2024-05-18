@@ -15,7 +15,7 @@ public class PortNumberOption extends NumberOption {
 			return false;
 		try {
 			Integer number = Integer.parseInt(option);
-			if (number >= 1024 && number <= 65535)
+			if (number > 1024 && number <= 65535)
 				return true;
 			else
 				return false;
