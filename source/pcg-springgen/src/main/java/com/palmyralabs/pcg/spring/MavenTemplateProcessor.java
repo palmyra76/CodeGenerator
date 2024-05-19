@@ -6,16 +6,14 @@ import java.util.List;
 
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
-import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class GradleTemplateProcessor extends SimpleTemplatorProcessor {
+public class MavenTemplateProcessor extends SimpleTemplatorProcessor {
 
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
-		TemplateInfo info = new DefaultTemplateInfo("build.gradle", "templates/buildGradle.ftlh");
-		templates.add(info);
+		
 		return templates;
 	}
 

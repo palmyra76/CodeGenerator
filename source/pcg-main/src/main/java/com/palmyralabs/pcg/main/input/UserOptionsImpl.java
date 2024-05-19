@@ -1,5 +1,7 @@
 package com.palmyralabs.pcg.main.input;
 
+import java.nio.file.Path;
+
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.commons.options.BuildTool;
 import com.palmyralabs.pcg.commons.options.Framework;
@@ -15,6 +17,5 @@ public class UserOptionsImpl implements UserOptions {
 	private BuildTool buildTool;
 	private Mode mode;
 	private String packageName;
-	private String baseOutputFolder;
-
+	private Path baseOutputFolder;
 }

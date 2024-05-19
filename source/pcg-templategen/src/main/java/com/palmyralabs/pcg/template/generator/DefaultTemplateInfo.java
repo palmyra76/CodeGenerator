@@ -8,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor	
 public class DefaultTemplateInfo implements TemplateInfo{
-
 	private final String name;
-	private final String location;
-
+	private final String fileLocation;
 }

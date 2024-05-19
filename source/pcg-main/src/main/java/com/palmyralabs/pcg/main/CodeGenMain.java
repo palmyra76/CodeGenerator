@@ -18,29 +18,39 @@ import com.zitlab.palmyra.store.schema.Schema;
 public class CodeGenMain {
 
 	public static void main(String[] args) {
-//		CommandLineValidator validator = new CommandLineValidator();
-//		List<KeyValue> userChoices = validator.validate(UserInputs.getProvider(), args);
-		List<KeyValue> userChoices = new DummyUserOptions().getOptions();
+		List<KeyValue> userChoices = getUserInput(args);
 
-		UserOptions options = new UserOptionsConverter().convert(userChoices);
-		System.out.println(options.getFramework());
-
-		DataSourceOptionsConverter dsConverter = new DataSourceOptionsConverter();
-		DataSourceOptions dsOptions = dsConverter.convert(userChoices);
-
-		SchemaMetaDataProvider metadataProvider = new SchemaMetaDataProvider(dsOptions);
-		Schema schema = metadataProvider.getSchema();
+		Schema schema = getSchema(userChoices);
 		if (null == schema) {
 			System.out.println("Not able to read metadata from database, exiting");
+			return;
 		}
 
+		generate(userChoices, schema);
+
+	}
+
+	private static List<KeyValue> getUserInput(String[] args) {
+//		CommandLineValidator validator = new CommandLineValidator();
+//		return validator.validate(UserInputs.getProvider(), args);
+		return new DummyUserOptions().getOptions();
+	}
+
+	private static void generate(List<KeyValue> userChoices, Schema schema) {
+		UserOptions options = new UserOptionsConverter().convert(userChoices);
 		GeneratorContext ctx = new GeneratorContextImpl(options, schema);
 
 		List<TemplateProcessor> processors = TemplateProcessorFactory.getProcessors(options);
 		for (TemplateProcessor tp : processors) {
 			tp.process(options, ctx);
 		}
+	}
 
+	private static Schema getSchema(List<KeyValue> userChoices) {
+		DataSourceOptionsConverter dsConverter = new DataSourceOptionsConverter();
+		DataSourceOptions dsOptions = dsConverter.convert(userChoices);
+		SchemaMetaDataProvider metadataProvider = new SchemaMetaDataProvider(dsOptions);
+		return metadataProvider.getSchema();
 	}
 
 }

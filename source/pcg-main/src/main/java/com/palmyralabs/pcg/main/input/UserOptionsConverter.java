@@ -1,5 +1,6 @@
 package com.palmyralabs.pcg.main.input;
 
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,10 +23,11 @@ public class UserOptionsConverter {
 		}
 
 		r.setFramework(getFramework(valueMap.get(L_FRAMEWORK)));
-		r.setBuildTool(getBuildTool(valueMap.get(L_FRAMEWORK)));
+		r.setBuildTool(getBuildTool(valueMap.get(L_SPRING_BUILD)));
 		r.setMode(getMode(valueMap.get(L_MODE)));
 
 		r.setPackageName(valueMap.get(L_PACKAGE));
+		r.setBaseOutputFolder(Paths.get("./codeGen"));
 
 		return r;
 	}

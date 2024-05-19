@@ -2,6 +2,5 @@ package com.palmyralabs.pcg.commons;
 
 public interface TemplateInfo {
 	String getName();
-
-	String getLocation();
+	String getFileLocation();	 // relative path - includes file name
 }

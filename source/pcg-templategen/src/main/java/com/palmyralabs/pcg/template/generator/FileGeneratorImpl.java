@@ -3,6 +3,7 @@ package com.palmyralabs.pcg.template.generator;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
 import com.palmyralabs.pcg.commons.exception.TemplateProcessingException;
@@ -15,13 +16,14 @@ import lombok.RequiredArgsConstructor;
 public class FileGeneratorImpl implements FileGenerator<Object> {
 
 	private final TemplateFactory templateStore = new TemplateFactory();
-	private final String baseFolder;
+	private final Path baseFolder;
 
 	@Override
-	public void generateSingleFile(FileRef fileRef, Object data) throws IOException {
+	public void generateSingleFile(TargetFileInfo fileRef, Object data) throws IOException {
 		try {
 			Template template = templateStore.getTemplate(fileRef.getTemplateName());
-			FileWriter fileWriter = new FileWriter(new File(baseFolder + "/" + fileRef.getOutputFilePath()));
+			Path outputPath = fileRef.getOutputFilePath().resolve(fileRef.getOutputFile());
+			FileWriter fileWriter = new FileWriter(outputPath.toFile());
 			template.process(data, fileWriter);
 			fileWriter.close();
 		} catch (Exception e) {
@@ -30,8 +32,8 @@ public class FileGeneratorImpl implements FileGenerator<Object> {
 	}
 
 	@Override
-	public void generateMultipleFiles(List<FileRef> fileRefs, Object data) throws IOException, TemplateException {
-		for (FileRef fileRef : fileRefs) {
+	public void generateMultipleFiles(List<TargetFileInfo> fileRefs, Object data) throws IOException, TemplateException {
+		for (TargetFileInfo fileRef : fileRefs) {
 			Template template = templateStore.getTemplate(fileRef.getTemplateName());
 			FileWriter fileWriter = new FileWriter(new File(baseFolder + "/" + fileRef.getOutputFilePath()));
 			template.process(data, fileWriter);

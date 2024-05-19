@@ -14,13 +14,13 @@ public class TemplateFactory {
 	public TemplateFactory() {
 		String freemarkerVersion = Configuration.getVersion().toString();
 		cfg = new Configuration(new Version(freemarkerVersion));
-		cfg.setClassForTemplateLoading(this.getClass(), "/templates");
+		cfg.setClassForTemplateLoading(this.getClass(), "/");
 		cfg.setDefaultEncoding("UTF-8");
 	}
 
 	public Template getTemplate(String templateName) throws IOException {
 		try {
-			return cfg.getTemplate(templateName + ".ftlh");
+			return cfg.getTemplate(templateName);
 		} catch (Exception e) {
 			throw new TemplateNotFoundException(templateName, e);
 		}
