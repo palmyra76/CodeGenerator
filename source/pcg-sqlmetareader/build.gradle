@@ -1,4 +1,12 @@
 
 dependencies {
 	implementation project(':pcg-commons')
+	implementation deps.palmyra.store.schema
+	implementation deps.jdbc.hikaricp
+	implementation deps.jdbc.mariadb
+	
+	implementation deps.palmyra.dbstore.mariadb
+	implementation deps.palmyra.dbstore.db2
+	implementation deps.palmyra.dbstore.oracle
+	implementation deps.palmyra.dbstore.pgsql
 }

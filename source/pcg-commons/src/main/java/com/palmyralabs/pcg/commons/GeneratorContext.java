@@ -1,7 +1,9 @@
 package com.palmyralabs.pcg.commons;
 
+import com.zitlab.palmyra.store.schema.Schema;
+
 public interface GeneratorContext {
 	UserOptions getUserOptions();
 
-	String getDataModel(); // TODO change to sqlstore - schema
+	Schema getDataModel();
 }

@@ -2,36 +2,21 @@ def versions = [ spring_boot: '3.2.1',spring:'6.1.2',
     HikariCP:'5.0.1',log4j2:'2.22.0',slf4j:"2.0.9", 
     persistence_api:'3.1.0',servlet_api:'5.0.0', 
     jackson:'2.15.2', slf4j:"2.0.9",
-    lombok:'1.18.30', jdbc_mariadb:'3.2.0',sqlstore:'0.1.0', freemarker:'2.3.31']
+    lombok:'1.18.30', jdbc_mariadb:'3.2.0',sqlstore:'1.0.0', freemarker:'2.3.31']
 
 def palmyra = [
-    spring:"com.palmyralabs.palmyra:palmyra-spring:0.1.0",
-    standard:"com.palmyralabs.palmyra.core:palmyra-standard:0.1.0",
     store : [
         schema:"com.palmyralabs.sqlstore:sqlstore-schema:${versions.sqlstore}",
         base:"com.palmyralabs.sqlstore:sqlstore-base:${versions.sqlstore}",
         core:"com.palmyralabs.sqlstore:sqlstore-core:${versions.sqlstore}",
         dao:"com.palmyralabs.sqlstore:sqlstore-dao:${versions.sqlstore}"
     ],
-    extn : [
-        pwdmgmt:"com.palmyralabs.palmyra.extn:palmyra-dbpwd-mgmt:0.1.0",
-        aclmgmt:"com.palmyralabs.palmyra.extn:palmyra-dbacl-mgmt:0.1.0"
+    dbstore: [
+    	pgsql:"com.palmyralabs.sqlstore:dbstore-pgsql:${versions.sqlstore}",
+    	db2:"com.palmyralabs.sqlstore:dbstore-db2:${versions.sqlstore}",
+    	oracle:"com.palmyralabs.sqlstore:dbstore-oracle:${versions.sqlstore}",
+		mariadb:"com.palmyralabs.sqlstore:dbstore-mariadb:${versions.sqlstore}"
     ]
-]
-
-def spring = [
-    jdbc : "org.springframework:spring-jdbc:${versions.spring}",
-    context : "org.springframework:spring-context:${versions.spring}",
-    core : "org.springframework:spring-core:${versions.spring}",
-    spring_tx : "org.springframework:spring-tx:${versions.spring}",
-    security_web: "org.springframework.security:spring-security-web:${versions.spring_security}",
-    context_support : "org.springframework:spring-context-support:${versions.spring_security}"
-]
-
-def springboot = [    
-    jpa:"org.springframework.boot:spring-boot-starter-data-jpa:${versions.spring_boot}",
-    security:"org.springframework.boot:spring-boot-starter-security:${versions.spring_boot}",
-    test:"org.springframework.boot:spring-boot-starter-test:${versions.spring_boot}"
 ]
 
 def jackson = [
@@ -68,5 +53,5 @@ def log = [
 	]
 ]
 
-ext.deps = [ 'spring': spring, 'springboot':springboot, 'jackson': jackson, 'apache': apache,
+ext.deps = [ 'jackson': jackson, 'apache': apache,
     'jakarta' : jakarta, 'versions':versions, 'log' : log, 'org':org, 'jdbc':jdbc, "palmyra" : palmyra ]

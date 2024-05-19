@@ -31,6 +31,9 @@ public class CommandLineValidator implements InputValidator {
 			KeyValue kv = getValue(cmd, primaryOption);
 			result.add(kv);
 			primaryOptionValue = kv.getValue();
+		}else {
+			KeyValue kv = getValue(cmd, primaryOption);
+			result.add(kv);
 		}
 
 		List<ValidOption> options = optionsProvider.getOptions(primaryOptionValue);

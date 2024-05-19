@@ -29,7 +29,7 @@ public class TestGradle {
 				1 maven
 				2 gradle
 				3
-				[build maven, framework spring, mode full]""";
+				[framework spring, build maven, mode full]""";
 
 		String commandInput = " -f spring -m full";
 		Options options = new Options();
@@ -61,6 +61,6 @@ public class TestGradle {
 			});
 		});
 
-		assertEquals(text.trim(), expectedOutput.trim());
+		assertEquals(expectedOutput.trim(), text.trim());
 	}
 }

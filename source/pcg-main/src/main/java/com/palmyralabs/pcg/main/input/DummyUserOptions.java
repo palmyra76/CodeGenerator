@@ -28,7 +28,7 @@ public class DummyUserOptions {
 		add(r, L_DATABASE_PASSWORD, "password");
 		add(r, L_DATABASE_PORT, "3306");
 		add(r, L_DATABASE_TYPE, "mariadb");
-		add(r, L_DATABASE_SCHEMAS, "qbacc");
+		add(r, L_DATABASE_SCHEMAS, "accounting");
 		return r;
 	}
 
