@@ -10,6 +10,7 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.commons.options.BuildTool;
 import com.palmyralabs.pcg.commons.options.Framework;
 import com.palmyralabs.pcg.commons.options.Mode;
+import com.zitlab.palmyra.common.util.TextUtil;
 
 import static com.palmyralabs.pcg.main.input.CommandLineOptions.*;
 
@@ -29,6 +30,9 @@ public class UserOptionsConverter {
 		r.setPackageName(valueMap.get(L_PACKAGE));
 		r.setBaseOutputFolder(Paths.get("./codeGen"));
 
+		r.setGroup(getGroup(valueMap.get(L_PACKAGE)));
+		r.setProjectName(getProjectName(valueMap.get(L_PACKAGE)));
+		r.setConvertedProjectName(getConvertedProjectName(valueMap.get(L_PACKAGE)));
 		return r;
 	}
 
@@ -42,5 +46,21 @@ public class UserOptionsConverter {
 
 	private Framework getFramework(String v) {
 		return Framework.byValue(v);
+	}
+
+	private String getGroup(String v) {
+		int lastIndex = v.lastIndexOf('.');
+		return v.substring(0, lastIndex);
+	}
+
+	private String getProjectName(String v) {
+		int lastIndex = v.lastIndexOf('.');
+		return v.substring(lastIndex + 1);
+	}
+
+	private String getConvertedProjectName(String v) {
+		int lastIndex = v.lastIndexOf('.');
+		String projectName = v.substring(lastIndex + 1);
+		return TextUtil.camelCaseFirstLetterUpperCase(projectName);
 	}
 }

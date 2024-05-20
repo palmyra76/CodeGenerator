@@ -18,4 +18,8 @@ public class UserOptionsImpl implements UserOptions {
 	private Mode mode;
 	private String packageName;
 	private Path baseOutputFolder;
+	private String group;
+	private String projectName;
+	private String convertedProjectName;
+	
 }

@@ -2,20 +2,21 @@ def versions = [ spring_boot: '3.2.1',spring:'6.1.2',
     HikariCP:'5.0.1',log4j2:'2.22.0',
     persistence_api:'3.1.0',servlet_api:'5.0.0', 
     jackson:'2.15.2', slf4j:"2.0.9", jetty:'11.0.16',
-    lombok:'1.18.30', jdbc_mariadb:'3.2.0',sqlstore:'0.1.0']
+    lombok:'1.18.30', jdbc_mariadb:'3.2.0',sqlstore:'1.0.0']
 
 def palmyra = [
-    spring:"com.palmyralabs.palmyra:palmyra-spring:0.1.0",
-    standard:"com.palmyralabs.palmyra.core:palmyra-standard:0.1.0",
+    spring:"com.palmyralabs.palmyra:palmyra-spring:${versions.sqlstore}",
+    standard:"com.palmyralabs.palmyra.core:palmyra-standard:${versions.sqlstore}",
+    commons:"com.palmyralabs.sqlstore:palmyra-commons:${versions.sqlstore}",
     store : [
-        schema:"com.palmyralabs.sqlstore:sqlstore-schema:${r"${versions.sqlstore}"}",
-        base:"com.palmyralabs.sqlstore:sqlstore-base:${r"${versions.sqlstore}"}",
-        core:"com.palmyralabs.sqlstore:sqlstore-core:${r"${versions.sqlstore}"}",
-        dao:"com.palmyralabs.sqlstore:sqlstore-dao:${r"${versions.sqlstore}"}"
+        schema:"com.palmyralabs.sqlstore:sqlstore-schema:${versions.sqlstore}",
+        base:"com.palmyralabs.sqlstore:sqlstore-base:${versions.sqlstore}",
+        core:"com.palmyralabs.sqlstore:sqlstore-core:${versions.sqlstore}",
+        dao:"com.palmyralabs.sqlstore:sqlstore-dao:${versions.sqlstore}"
     ],
     extn : [
-        pwdmgmt:"com.palmyralabs.palmyra.extn:palmyra-dbpwd-mgmt:0.1.0",
-        aclmgmt:"com.palmyralabs.palmyra.extn:palmyra-dbacl-mgmt:0.1.0"
+        pwdmgmt:"com.palmyralabs.palmyra.extn:palmyra-dbpwd-mgmt:${versions.sqlstore}",
+        aclmgmt:"com.palmyralabs.palmyra.extn:palmyra-dbacl-mgmt:${versions.sqlstore}"
     ]
 ]
 

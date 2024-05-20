@@ -16,4 +16,10 @@ public interface UserOptions {
 	String getPackageName();
 
 	Path getBaseOutputFolder();
+	
+	String getGroup();
+	
+	String getProjectName();
+	
+	String getConvertedProjectName();
 }
