@@ -1,7 +1,7 @@
 package com.palmyralabs.pcg.commons.options;
 
 public enum Mode {
-	Minimal("minimal"), Extended("extended");
+	Minimal("minimal"), Full("full"), Extended("extended");
 
 	public final String value;
 

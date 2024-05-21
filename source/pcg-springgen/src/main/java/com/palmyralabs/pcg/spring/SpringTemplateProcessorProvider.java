@@ -15,13 +15,17 @@ public class SpringTemplateProcessorProvider implements TemplateProcessorProvide
 	public List<TemplateProcessor> getProcessors(UserOptions options) {
 		List<TemplateProcessor> result = new ArrayList<>();
 
-		result.add(new HandlerTemplateProcessor());
-		result.add(new EntityTemplateProcessor());
-
-		if (options.getBuildTool() == BuildTool.GRADLE)
-			result.add(new GradleTemplateProcessor());
-		else
-			result.add(new MavenTemplateProcessor());
+		switch (options.getMode()) {
+		case Extended:
+		case Full:
+			if (options.getBuildTool() == BuildTool.GRADLE)
+				result.add(new GradleTemplateProcessor());
+			else
+				result.add(new MavenTemplateProcessor());
+		case Minimal:
+			result.add(new HandlerTemplateProcessor());
+			result.add(new EntityTemplateProcessor());
+		}	
 
 		return result;
 	}
