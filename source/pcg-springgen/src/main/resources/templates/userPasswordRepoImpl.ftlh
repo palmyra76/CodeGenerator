@@ -1,4 +1,4 @@
-package ${packageName}.config;
+package ${packageName}.security.config;
 
 import java.util.Optional;
 

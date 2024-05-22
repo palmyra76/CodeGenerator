@@ -9,16 +9,16 @@ import java.util.List;
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
-import com.palmyralabs.pcg.template.processor.DataModelTemplateProcessor;
+import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class HandlerTemplateProcessor extends DataModelTemplateProcessor {
+public class MainClassTemplateProcessor extends SimpleTemplatorProcessor {
 
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo handler = new DefaultTemplateInfo("Handler.java", "templates/handler.ftlh");
-		templates.add(handler);
+		TemplateInfo mainClass = new DefaultTemplateInfo("AppMain.java", "templates/mainClass.ftlh");
+		templates.add(mainClass);
 
 		return templates;
 	}
@@ -26,13 +26,13 @@ public class HandlerTemplateProcessor extends DataModelTemplateProcessor {
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
 		String[] packageName = options.getPackageName().split("\\.");
-		Path path = Paths.get("src", "main", "java", String.join(File.separator, packageName), "handler");
+		Path path = Paths.get("src", "main", "java", String.join(File.separator, packageName));
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "handler";
+		return "MainClass";
 	}
 
 }

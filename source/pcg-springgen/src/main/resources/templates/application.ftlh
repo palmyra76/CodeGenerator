@@ -4,10 +4,10 @@ spring:
     hibernate:
       ddl-auto: validate
   datasource:
-    url: ${url}/${projectName}
-    username: ${userName}
-    password: ${password}
-    driverClassName: ${driverClassName}
+    url: jdbc:mariadb://<ipaddress>:3306/${projectName}
+    username: 
+    password: 
+    driverClassName: org.mariadb.jdbc.Driver
 
 server:
   port: 8080

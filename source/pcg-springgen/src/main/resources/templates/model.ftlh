@@ -1,17 +1,7 @@
-package ${isXpmTable?then('${packageName}.palmyra','${packageName}')}.model;
+package ${packageName}.model;
 
 import com.palmyralabs.palmyra.base.annotations.PalmyraField;
 import com.palmyralabs.palmyra.base.annotations.PalmyraType;
-<#list fields as field>
-    <#if field["isForeignKey"]!=0 && (field["targetTable"]?starts_with("Xpm") || name?starts_with("Xpm"))>
-    	<#if field["targetTable"]?starts_with("Xpm") && !name?starts_with("Xpm")>
-import ${packageName}.palmyra.model.${field["targetTable"]}Model;
-		<#elseif name?starts_with("Xpm") && !field["targetTable"]?starts_with("Xpm")>
-import ${packageName}.model.${field["targetTable"]}Model;
-		<#else>
-		</#if>
-    </#if>
-</#list>
 
 <#if fields?has_content>
     <#if fields?filter(field -> field.dataType == "LocalDate")?has_content>
@@ -32,11 +22,11 @@ public class ${name}Model {
   <#list fields as field>
   
 	<#if field["isForeignKey"]!=0>
-		@PalmyraField(attribute = "${field["code"]}")
+		@PalmyraField(attribute = "${field["columnName"]}")
 		private ${field["targetTable"]}Model ${field["targetTable"]}; 
 	<#else>
 		@PalmyraField
-		private ${field["dataType"]} ${field["code"]};
+		private ${field["dataType"]} ${field["columnName"]};
 	
 	</#if>
   </#list>

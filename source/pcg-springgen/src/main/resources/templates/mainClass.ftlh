@@ -8,10 +8,10 @@ import com.palmyralabs.palmyra.spring.PalmyraSpringConfiguration;
 
 @SpringBootApplication
 @Import(PalmyraSpringConfiguration.class)
-public class ${convertedProjectName}Application {
+public class AppMain {
 
 	public static void main(String[] args) {
-		SpringApplication.run(${convertedProjectName}Application.class, args);
+		SpringApplication.run(AppMain.class, args);
 	}
 
 }

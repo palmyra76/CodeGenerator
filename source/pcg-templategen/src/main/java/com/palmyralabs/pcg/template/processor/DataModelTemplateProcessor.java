@@ -24,7 +24,7 @@ public abstract class DataModelTemplateProcessor implements TemplateProcessor {
 		for (TemplateInfo template : getTemplates()) {
 			Path outputPath = getOutputPath(template, userOptions);
 			for (Table table : context.getTables().values()) {
-				TargetFileInfo target = new TargetFileInfo(template.getFileLocation(), table.getConvertedName()+template.getName(), outputPath);
+				TargetFileInfo target = new TargetFileInfo(template.getFileLocation(), table.getName()+template.getName(), outputPath);
 				generator.generateSingleFile(target, table);
 			}
 		}

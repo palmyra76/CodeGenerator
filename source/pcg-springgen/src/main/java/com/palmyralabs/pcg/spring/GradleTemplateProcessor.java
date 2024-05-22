@@ -28,7 +28,7 @@ public class GradleTemplateProcessor extends SimpleTemplatorProcessor {
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		return options.getBaseOutputFolder().resolve("Service");
+		return options.getBaseOutputFolder().resolve("");
 	}
 
 	@Override

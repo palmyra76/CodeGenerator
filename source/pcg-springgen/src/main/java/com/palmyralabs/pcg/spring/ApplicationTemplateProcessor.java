@@ -1,6 +1,5 @@
 package com.palmyralabs.pcg.spring;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -9,30 +8,28 @@ import java.util.List;
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
-import com.palmyralabs.pcg.template.processor.DataModelTemplateProcessor;
+import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class HandlerTemplateProcessor extends DataModelTemplateProcessor {
+public class ApplicationTemplateProcessor extends SimpleTemplatorProcessor {
 
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
-
-		TemplateInfo handler = new DefaultTemplateInfo("Handler.java", "templates/handler.ftlh");
-		templates.add(handler);
+		TemplateInfo application = new DefaultTemplateInfo("application.yaml", "templates/application.ftlh");
+		templates.add(application);
 
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		String[] packageName = options.getPackageName().split("\\.");
-		Path path = Paths.get("src", "main", "java", String.join(File.separator, packageName), "handler");
+		Path path = Paths.get("src", "main", "resources");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "handler";
+		return "gradleBuild";
 	}
 
 }

@@ -49,7 +49,7 @@ tasks.named('test') {
 }
 
 application {
-    mainClass = '${packageName}.${convertedProjectName}Application'
+    mainClass = '${packageName}.AppMain'
 }
 
 configurations {

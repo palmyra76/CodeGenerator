@@ -1,5 +1,6 @@
 package com.palmyralabs.pcg.spring;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +18,8 @@ public class EntityTemplateProcessor extends DataModelTemplateProcessor {
 	}
 
 	@Override
-	protected String getOutputPath(TemplateInfo template, UserOptions options) {		
-		return "hello"; // TODO  change accordingly
+	protected Path getOutputPath(TemplateInfo template, UserOptions options) {		
+		return options.getBaseOutputFolder().resolve("");
 	}
 
 	@Override

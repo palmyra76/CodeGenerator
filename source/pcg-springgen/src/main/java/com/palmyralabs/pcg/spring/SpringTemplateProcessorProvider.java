@@ -18,14 +18,21 @@ public class SpringTemplateProcessorProvider implements TemplateProcessorProvide
 		switch (options.getMode()) {
 		case Extended:
 		case Full:
-			if (options.getBuildTool() == BuildTool.GRADLE)
+			if (options.getBuildTool() == BuildTool.GRADLE) {
 				result.add(new GradleTemplateProcessor());
-			else
+				result.add(new ApplicationTemplateProcessor());
+			} else {
 				result.add(new MavenTemplateProcessor());
+			}
+			result.add(new ControllerTemplateProcessor());
+			result.add(new DefaultHandlerTemplateProcessor());
+			result.add(new DefaultModelTemplateProcessor());
+			result.add(new SecurityConfigTemplateProcessor());
 		case Minimal:
+			result.add(new MainClassTemplateProcessor());
 			result.add(new HandlerTemplateProcessor());
-			result.add(new EntityTemplateProcessor());
-		}	
+			result.add(new ModelTemplateProcessor());
+		}
 
 		return result;
 	}
