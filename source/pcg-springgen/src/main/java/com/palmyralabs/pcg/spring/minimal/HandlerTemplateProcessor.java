@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.spring;
+package com.palmyralabs.pcg.spring.minimal;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -9,16 +9,16 @@ import java.util.List;
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
-import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
+import com.palmyralabs.pcg.template.processor.DataModelTemplateProcessor;
 
-public class MainClassTemplateProcessor extends SimpleTemplatorProcessor {
+public class HandlerTemplateProcessor extends DataModelTemplateProcessor {
 
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo mainClass = new DefaultTemplateInfo("AppMain.java", "templates/mainClass.ftlh");
-		templates.add(mainClass);
+		TemplateInfo handler = new DefaultTemplateInfo("Handler.java", "templates/minimal/handler.ftlh");
+		templates.add(handler);
 
 		return templates;
 	}
@@ -26,13 +26,13 @@ public class MainClassTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
 		String[] packageName = options.getPackageName().split("\\.");
-		Path path = Paths.get("src", "main", "java", String.join(File.separator, packageName));
+		Path path = Paths.get("service", "src", "main", "java", String.join(File.separator, packageName), "handler");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "MainClass";
+		return "handler";
 	}
 
 }

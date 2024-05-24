@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.spring;
+package com.palmyralabs.pcg.spring.extended;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -9,18 +9,19 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class GradleTemplateProcessor extends SimpleTemplatorProcessor {
+public class ExtGradleTemplateProcessor extends SimpleTemplatorProcessor {
 
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
-		TemplateInfo buildGradle = new DefaultTemplateInfo("build.gradle", "templates/buildGradle.ftlh");
+		
+		TemplateInfo buildGradle = new DefaultTemplateInfo("build.gradle", "templates/extended/buildGradle.ftlh");
 		templates.add(buildGradle);
 		
-		TemplateInfo depsGradle = new DefaultTemplateInfo("deps.gradle", "templates/depsGradle.ftlh");
+		TemplateInfo depsGradle = new DefaultTemplateInfo("deps.gradle", "templates/full/depsGradle.ftlh");
 		templates.add(depsGradle);
 		
-		TemplateInfo settingsGradle = new DefaultTemplateInfo("settings.gradle", "templates/settingsGradle.ftlh");
+		TemplateInfo settingsGradle = new DefaultTemplateInfo("settings.gradle", "templates/full/settingsGradle.ftlh");
 		templates.add(settingsGradle);
 		
 		return templates;
@@ -28,7 +29,7 @@ public class GradleTemplateProcessor extends SimpleTemplatorProcessor {
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		return options.getBaseOutputFolder().resolve("");
+		return options.getBaseOutputFolder().resolve("service");
 	}
 
 	@Override

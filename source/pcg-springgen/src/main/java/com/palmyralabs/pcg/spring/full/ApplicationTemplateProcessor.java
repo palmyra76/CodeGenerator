@@ -1,6 +1,5 @@
-package com.palmyralabs.pcg.spring;
+package com.palmyralabs.pcg.spring.full;
 
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -9,30 +8,29 @@ import java.util.List;
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
-import com.palmyralabs.pcg.template.processor.DataModelTemplateProcessor;
+import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class ModelTemplateProcessor extends DataModelTemplateProcessor {
+public class ApplicationTemplateProcessor extends SimpleTemplatorProcessor {
 
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
-
-		TemplateInfo model = new DefaultTemplateInfo("Model.java", "templates/model.ftlh");
-		templates.add(model);
+		
+		TemplateInfo application = new DefaultTemplateInfo("application.yaml", "templates/full/application.ftlh");
+		templates.add(application);
 
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		String[] packageName = options.getPackageName().split("\\.");
-		Path path = Paths.get("src", "main", "java", String.join(File.separator, packageName), "model");
+		Path path = Paths.get("service", "src", "main", "resources");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "model";
+		return "gradleBuild";
 	}
 
 }

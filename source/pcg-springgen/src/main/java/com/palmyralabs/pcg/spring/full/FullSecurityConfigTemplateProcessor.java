@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.spring;
+package com.palmyralabs.pcg.spring.full;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -11,27 +11,27 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class SecurityConfigTemplateProcessor extends SimpleTemplatorProcessor {
+public class FullSecurityConfigTemplateProcessor extends SimpleTemplatorProcessor {
 
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo loginResponse = new DefaultTemplateInfo("LoginResponse.java", "templates/loginResponse.ftlh");
+		TemplateInfo loginResponse = new DefaultTemplateInfo("LoginResponse.java", "templates/full/loginResponse.ftlh");
 		templates.add(loginResponse);
 
-		TemplateInfo securityConfig = new DefaultTemplateInfo("SecurityConfig.java", "templates/securityConfig.ftlh");
+		TemplateInfo securityConfig = new DefaultTemplateInfo("SecurityConfig.java", "templates/full/securityConfig.ftlh");
 		templates.add(securityConfig);
 
 		TemplateInfo securityConfigRepositoryConfig = new DefaultTemplateInfo("SecurityConfigRepositoryConfig.java",
-				"templates/securityConfigRepositoryConfig.ftlh");
+				"templates/full/securityConfigRepositoryConfig.ftlh");
 		templates.add(securityConfigRepositoryConfig);
 
-//		TemplateInfo userPasswordRepoImpl = new DefaultTemplateInfo("UserPasswordRepoImpl.java",
-//				"templates/userPasswordRepoImpl.ftlh");
-//		templates.add(userPasswordRepoImpl);
+		TemplateInfo userPasswordRepoImpl = new DefaultTemplateInfo("UserPasswordRepoImpl.java",
+				"templates/full/userPasswordRepoImpl.ftlh");
+		templates.add(userPasswordRepoImpl);
 
-		TemplateInfo userProvider = new DefaultTemplateInfo("UserProvider.java", "templates/userProvider.ftlh");
+		TemplateInfo userProvider = new DefaultTemplateInfo("UserProvider.java", "templates/full/userProvider.ftlh");
 		templates.add(userProvider);
 
 		return templates;
@@ -40,7 +40,8 @@ public class SecurityConfigTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
 		String[] packageName = options.getPackageName().split("\\.");
-		Path path = Paths.get("src", "main", "java", String.join(File.separator, packageName), "security", "config");
+		Path path = Paths.get("service", "src", "main", "java", String.join(File.separator, packageName), "security",
+				"config");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 

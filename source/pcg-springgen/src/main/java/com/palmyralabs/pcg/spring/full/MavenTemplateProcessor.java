@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.spring;
+package com.palmyralabs.pcg.spring.full;
 
 import java.nio.file.Path;
 import java.util.ArrayList;

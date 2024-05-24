@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.spring;
+package com.palmyralabs.pcg.spring.full;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -16,27 +16,30 @@ public class ControllerTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
-		TemplateInfo authenticationController = new DefaultTemplateInfo("AuthenticationController.java", "templates/authenticationController.ftlh");
+
+		TemplateInfo authenticationController = new DefaultTemplateInfo("AuthenticationController.java",
+				"templates/full/authenticationController.ftlh");
 		templates.add(authenticationController);
-		
-		TemplateInfo  baseController = new DefaultTemplateInfo("BaseController.java", "templates/baseController.ftlh");
+
+		TemplateInfo baseController = new DefaultTemplateInfo("BaseController.java", "templates/full/baseController.ftlh");
 		templates.add(baseController);
-		
-		TemplateInfo  globalExceptionHandler = new DefaultTemplateInfo("GlobalExceptionHandler.java", "templates/globalExceptionHandler.ftlh");
+
+		TemplateInfo globalExceptionHandler = new DefaultTemplateInfo("GlobalExceptionHandler.java",
+				"templates/full/globalExceptionHandler.ftlh");
 		templates.add(globalExceptionHandler);
-		
+
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
 		String[] packageName = options.getPackageName().split("\\.");
-		Path path = Paths.get("src", "main", "java", String.join(File.separator, packageName), "controller");
+		Path path = Paths.get("service", "src", "main", "java", String.join(File.separator, packageName), "controller");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
-	public String getName() {		
+	public String getName() {
 		return "controller";
 	}
 

@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.spring;
+package com.palmyralabs.pcg.spring.full;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -11,15 +11,14 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class DefaultModelTemplateProcessor extends SimpleTemplatorProcessor {
+public class ServiceTemplateProcessor extends SimpleTemplatorProcessor {
 
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo errorResponse = new DefaultTemplateInfo("ErrorResponse.java",
-				"templates/errorResponse.ftlh");
-		templates.add(errorResponse);
+		TemplateInfo userService = new DefaultTemplateInfo("UserService.java", "templates/full/userService.ftlh");
+		templates.add(userService);
 
 		return templates;
 	}
@@ -27,13 +26,13 @@ public class DefaultModelTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
 		String[] packageName = options.getPackageName().split("\\.");
-		Path path = Paths.get("src", "main", "java", String.join(File.separator, packageName), "model");
+		Path path = Paths.get("service", "src", "main", "java", String.join(File.separator, packageName), "service");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "model";
+		return "service";
 	}
 
 }
