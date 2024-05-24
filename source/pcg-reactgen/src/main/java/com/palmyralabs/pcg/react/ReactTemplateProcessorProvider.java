@@ -20,6 +20,7 @@ public class ReactTemplateProcessorProvider implements TemplateProcessorProvider
 //		else
 		// result.add(new MavenTemplateProcessor());
 		return result;
+		
 	}
 
 	@Override
