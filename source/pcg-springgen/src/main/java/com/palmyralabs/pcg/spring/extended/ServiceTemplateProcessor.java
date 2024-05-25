@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.spring.full;
+package com.palmyralabs.pcg.spring.extended;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -17,7 +17,7 @@ public class ServiceTemplateProcessor extends SimpleTemplatorProcessor {
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo userService = new DefaultTemplateInfo("UserService.java", "templates/full/userService.ftlh");
+		TemplateInfo userService = new DefaultTemplateInfo("UserService.java", "templates/extended/userService.ftlh");
 		templates.add(userService);
 
 		return templates;

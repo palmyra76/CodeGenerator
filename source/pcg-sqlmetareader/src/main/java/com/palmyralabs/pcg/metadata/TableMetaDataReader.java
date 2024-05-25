@@ -37,7 +37,8 @@ public class TableMetaDataReader {
 		for (TupleAttribute attribute : fields.values()) {
 			Field field = new Field();
 			field.setColumnName(attribute.getAttribute());
-			field.setDataType(DataTypeConvertor.convert(attribute.getDataType()));
+			field.setJavaDataType(DataTypeConvertor.javaTypeConvert(attribute.getDataType()));
+			field.setReactDataType(DataTypeConvertor.reactTypeConvert(attribute.getDataType()));
 			field.setIsPrimaryKey(attribute.isPrimaryKey());
 			field.setIsForeignKey(attribute.getForeignKeyCount());
 			ForeignKey foreignKey = tuple.getForeignKey(attribute.getAttribute());

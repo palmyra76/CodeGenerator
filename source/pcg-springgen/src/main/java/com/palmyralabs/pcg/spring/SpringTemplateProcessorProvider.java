@@ -12,6 +12,7 @@ import com.palmyralabs.pcg.spring.extended.AclModelTemplateProcessor;
 import com.palmyralabs.pcg.spring.extended.ExtEntityTemplateProcessor;
 import com.palmyralabs.pcg.spring.extended.ExtMySqlDataTemplateProcessor;
 import com.palmyralabs.pcg.spring.extended.ExtSecurityConfigTemplateProcessor;
+import com.palmyralabs.pcg.spring.extended.ServiceTemplateProcessor;
 import com.palmyralabs.pcg.spring.full.ApplicationTemplateProcessor;
 import com.palmyralabs.pcg.spring.full.ControllerTemplateProcessor;
 import com.palmyralabs.pcg.spring.full.DefaultHandlerTemplateProcessor;
@@ -22,7 +23,6 @@ import com.palmyralabs.pcg.spring.full.FullGradleTemplateProcessor;
 import com.palmyralabs.pcg.spring.full.MavenTemplateProcessor;
 import com.palmyralabs.pcg.spring.full.RepoTemplateProcessor;
 import com.palmyralabs.pcg.spring.full.FullSecurityConfigTemplateProcessor;
-import com.palmyralabs.pcg.spring.full.ServiceTemplateProcessor;
 import com.palmyralabs.pcg.spring.minimal.HandlerTemplateProcessor;
 import com.palmyralabs.pcg.spring.minimal.MainClassTemplateProcessor;
 import com.palmyralabs.pcg.spring.minimal.ModelTemplateProcessor;
@@ -35,52 +35,34 @@ public class SpringTemplateProcessorProvider implements TemplateProcessorProvide
 	public List<TemplateProcessor> getProcessors(UserOptions options) {
 		List<TemplateProcessor> result = new ArrayList<>();
 
-		if (options.getMode() == Mode.Extended) {
-
-			if (options.getBuildTool() == BuildTool.GRADLE) {
-				result.add(new FullGradleTemplateProcessor());
-				result.add(new ApplicationTemplateProcessor());
-			} else {
-				result.add(new MavenTemplateProcessor());
-			}
-
+		switch (options.getMode()) {
+		case Extended:
 			result.add(new ExtMySqlDataTemplateProcessor());
-			result.add(new ControllerTemplateProcessor());
+			result.add(new ExtSecurityConfigTemplateProcessor());
 			result.add(new ExtEntityTemplateProcessor());
 			result.add(new ServiceTemplateProcessor());
-			result.add(new RepoTemplateProcessor());
-			result.add(new DefaultHandlerTemplateProcessor());
-			result.add(new DefaultModelTemplateProcessor());
-			result.add(new ExtSecurityConfigTemplateProcessor());
-			result.add(new MainClassTemplateProcessor());
-			result.add(new HandlerTemplateProcessor());
-			result.add(new ModelTemplateProcessor());
+
 			result.add(new AclHandlerTemplateProcessor());
 			result.add(new AclModelTemplateProcessor());
-		}
-
-		else if (options.getMode() == Mode.Full) {
-
+		case Full:
 			if (options.getBuildTool() == BuildTool.GRADLE) {
 				result.add(new FullGradleTemplateProcessor());
 				result.add(new ApplicationTemplateProcessor());
 			} else {
 				result.add(new MavenTemplateProcessor());
 			}
-
-			result.add(new FullMySqlDataTemplateProcessor());
-			result.add(new ControllerTemplateProcessor());
-			result.add(new FullEntityTemplateProcessor());
-			result.add(new RepoTemplateProcessor());
+			
 			result.add(new DefaultHandlerTemplateProcessor());
 			result.add(new DefaultModelTemplateProcessor());
-			result.add(new FullSecurityConfigTemplateProcessor());
-			result.add(new MainClassTemplateProcessor());
-			result.add(new HandlerTemplateProcessor());
-			result.add(new ModelTemplateProcessor());
-		}
+			result.add(new ControllerTemplateProcessor());
+			result.add(new RepoTemplateProcessor());
 
-		else if (options.getMode() == Mode.Minimal) {
+			if (options.getMode() == Mode.Full) {
+				result.add(new FullMySqlDataTemplateProcessor());
+				result.add(new FullEntityTemplateProcessor());
+				result.add(new FullSecurityConfigTemplateProcessor());
+			}
+		case Minimal:
 			result.add(new MainClassTemplateProcessor());
 			result.add(new HandlerTemplateProcessor());
 			result.add(new ModelTemplateProcessor());
