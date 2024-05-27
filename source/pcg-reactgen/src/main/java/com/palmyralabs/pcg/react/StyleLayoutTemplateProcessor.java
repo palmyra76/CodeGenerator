@@ -16,20 +16,20 @@ public class StyleLayoutTemplateProcessor extends SimpleTemplatorProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo styleLayoutCSS = new DefaultTemplateInfo("Layout.CSS",
-				"templates/main_layout_template/mainLayoutTSXTemplate.ftlh");
+				"templates/layoutCSSTemplate.ftlh");
 		templates.add(styleLayoutCSS);
 		
 		TemplateInfo styleLoginCSS = new DefaultTemplateInfo("Login.CSS",
-				"templates/main_layout_template/sidebarTSXTemplate.ftlh");
+				"templates/loginCSSTemplate.ftlh");
 		templates.add(styleLoginCSS);
 
 		TemplateInfo styleSidebarCSS = new DefaultTemplateInfo("Sidebar.CSS",
-				"templates/main_layout_template/topbarTSXTemplate.ftlh");
+				"templates/sidebarCSSTemplate.ftlh");
 		templates.add(styleSidebarCSS);
 
 
 		TemplateInfo styletopbarCSS = new DefaultTemplateInfo("Topbar.CSS",
-				"templates/main_layout_template/topbarTSXTemplate.ftlh");
+				"templates/topbarCSSTemplate.ftlh");
 		templates.add(styletopbarCSS);
 		return templates;
 	}

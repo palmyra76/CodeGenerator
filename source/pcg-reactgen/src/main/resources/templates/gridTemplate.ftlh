@@ -14,8 +14,8 @@ const ${name}Page = () => {
             attribute: "${field.columnName}",
             name: "${field.columnName}",
             title:"${field.columnName}",
-            type: "${field.dataType}"
-        }}<#if field_has_next>,</#if>
+            type: "${field.reactDataType}"
+        }<#if field_has_next>,</#if>
 </#list>
 ];
         

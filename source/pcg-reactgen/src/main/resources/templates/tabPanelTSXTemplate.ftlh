@@ -7,8 +7,8 @@ function TabPanel(props: { children?: React.ReactNode; index: number; value: num
         <div
             role="tabpanel"
             hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
+            id={`simple-tabpanel-${r"${index}"}`}
+            aria-labelledby={`simple-tab-${r"${index}"}`}
             {...other}
         >
             {value === index && (

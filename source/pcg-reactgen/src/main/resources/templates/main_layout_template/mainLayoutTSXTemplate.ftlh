@@ -41,7 +41,7 @@ const MainLayout = (props: MainLayoutInput) => {
         sx={{
           flexGrow: 1,
           padding: '10px',
-          width: `calc(100% - ${sideWidth})`,
+          width: `calc(100% - ${r"${sideWidth}"})`,
           minHeight: "100vh"
         }}
       >

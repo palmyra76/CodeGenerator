@@ -10,27 +10,27 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class GridDialogTemplateProcessor extends SimpleTemplatorProcessor {
+public class StoreFactoryTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo gridDialogTSX = new DefaultTemplateInfo("GridDialog.tsx",
-				"templates/default_templates/gridDialogTemplate.ftlh");
-		templates.add(gridDialogTSX);
-	
+		TemplateInfo storeFactoryTS = new DefaultTemplateInfo("StoreFactory.ts",
+				"templates/storeFactoryTS.ftlh");
+		templates.add(storeFactoryTS);
+		
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","templates","default","dialog");
+		Path path = Paths.get("web","src","components","wire");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "GridDialog";
+		return "storeFactory";
 	}
 
 }

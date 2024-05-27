@@ -116,6 +116,23 @@
 input:focus {
   outline: none;
 }
+
+/* .css-1ff8729-MuiInputBase-root-MuiFilledInput-root::before,
+.css-1ff8729-MuiInputBase-root-MuiFilledInput-root::after {
+  border: none !important;
+}
+
+.css-1ff8729-MuiInputBase-root-MuiFilledInput-root {
+  background-color: unset !important;
+  border: none !important;
+  width: 100% !important;
+  font-size: large;
+}
+
+.css-1ff8729-MuiInputBase-root-MuiFilledInput-root:hover {
+  background-color: unset !important;
+} */
+
 .custom-alert-container {
   display: flex;
   align-items: center;

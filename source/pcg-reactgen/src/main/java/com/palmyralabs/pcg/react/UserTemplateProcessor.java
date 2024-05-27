@@ -21,7 +21,7 @@ public class UserTemplateProcessor extends SimpleTemplatorProcessor{
 		templates.add(userEditPageTSX);
 
 		TemplateInfo userNewPageTSX = new DefaultTemplateInfo("UserNewPage.tsx",
-				"templates/user_group_management/user/userNewPagePageTSXTemplate.ftlh");
+				"templates/user_group_management/user/userNewPageTSXTemplate.ftlh");
 		templates.add(userNewPageTSX);
 
 		TemplateInfo userPageTSX = new DefaultTemplateInfo("UserPage.tsx",

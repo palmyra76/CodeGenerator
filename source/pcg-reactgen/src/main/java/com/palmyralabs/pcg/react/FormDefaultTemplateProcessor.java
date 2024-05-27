@@ -20,7 +20,7 @@ public class FormDefaultTemplateProcessor extends SimpleTemplatorProcessor {
 		templates.add(frmEditFormTSX);
 		
 		TemplateInfo frmMenuFormTSX = new DefaultTemplateInfo("MenuForm.tsx",
-				"templates/default_templates/frmViewFormTSXTemplate.ftlh");
+				"templates/default_templates/frmMenuFormTSXTemplate.ftlh");
 		templates.add(frmMenuFormTSX);
 
 		TemplateInfo frmNewFormTSX = new DefaultTemplateInfo("NewForm.tsx",

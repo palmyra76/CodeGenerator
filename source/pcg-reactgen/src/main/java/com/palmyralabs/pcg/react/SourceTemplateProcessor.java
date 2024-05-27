@@ -15,12 +15,12 @@ public class SourceTemplateProcessor extends SimpleTemplatorProcessor {
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo loginFormTSX = new DefaultTemplateInfo("LoginForm.tsx",
-				"templates/loginFormTSXTemplate.ftlh");
+		TemplateInfo loginFormTSX = new DefaultTemplateInfo("main.tsx",
+				"templates/mainTSXTemplate.ftlh");
 		templates.add(loginFormTSX);
 		
-		TemplateInfo loginInputTSX = new DefaultTemplateInfo("LoginInput.tsx",
-				"templates/loginInputTSXTemplate.ftlh");
+		TemplateInfo loginInputTSX = new DefaultTemplateInfo("App.tsx",
+				"templates/appTSXTemplate.ftlh");
 		templates.add(loginInputTSX);
 
 		return templates;
@@ -34,7 +34,7 @@ public class SourceTemplateProcessor extends SimpleTemplatorProcessor {
 
 	@Override
 	public String getName() {
-		return "LoginTSX";
+		return "SourcetTempProcessor";
 	}
 
 }

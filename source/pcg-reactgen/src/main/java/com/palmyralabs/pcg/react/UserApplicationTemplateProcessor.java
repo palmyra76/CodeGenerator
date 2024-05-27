@@ -16,11 +16,11 @@ public class UserApplicationTemplateProcessor extends SimpleTemplatorProcessor{
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo userApplicationTSX = new DefaultTemplateInfo("UserApplication.tsx",
-				"templates/user_group_management/user/userApplictionTSXTemplate.ftlh");
+				"templates/user_group_management/user/userApplicationTSXTemplate.ftlh");
 		templates.add(userApplicationTSX);
 
 		TemplateInfo userApplicationGridTSX = new DefaultTemplateInfo("UserApplicationGrid.tsx",
-				"templates/user_group_management/user/userApplictionGridTSXTemplate.ftlh");
+				"templates/user_group_management/user/userApplicationGridTSXTemplate.ftlh");
 		templates.add(userApplicationGridTSX );
 		return templates;
 	}

@@ -10,7 +10,7 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class UserForm extends SimpleTemplatorProcessor {
+public class UserFormTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();

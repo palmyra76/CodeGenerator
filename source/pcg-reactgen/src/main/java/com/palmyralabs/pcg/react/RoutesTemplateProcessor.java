@@ -10,27 +10,31 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class GridDialogTemplateProcessor extends SimpleTemplatorProcessor {
+public class RoutesTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo gridDialogTSX = new DefaultTemplateInfo("GridDialog.tsx",
-				"templates/default_templates/gridDialogTemplate.ftlh");
-		templates.add(gridDialogTSX);
-	
+		TemplateInfo appRouts = new DefaultTemplateInfo("appRoutes.tsx",
+				"templates/appRoutesTSXTemplate.ftlh");
+		templates.add(appRouts);
+		
+		TemplateInfo indexTSX = new DefaultTemplateInfo("index.tsx",
+				"templates/indexTSXTemplate.ftlh");
+		templates.add(indexTSX);
+
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","templates","default","dialog");
+		Path path = Paths.get("web","src","routes");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "GridDialog";
+		return "appRoutes";
 	}
 
 }
