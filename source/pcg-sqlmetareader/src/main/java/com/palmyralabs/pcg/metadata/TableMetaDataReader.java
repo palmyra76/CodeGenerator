@@ -13,10 +13,12 @@ import com.zitlab.palmyra.common.util.TextUtil;
 import com.zitlab.palmyra.sqlstore.base.dbmeta.ForeignKey;
 import com.zitlab.palmyra.sqlstore.base.dbmeta.TupleAttribute;
 import com.zitlab.palmyra.sqlstore.base.dbmeta.TupleType;
+import com.zitlab.palmyra.store.schema.Schema;
 
 public class TableMetaDataReader {
 
-	public Map<String, Table> getTable(Map<String, TupleType> tuples, UserOptions options) {
+	public Map<String, Table> getTable(Schema schema, UserOptions options) {
+		Map<String, TupleType> tuples = schema.getEntityMap();
 		Map<String, Table> tables = new HashMap<String, Table>();
 
 		for (TupleType tuple : tuples.values()) {

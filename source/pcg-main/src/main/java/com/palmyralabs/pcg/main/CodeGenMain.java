@@ -41,7 +41,7 @@ public class CodeGenMain {
 
 	private static void generate(List<KeyValue> userChoices, Schema schema) {
 		UserOptions options = new UserOptionsConverter().convert(userChoices);
-		Map<String, Table> tables = new TableMetaDataReader().getTable(schema.getEntityMap(), options);
+		Map<String, Table> tables = new TableMetaDataReader().getTable(schema, options);
 		GeneratorContext ctx = new GeneratorContextImpl(options, schema, tables);
 		List<TemplateProcessor> processors = TemplateProcessorFactory.getProcessors(options);
 		for (TemplateProcessor tp : processors) {

@@ -1,5 +1,5 @@
 
 dependencies {
 	implementation deps.org.freemarker
-	implementation deps.palmyra.store.schema
+	api deps.palmyra.store.schema
 }

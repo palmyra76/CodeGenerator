@@ -9,5 +9,6 @@ dependencies {
     implementation project(':pcg-sqlmetareader')
     
     implementation deps.palmyra.store.schema
+    implementation deps.palmyra.store.commons
     implementation group: 'commons-cli', name: 'commons-cli', version: '1.7.0'
 }

@@ -9,7 +9,8 @@ def palmyra = [
         schema:"com.palmyralabs.sqlstore:sqlstore-schema:${versions.sqlstore}",
         base:"com.palmyralabs.sqlstore:sqlstore-base:${versions.sqlstore}",
         core:"com.palmyralabs.sqlstore:sqlstore-core:${versions.sqlstore}",
-        dao:"com.palmyralabs.sqlstore:sqlstore-dao:${versions.sqlstore}"
+        dao:"com.palmyralabs.sqlstore:sqlstore-dao:${versions.sqlstore}",
+        commons:"com.palmyralabs.sqlstore:palmyra-commons:${versions.sqlstore}"
     ],
     dbstore: [
     	pgsql:"com.palmyralabs.sqlstore:dbstore-pgsql:${versions.sqlstore}",
