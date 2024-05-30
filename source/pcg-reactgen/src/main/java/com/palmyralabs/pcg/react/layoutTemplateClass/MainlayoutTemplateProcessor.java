@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react;
+package com.palmyralabs.pcg.react.layoutTemplateClass;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

@@ -1,18 +1,14 @@
 import { Navigate, Outlet } from "react-router-dom";
 import HomePage from "../pages/home/HomePage";
-import UserPage from "../pages/userManagement/user/UserPage";
-import UserEditPage from "../pages/userManagement/user/UserEditPage";
-import UserViewPage from "../pages/userManagement/user/UserViewPage";
-import UserNewPage from "../pages/userManagement/user/UserNewPage";
+import UserPage from "../pages/userManagement/UserPage";
+import UserEditPage from "../pages/userManagement/UserEditPage";
+import UserViewPage from "../pages/userManagement/UserViewPage";
+import UserNewPage from "../pages/userManagement/UserNewPage";
 import GroupPage from "../pages/userManagement/group/GroupPage";
 import EditGroupPage from "../pages/userManagement/group/EditGroupPage";
 import ViewGroupPage from "../pages/userManagement/group/ViewGroupPage";
 import NewGroupPage from "../pages/userManagement/group/NewGroupPage";
-import ApplicationPage from "../pages/application/ApplicationPage";
-import ApplicationChartsPage from "../pages/applicationCharts/ApplicationChartsPage";
-import ApplicationNewPage from "../pages/application/ApplicationNewPage";
-import ApplicationViewPage from "../pages/application/ApplicationViewPage";
-import ApplicationEditPage from "../pages/application/ApplicationEditPage";
+
 
 const appRoutes = [
   {

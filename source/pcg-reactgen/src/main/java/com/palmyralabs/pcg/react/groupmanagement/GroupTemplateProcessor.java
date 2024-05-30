@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react;
+package com.palmyralabs.pcg.react.groupmanagement;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,7 +10,7 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class UserManagementTemplateProcesssor extends SimpleTemplatorProcessor {
+public class GroupTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();

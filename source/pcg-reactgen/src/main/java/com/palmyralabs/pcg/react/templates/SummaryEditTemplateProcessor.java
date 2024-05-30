@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react;
+package com.palmyralabs.pcg.react.templates;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,35 +10,27 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class RoutesTemplateProcessor extends SimpleTemplatorProcessor {
+public class SummaryEditTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo appRouts = new DefaultTemplateInfo("appRoutes.tsx",
-				"templates/appRoutesTSXTemplate.ftlh");
-		templates.add(appRouts);
-		
-		TemplateInfo indexTSX = new DefaultTemplateInfo("index.tsx",
-				"templates/indexTSXTemplate.ftlh");
-		templates.add(indexTSX);
-		
-		TemplateInfo pageWrapper = new DefaultTemplateInfo("PageWrapper.tsx",
-				"templates/indexTSXTemplate.ftlh");
-		templates.add(pageWrapper);
-
+		TemplateInfo summaryedit = new DefaultTemplateInfo("EditForm.tsx",
+				"templates/default_templates/editFormTSXTemplate.ftlh");
+		templates.add(summaryedit);
+	
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","routes");
+		Path path = Paths.get("web","src","templates","default","summaryEdit");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "appRoutes";
+		return "SummaryEdit";
 	}
 
 }

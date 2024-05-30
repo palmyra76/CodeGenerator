@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react;
+package com.palmyralabs.pcg.react.ComponentTemplates;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,30 +10,28 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class UserApplicationTemplateProcessor extends SimpleTemplatorProcessor{
+public class FormComponentTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo userApplicationTSX = new DefaultTemplateInfo("UserApplication.tsx",
-				"templates/user_group_management/user/userApplicationTSXTemplate.ftlh");
-		templates.add(userApplicationTSX);
+		TemplateInfo formts = new DefaultTemplateInfo("form.ts",
+				"templates/formTSTemplate.ftlh");
+		templates.add(formts);
+		
 
-		TemplateInfo userApplicationGridTSX = new DefaultTemplateInfo("UserApplicationGrid.tsx",
-				"templates/user_group_management/user/userApplicationGridTSXTemplate.ftlh");
-		templates.add(userApplicationGridTSX );
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","pages","userManagement","user","userApplication");
+		Path path = Paths.get("web","src","components");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "UserApplication";
+		return "Login";
 	}
 
 }

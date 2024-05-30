@@ -10,28 +10,28 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class FormComponentTemplateProcessor extends SimpleTemplatorProcessor {
+public class StyleLayoutThemeTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
-
-		TemplateInfo formts = new DefaultTemplateInfo("form.ts",
-				"templates/formTSTemplate.ftlh");
-		templates.add(formts);
 		
+		TemplateInfo colorDefCSS = new DefaultTemplateInfo("colorDef.css",
+				"templates/colorDefCSS.ftlh");
+		templates.add(colorDefCSS);
 
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","components");
+		Path path = Paths.get("web","src","style","themes");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "Login";
+		return "colorDef";
 	}
+
 
 }

@@ -1,6 +1,6 @@
 import { ColumnDefinition } from "palmyra-rui";
-import SummaryGrid from "../../../templates/default/grid/SummaryGrid";
-import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
+import SummaryGrid from "../../templates/default/grid/SummaryGrid";
+import { ServiceEndpoint } from "../../config/ServiceEndpoints";
 import { IPageInput } from "../../../templates/Types";
 
 const UserPage = (props: IPageInput) => {

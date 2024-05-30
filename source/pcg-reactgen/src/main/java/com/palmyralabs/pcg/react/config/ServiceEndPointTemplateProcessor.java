@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react;
+package com.palmyralabs.pcg.react.config;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,27 +10,29 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class StoreFactoryTemplateProcessor extends SimpleTemplatorProcessor {
+public class ServiceEndPointTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
+		TemplateInfo endpoint = new DefaultTemplateInfo("ServiceEndpoints.ts",
+				"templates/serviceEndPointTSTemplate.ftlh");
+		templates.add(endpoint);
 
-		TemplateInfo storeFactoryTS = new DefaultTemplateInfo("StoreFactory.ts",
-				"templates/storeFactoryTS.ftlh");
-		templates.add(storeFactoryTS);
-		
+		TemplateInfo titleConfig = new DefaultTemplateInfo("TitleConfig.ts", "templates/titleConfigTS.ftlh");
+		templates.add(titleConfig);
+
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","components","wire");
+		Path path = Paths.get("web", "src", "config");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "storeFactory";
+		return "ServiceEndpoint";
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react;
+package com.palmyralabs.pcg.react.layoutTemplateClass;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,27 +10,28 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class GridDialogTemplateProcessor extends SimpleTemplatorProcessor {
+public class FormLayoutTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo gridDialogTSX = new DefaultTemplateInfo("GridDialog.tsx",
-				"templates/default_templates/gridDialogTemplate.ftlh");
-		templates.add(gridDialogTSX);
-	
+		TemplateInfo formLayoutcss = new DefaultTemplateInfo("FormLayout.css",
+				"templates/formLayoutCSS.ftlh");
+		templates.add(formLayoutcss);
+
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","templates","default","dialog");
+		Path path = Paths.get("web","src","style","layout","rui");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "GridDialog";
+		return "formLayout";
 	}
+
 
 }

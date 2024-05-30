@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react;
+package com.palmyralabs.pcg.react.ComponentTemplates;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,31 +10,27 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class LoginTemplateProcessor extends SimpleTemplatorProcessor {
+public class TabComponentTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo loginFormTSX = new DefaultTemplateInfo("LoginForm.tsx",
-				"templates/loginFormTSXTemplate.ftlh");
-		templates.add(loginFormTSX);
-		
-		TemplateInfo loginInputTSX = new DefaultTemplateInfo("LoginInput.tsx",
-				"templates/loginInputTSXTemplate.ftlh");
-		templates.add(loginInputTSX);
-
+		TemplateInfo tabPanelTSX = new DefaultTemplateInfo("TabPanel.tsx",
+				"templates/tabPanelTSXTemplate.ftlh");
+		templates.add(tabPanelTSX);
+	
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","components","login");
+		Path path = Paths.get("web","src","components","tabs");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "Login";
+		return "TabComponent";
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react;
+	package com.palmyralabs.pcg.react;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,35 +10,27 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class RoutesTemplateProcessor extends SimpleTemplatorProcessor {
+public class HomePageTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo appRouts = new DefaultTemplateInfo("appRoutes.tsx",
-				"templates/appRoutesTSXTemplate.ftlh");
-		templates.add(appRouts);
+		TemplateInfo homePageTSX = new DefaultTemplateInfo("HomePage.tsx",
+				"templates/homePageTemplateTSXTemplate.ftlh");
+		templates.add(homePageTSX);
 		
-		TemplateInfo indexTSX = new DefaultTemplateInfo("index.tsx",
-				"templates/indexTSXTemplate.ftlh");
-		templates.add(indexTSX);
-		
-		TemplateInfo pageWrapper = new DefaultTemplateInfo("PageWrapper.tsx",
-				"templates/indexTSXTemplate.ftlh");
-		templates.add(pageWrapper);
-
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","routes");
+		Path path = Paths.get("web","src","pages","home");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "appRoutes";
+		return "HomePage";
 	}
 
 }

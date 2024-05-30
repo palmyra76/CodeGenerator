@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import { IPageInput } from "../../../templates/Types";
-import NewForm from "../../../templates/default/form/NewForm";
+import NewForm from "../../templates/default/form/NewForm";
 import { FieldGroupContainer } from "palmyra-rui";
 import { DatePicker, RadioGroup, ServerLookup, TextField } from "../../../components/form";
-import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
+import { ServiceEndpoint } from "../../config/ServiceEndpoints";
 
 const UserNewPage = (props: IPageInput) => {
     const params: any = useParams();

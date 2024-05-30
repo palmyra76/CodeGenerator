@@ -3,7 +3,7 @@ import { IPageInput } from "../../../templates/Types";
 import { FieldGroupContainer } from "palmyra-rui";
 import { DatePicker, RadioGroup, ServerLookup, TextField } from "../../../components/form";
 import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
-import EditForm from "../../../templates/default/form/EditForm";
+import EditForm from "../../templates/default/form/EditForm";
 
 const UserEditPage = (props: IPageInput) => {
     const params: any = useParams();
