@@ -46,7 +46,7 @@ const Sidebar = (props: SidebarInput) => {
             position={'relative'}
             justifyContent="center"
           >
-            <Typography variant="h6" className={`sidebar-title ${!isMinimized ? 'minimized' : ''}`}>
+            <Typography variant="h6" className={`sidebar-title ${r"\${!isMinimized ? 'minimized' : ''}"}`}>
               <div>
                 {!responsive && (
                   <IconButton

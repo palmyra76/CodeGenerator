@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react.config;
+package com.palmyralabs.pcg.react.component;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,32 +10,27 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
 
-public class ServiceEndPointTemplateProcessor extends SimpleTemplatorProcessor {
+public class TabComponentTemplateProcessor extends SimpleTemplatorProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
-		TemplateInfo endpoint = new DefaultTemplateInfo("ServiceEndpoints.ts",
-				"templates/serviceEndPointTSTemplate.ftlh");
-		templates.add(endpoint);
 
-		TemplateInfo titleConfig = new DefaultTemplateInfo("TitleConfig.ts", "templates/titleConfigTS.ftlh");
-		templates.add(titleConfig);
-		
-		TemplateInfo widthConfig = new DefaultTemplateInfo("WidthConfig.ts", "templates/widthConfigTs.ftlh");
-		templates.add(widthConfig);
-
+		TemplateInfo tabPanelTSX = new DefaultTemplateInfo("TabPanel.tsx",
+				"templates/tabPanelTSXTemplate.ftlh");
+		templates.add(tabPanelTSX);
+	
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web", "src", "config");
+		Path path = Paths.get("web","src","components","tabs");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "ServiceEndpoint";
+		return "TabComponent";
 	}
 
 }

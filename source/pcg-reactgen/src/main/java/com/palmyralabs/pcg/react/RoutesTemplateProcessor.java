@@ -16,7 +16,7 @@ public class RoutesTemplateProcessor extends SimpleTemplatorProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo appRouts = new DefaultTemplateInfo("appRoutes.tsx",
-				"templates/appRoutesTSXTemplate.ftlh");
+				"templates/appRoutesTsxTemplate.ftlh");
 		templates.add(appRouts);
 		
 		TemplateInfo indexTSX = new DefaultTemplateInfo("index.tsx",
