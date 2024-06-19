@@ -3,7 +3,7 @@ package com.palmyralabs.pcg.commons;
 import java.sql.Types;
 
 public class DataTypeConvertor {
-	
+
 	public static String javaTypeConvert(int dataType) {
 
 		switch (dataType) {
@@ -68,9 +68,5 @@ public class DataTypeConvertor {
 		default:
 			return "string";
 		}
-	}
-
-	public static String splitData(String data) {
-		return data.replace((char) 46, (char) 47);
 	}
 }

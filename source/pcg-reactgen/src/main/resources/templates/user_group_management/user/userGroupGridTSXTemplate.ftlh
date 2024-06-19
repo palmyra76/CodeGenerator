@@ -1,10 +1,11 @@
 import { CheckboxGridEnhancer, ColumnDefinition, GridCustomizer, IGridEnhancer, IPageQueryable, StringFormat, gridColumnCustomizer } from "palmyra-rui";
 import { useRef } from "react";
-import SummaryGrid from "../../../../templates/default/grid/SummaryGrid";
 import { Button } from '@mui/material';
 import { Done } from '@mui/icons-material';
 import axios from 'axios';
 import { ServiceEndpoint } from "../../../../config/ServiceEndpoints";
+import { SummaryGrid } from "palmyra-template";
+import AppStoreFactory from "../../../../components/wire/StoreFactory";
 
 interface IUserGroupGrid {
     userId: number,
@@ -23,6 +24,7 @@ const UserGroupGrid = (props: IUserGroupGrid) => {
     const groupLooupEndpoint = ServiceEndpoint.aclmgmt.UsersByGroup.lookup.restApi;
     const apiEndPoint = StringFormat(groupLooupEndpoint, { userId: userId });
     const aclGroupApi = '/api/palmyra' + StringFormat(ServiceEndpoint.aclmgmt.UsersByGroup.restApi, { userId });
+    const store = AppStoreFactory;
 
     const fields: ColumnDefinition[] = [
         {
@@ -64,7 +66,7 @@ const UserGroupGrid = (props: IUserGroupGrid) => {
         <div className="user-group-grid">
             <div className="user-dialog-group-grid">
                 <SummaryGrid
-                    fields={fields} pageName={pageName} disableViewTopic
+                    storeFactory={store} fields={fields} pageName={pageName} disableViewTopic
                     title="GROUPS" gridRef={gridRef} customizer={gridCustomizer}
                     options={{ endPoint: apiEndPoint }} />
             </div>

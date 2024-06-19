@@ -8,9 +8,10 @@ import java.util.List;
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
-import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
+import com.palmyralabs.pcg.template.processor.SchemaModelTemplateProcessor;
+import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class RoutesTemplateProcessor extends SimpleTemplatorProcessor {
+public class RoutesTemplateProcessor extends SchemaModelTemplateProcessor{
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
@@ -18,14 +19,6 @@ public class RoutesTemplateProcessor extends SimpleTemplatorProcessor {
 		TemplateInfo appRouts = new DefaultTemplateInfo("appRoutes.tsx",
 				"templates/appRoutesTsxTemplate.ftlh");
 		templates.add(appRouts);
-		
-		TemplateInfo indexTSX = new DefaultTemplateInfo("index.tsx",
-				"templates/indexTSXTemplate.ftlh");
-		templates.add(indexTSX);
-		
-		TemplateInfo pageWrapper = new DefaultTemplateInfo("PageWrapper.tsx",
-				"templates/indexTSXTemplate.ftlh");
-		templates.add(pageWrapper);
 
 		return templates;
 	}

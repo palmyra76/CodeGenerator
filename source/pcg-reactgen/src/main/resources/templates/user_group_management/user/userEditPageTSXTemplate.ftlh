@@ -3,15 +3,17 @@ import { IPageInput } from "../../../templates/Types";
 import { FieldGroupContainer } from "palmyra-rui";
 import { DatePicker, RadioGroup, ServerLookup, TextField } from "../../../components/form";
 import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
-import EditForm from "../../templates/default/form/EditForm";
+import { EditForm } from "palmyra-template";
+import AppStoreFactory from "../../../components/wire/StoreFactory";
 
 const UserEditPage = (props: IPageInput) => {
     const params: any = useParams();
     const LookupEndPoint = ServiceEndpoint.userManagement.lookup;
     const MenuLookupEndPoint = ServiceEndpoint.aclmgmt.menuApi.lookup;
+    const store = AppStoreFactory;
 
     return <div className="user-form-container">
-        <EditForm id={params.id} title="Edit User" pageName={props.pageName} options={{
+        <EditForm storeFactory={store} id={params.id} title="Edit User" pageName={props.pageName} options={{
             endPoint:
                 ServiceEndpoint.userManagement.users.restApi
         }}>

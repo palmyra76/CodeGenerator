@@ -1,7 +1,8 @@
 import { ColumnDefinition, GridCustomizer, IPageQueryable, gridColumnCustomizer } from "palmyra-rui";
 import { useRef } from "react";
 import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
-import SummaryGrid from "../../../templates/default/grid/SummaryGrid";
+import { SummaryGrid } from "palmyra-template";
+import AppStoreFactory from "../../../components/wire/StoreFactory";
 
 const statusRenderer = (data: any) => {
   let type: String;
@@ -22,6 +23,7 @@ const statusRenderer = (data: any) => {
 const GroupPage = () => {
   const gridRef = useRef<IPageQueryable>(null);
   const apiEndPoint = ServiceEndpoint.aclmgmt.group;
+  const store = AppStoreFactory;
 
   const fields: ColumnDefinition[] = [
     {
@@ -49,33 +51,12 @@ const GroupPage = () => {
     }
   ];
 
-  // const FormLet: FC = () => <>
-  //   <div className="palmyra-form-field-container-wrapper">
-  //     <FieldGroupContainer >
-  //       <TextField attribute="name"
-  //         title="Group"
-  //         validationRule={"string"}
-  //         required={true} autoFocus
-  //         length={{ min: 3, message: "Minimum of 3 letters" }}
-  //       />
-  //       <RadioGroup attribute="active" title="Status"
-  //         options={{ 1: 'Active', 0: 'Disabled' }} />
-  //       <TextField attribute="description"
-  //         title="Description" colspan={2}
-  //         validationRule={"string"}
-  //         length={{ min: 3, message: "Minimum of 3 letters" }}
-  //       />
-  //     </FieldGroupContainer>
-  //   </div>
-
-  // </>
-
   const gridCustomizer: GridCustomizer = gridColumnCustomizer({});
   const pageName = 'group'
   return (
     <div className="user-group-grid">
       <SummaryGrid
-        fields={fields} pageName={pageName}
+        storeFactory={store} fields={fields} pageName={pageName}
         title="GROUPS" gridRef={gridRef} customizer={gridCustomizer}
         options={{ endPoint: apiEndPoint }} />
     </div>

@@ -8,21 +8,16 @@ import java.util.List;
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
-import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
+import com.palmyralabs.pcg.template.processor.SchemaModelTemplateProcessor;
+import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class ServiceEndPointTemplateProcessor extends SimpleTemplatorProcessor {
+public class ServiceEndPointTemplateProcessor extends SchemaModelTemplateProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 		TemplateInfo endpoint = new DefaultTemplateInfo("ServiceEndpoints.ts",
 				"templates/serviceEndPointTSTemplate.ftlh");
 		templates.add(endpoint);
-
-		TemplateInfo titleConfig = new DefaultTemplateInfo("TitleConfig.ts", "templates/titleConfigTS.ftlh");
-		templates.add(titleConfig);
-		
-		TemplateInfo widthConfig = new DefaultTemplateInfo("WidthConfig.ts", "templates/widthConfigTs.ftlh");
-		templates.add(widthConfig);
 
 		return templates;
 	}

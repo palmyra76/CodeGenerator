@@ -5,8 +5,8 @@ import { useState } from "react";
 import { IPageInput } from "../../../templates/Types";
 import ResetPasswordDialog from "../../../components/dialog/ResetPasswordDialog";
 import { DateView, FieldGroupContainer, LookupView, OptionsView, PalmyraForm, TextView, usePalmyraViewForm } from "palmyra-rui";
-import AppStoreFactory from "../../components/wire/StoreFactory";
-import { ServiceEndpoint } from "../../config/ServiceEndpoints";
+import AppStoreFactory from "../../../components/wire/StoreFactory";
+import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
 
 interface FormInput extends IPageInput {
     id?: any

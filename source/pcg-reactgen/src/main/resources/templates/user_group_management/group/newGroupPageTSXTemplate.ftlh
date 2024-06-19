@@ -1,16 +1,19 @@
 import { useParams } from "react-router-dom";
 import { FieldGroupContainer } from "palmyra-rui";
-import NewForm from "../../../templates/default/form/NewForm";
 import { IPageInput } from "../../../templates/Types";
 import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
 import { RadioGroup, TextField } from "../../../components/form";
+import { NewForm } from "palmyra-template";
+import AppStoreFactory from "../../../components/wire/StoreFactory";
 
 const NewGroupPage = (props: IPageInput) => {
     const params: any = useParams();
     const apiEndPoint = ServiceEndpoint.aclmgmt.group;
+    const store = AppStoreFactory;
+    
     return (
         <div className="user-form-container">
-            <NewForm id={params.id} title="New Group" pageName={props.pageName}
+            <NewForm storeFactory={store} id={params.id} title="New Group" pageName={props.pageName}
                 options={{ endPoint: apiEndPoint }}>
                 <div className="palmyra-form-field-container-wrapper">
                     <FieldGroupContainer columns={2}>

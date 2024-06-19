@@ -4,6 +4,7 @@ public interface CommandLineOptions {
 
 	String L_FRAMEWORK = "framework";
 	String L_SPRING_BUILD = "build";
+	String L_REACT_BUILD = "build";
 	String L_MODE = "mode";
 	String L_PACKAGE = "package";
 	String L_DATABASE_TYPE = "database";

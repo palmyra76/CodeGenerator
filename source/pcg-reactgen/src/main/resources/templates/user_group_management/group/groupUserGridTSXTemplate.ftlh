@@ -4,7 +4,8 @@ import { Button } from '@mui/material';
 import { Done } from '@mui/icons-material';
 import { ServiceEndpoint } from "../../../../config/ServiceEndpoints";
 import axios from 'axios';
-import SummaryGrid from "../../../../templates/default/grid/SummaryGrid";
+import { SummaryGrid } from "palmyra-template";
+import AppStoreFactory from "../../../../components/wire/StoreFactory";
 
 interface IGroupUserGrid {
     groupId: number,
@@ -21,6 +22,7 @@ const GroupUserGrid = (props: IGroupUserGrid) => {
     const gridEnhancer: IGridEnhancer = CheckboxGridEnhancer();
     const userLooupEndpoint = ServiceEndpoint.aclmgmt.GroupsByUser.lookup.restApi;
     const apiEndPoint = StringFormat(userLooupEndpoint, { groupId: groupId });
+    const store = AppStoreFactory;
 
     const fields: ColumnDefinition[] = [
         {
@@ -67,7 +69,7 @@ const GroupUserGrid = (props: IGroupUserGrid) => {
         <div className="user-group-grid">
             <div className="user-dialog-group-grid">
                 <SummaryGrid
-                    fields={fields} pageName={pageName} disableViewTopic
+                    storeFactory={store} fields={fields} pageName={pageName} disableViewTopic
                     title="GROUP USERS" gridRef={gridRef} customizer={gridCustomizer}
                     options={{ endPoint: apiEndPoint }} />
             </div>

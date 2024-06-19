@@ -8,9 +8,9 @@ import java.util.List;
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
-import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
+import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class UserTemplateProcessor extends SimpleTemplatorProcessor{
+public class UserTemplateProcessor extends SimpleTemplateProcessor{
 
 	@Override
 	public List<TemplateInfo> getTemplates() {
@@ -41,7 +41,7 @@ public class UserTemplateProcessor extends SimpleTemplatorProcessor{
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","pages","userManagement");
+		Path path = Paths.get("web","src","pages","userManagement", "user");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 

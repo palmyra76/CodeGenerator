@@ -1,13 +1,12 @@
-
 import { CellGetter, ColumnDefinition, GridCustomizer, IPageQueryable, StringFormat, gridColumnCustomizer, topic } from "palmyra-rui";
 import { useRef, useState } from "react";
 import { ServiceEndpoint } from "../../../../config/ServiceEndpoints";
-import SummaryDialogGrid from "../../../../templates/default/grid/SummaryDialogGrid";
-// import UserGroupGrid from "./UserGroupGrid";
 import { DeleteOutline } from '@mui/icons-material';
 import DeleteConfirmDialog from "../../../../components/dialog/DeleteConfirmDialog";
 import { IPageInput } from "../../../../templates/Types";
 import UserGroupGrid from "./UserGroupGrid";
+import { SummaryDialogGrid } from "palmyra-template";
+import AppStoreFactory from "../../../../components/wire/StoreFactory";
 
 interface UserPageInput extends IPageInput {
     userId?: number
@@ -19,6 +18,7 @@ const UsersGroup = (props: UserPageInput) => {
 
     const userId = props.userId;
     const apiEndPoint = StringFormat(ServiceEndpoint.aclmgmt.UsersByGroup.restApi, { userId: userId });
+    const store = AppStoreFactory;
 
     const statusRenderer = (data: any) => {
         let type: String;
@@ -107,7 +107,7 @@ const UsersGroup = (props: UserPageInput) => {
     return (
         <div className="user-group-grid">
             <SummaryDialogGrid
-                Child={UserGroupGrid} dialogeTitle='Group Dialog'
+                storeFactory={store} Child={UserGroupGrid} dialogeTitle='Group Dialog'
                 childProps={{ userId, gridRefresh }} defaultParams={{ filter: { active: 1 } }}
                 fields={fields} pageName={props.pageName} customizer={gridCustomizer}
                 title="USERS GROUPS" gridRef={gridRef} minWidth="800px"

@@ -8,32 +8,16 @@ import java.util.List;
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
-import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
+import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class FormDefaultTemplateProcessor extends SimpleTemplatorProcessor {
+public class FormDefaultTemplateProcessor extends SimpleTemplateProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo frmEditFormTSX = new DefaultTemplateInfo("EditForm.tsx",
-				"templates/default_templates/frmEditFormTSXTemplate.ftlh");
-		templates.add(frmEditFormTSX);
-		
 		TemplateInfo frmMenuFormTSX = new DefaultTemplateInfo("MenuForm.tsx",
 				"templates/default_templates/frmMenuFormTSXTemplate.ftlh");
 		templates.add(frmMenuFormTSX);
-
-		TemplateInfo frmNewFormTSX = new DefaultTemplateInfo("NewForm.tsx",
-				"templates/default_templates/frmNewFormTSXTemplate.ftlh");
-		templates.add(frmNewFormTSX);
-
-		TemplateInfo frmSaveFormTSX = new DefaultTemplateInfo("SaveForm.tsx",
-				"templates/default_templates/frmSaveFormTSXTemplate.ftlh");
-		templates.add(frmSaveFormTSX);
-
-		TemplateInfo frmViewFormTSX = new DefaultTemplateInfo("ViewForm.tsx",
-				"templates/default_templates/frmViewFormTSXTemplate.ftlh");
-		templates.add(frmViewFormTSX);
 
 		return templates;
 	}

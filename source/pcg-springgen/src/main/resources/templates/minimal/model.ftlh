@@ -23,7 +23,7 @@ public class ${name}Model {
   
 	<#if field["isForeignKey"]!=0>
 		@PalmyraField(attribute = "${field["columnName"]}")
-		private ${field["targetTable"]}Model ${field["targetTable"]}; 
+		private ${field["convertedTargetTableName"]}Model ${field["targetTable"]}; 
 	<#else>
 		@PalmyraField
 		private ${field["javaDataType"]} ${field["columnName"]};

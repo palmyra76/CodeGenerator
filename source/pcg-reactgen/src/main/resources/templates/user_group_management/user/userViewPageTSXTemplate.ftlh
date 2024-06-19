@@ -11,7 +11,6 @@ import AppStoreFactory from "../../../components/wire/StoreFactory";
 import UserViewForm from "./UserViewForm";
 import UsersGroup from "./userGroup/UsersGroup";
 import { ArrowBack } from '@mui/icons-material';
-import UserApplication from "./userApplication/UserApplication";
 
 
 const UserViewPage = (props: IPageInput) => {
@@ -57,11 +56,6 @@ const UserViewPage = (props: IPageInput) => {
             <TabPanel value={value} index={1}>
                 <div>
                     <UsersGroup userId={params.id} pageName="usersGroup" />
-                </div>
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                <div>
-                    <UserApplication userId={params.id} pageName="usersGroup" />
                 </div>
             </TabPanel>
         </Box>

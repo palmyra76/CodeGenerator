@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react;
+package com.palmyralabs.pcg.react.config;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -8,29 +8,32 @@ import java.util.List;
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
+import com.palmyralabs.pcg.template.processor.SchemaModelTemplateProcessor;
 import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class StyleThemeBlueColorTemplateProcessor extends SimpleTemplateProcessor {
+public class ConfigTemplateProcessor extends SimpleTemplateProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
+
+		TemplateInfo titleConfig = new DefaultTemplateInfo("TitleConfig.ts", "templates/titleConfigTS.ftlh");
+		templates.add(titleConfig);
 		
-		TemplateInfo colorsCSS = new DefaultTemplateInfo("Colors.css",
-				"templates/blueColorsCss.ftlh");
-		templates.add(colorsCSS);
+		TemplateInfo widthConfig = new DefaultTemplateInfo("WidthConfig.ts", "templates/widthConfigTs.ftlh");
+		templates.add(widthConfig);
 
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","style","themes","blue");
+		Path path = Paths.get("web", "src", "config");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "colors";
+		return "ServiceEndpoint";
 	}
 
 }

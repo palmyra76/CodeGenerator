@@ -5,7 +5,8 @@ import { ServiceEndpoint } from "../../../../config/ServiceEndpoints";
 import { DeleteOutline } from '@mui/icons-material';
 import GroupUserGrid from "./GroupUserGrid";
 import DeleteConfirmDialog from "../../../../components/dialog/DeleteConfirmDialog";
-import SummaryDialogGrid from "../../../../templates/default/grid/SummaryDialogGrid";
+import { SummaryDialogGrid } from "palmyra-template";
+import AppStoreFactory from "../../../../components/wire/StoreFactory";
 
 interface UserPageInput extends IPageInput {
   groupId?: number
@@ -18,6 +19,7 @@ const UserPage = (props: UserPageInput) => {
 
   const groupId = props.groupId;
   const endPoint = StringFormat(ServiceEndpoint.aclmgmt.GroupsByUser.restApi, { groupId: groupId });
+  const store = AppStoreFactory;
 
   const fields: ColumnDefinition[] = [
     {
@@ -90,7 +92,7 @@ const UserPage = (props: UserPageInput) => {
   return (
     <div className="usermanagement-grid-container">
       <SummaryDialogGrid
-        Child={GroupUserGrid} childProps={{ gridRefresh, groupId }}
+        storeFactory={store} Child={GroupUserGrid} childProps={{ gridRefresh, groupId }}
         customizer={gridCustomizer} defaultParams={{ filter: { active: 1 } }}
         fields={fields} pageName={props.pageName}
         title="GROUP USERS" gridRef={gridRef} minWidth="800px"

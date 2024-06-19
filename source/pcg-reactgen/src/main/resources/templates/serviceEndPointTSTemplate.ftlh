@@ -36,13 +36,6 @@ const ServiceEndpoint = {
             }
         }
     },
-    userApplicationByUser: {
-        restApi: "/user/{userId}/applications",
-        deleteApi: "/user/{userId}/application/{applicationId}",
-        lookup: {
-            restApi: "/user/{userId}/applications/lookup"
-        }
-    },
     userManagement: {
         users: { restApi: '/userManagement' },
         userProfileApi: '/user/about',
@@ -51,30 +44,12 @@ const ServiceEndpoint = {
             userType: '/userType',
         }
     },
-    application: {
-        restApi: '/user/applications',
-        byId: '/user/applications/{id}'
-    },
-    server: {
-        restApi: '/server'
-    },
-    dashboard: {
-        lookup: {
-            server: '/lookup/getServer/{applicationId}'
-        },
-        charts: {
-            responseTime: '/chart/responseTime',
-            mostUsedApi: '/chart/mostUsedApi',
-            highResponseTimeApi: '/chart/highResponseTime',
-            concurrency: '/chart/concurrency'
-        }
-    },
-    applicationDetails: {
-        getAllApplication: '/applicationDetails/getAllApplications'
-    },
-    apiResponseTime: {
-        byApplicationId: '/api/responseTime/byApplicationId/{applicationId}'
-    }
+    <#list tables as key, value> 
+    ${key}: {
+        restApi: '/${key}',
+        byId: '/${key}/{id}'
+    }<#if key_has_next>,</#if>
+	</#list> 
 }
 
 

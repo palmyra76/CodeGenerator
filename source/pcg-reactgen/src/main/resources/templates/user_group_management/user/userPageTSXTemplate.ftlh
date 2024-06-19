@@ -1,10 +1,13 @@
 import { ColumnDefinition } from "palmyra-rui";
-import SummaryGrid from "../../templates/default/grid/SummaryGrid";
-import { ServiceEndpoint } from "../../config/ServiceEndpoints";
+import { SummaryGrid } from "palmyra-template";
+import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
+import AppStoreFactory from "../../../components/wire/StoreFactory";
 import { IPageInput } from "../../../templates/Types";
 
 const UserPage = (props: IPageInput) => {
-
+	
+  const store = AppStoreFactory;
+	
   const fields: ColumnDefinition[] = [
     {
       attribute: "displayName",
@@ -82,7 +85,7 @@ const UserPage = (props: IPageInput) => {
   return (
     <div>
       <SummaryGrid
-        fields={fields} pageName={props.pageName}
+        storeFactory={store} fields={fields} pageName={props.pageName}
         title="USER MANAGEMENT"
         options={{ endPoint: ServiceEndpoint.userManagement.users.restApi }} />
     </div>

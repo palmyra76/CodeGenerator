@@ -8,9 +8,9 @@ import java.util.List;
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
-import com.palmyralabs.pcg.template.processor.SimpleTemplatorProcessor;
+import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class ComponentDialogTemplateProcessor extends SimpleTemplatorProcessor {
+public class ComponentDialogTemplateProcessor extends SimpleTemplateProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
@@ -25,7 +25,7 @@ public class ComponentDialogTemplateProcessor extends SimpleTemplatorProcessor {
 
 		TemplateInfo resetPasswordDialog= new DefaultTemplateInfo("ResetPasswordDialog.tsx",
 				"templates/resetPasswordDialogTsx.ftlh");
-		templates.add(deleteconfirmDialog);
+		templates.add(resetPasswordDialog);
 		return templates;
 	}
 

@@ -1,5 +1,5 @@
 {
-  "name": "perf-insights",
+  "name": "${projectName}",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,7 +14,8 @@
     "chartjs-adapter-date-fns": "^3.0.0",
     "chartjs-adapter-moment": "^1.0.1",
     "moment": "^2.30.1",
-    "palmyra-rui": "https://api.github.com/repos/palmyra76/palmyra-rui/tarball",
+    "palmyra-rui": "github:palmyra76/palmyra-rui",
+    "palmyra-template": "github:palmyra76/palmyra-rui-template",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-toastify": "^10.0.5",

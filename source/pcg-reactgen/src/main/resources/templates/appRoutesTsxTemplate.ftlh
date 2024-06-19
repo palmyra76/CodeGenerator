@@ -1,14 +1,19 @@
 import { Navigate, Outlet } from "react-router-dom";
 import HomePage from "../pages/home/HomePage";
-import UserPage from "../pages/userManagement/UserPage";
-import UserEditPage from "../pages/userManagement/UserEditPage";
-import UserViewPage from "../pages/userManagement/UserViewPage";
-import UserNewPage from "../pages/userManagement/UserNewPage";
+import UserPage from "../pages/userManagement/user/UserPage";
+import UserEditPage from "../pages/userManagement/user/UserEditPage";
+import UserViewPage from "../pages/userManagement/user/UserViewPage";
+import UserNewPage from "../pages/userManagement/user/UserNewPage";
 import GroupPage from "../pages/userManagement/group/GroupPage";
 import EditGroupPage from "../pages/userManagement/group/EditGroupPage";
 import ViewGroupPage from "../pages/userManagement/group/ViewGroupPage";
 import NewGroupPage from "../pages/userManagement/group/NewGroupPage";
-
+<#list tables as key, value> 
+import ${value.name}Page from "../components/test/${value.name}Page";
+import ${value.name}NewPage from "../components/test/${value.name}NewPage";
+import ${value.name}ViewPage from "../components/test/${value.name}ViewPage";
+import ${value.name}EditPage from "../components/test/${value.name}EditPage";
+</#list> 
 
 const appRoutes = [
   {
@@ -27,30 +32,26 @@ const appRoutes = [
     element: <HomePage />,
     state: "home"
   },
+   <#list tables as key, value> 
   {
-    path: "application",
-    name: "Application",
-    element: <ApplicationPage />,
-    state: "application"
+    path: "${key}",
+    name: "${value.name}",
+    element: <${value.name}Page />,
+    state: "${key}"
   },
   {
-    path: 'application/new',
-    element: <ApplicationNewPage pageName="application" />,
+    path: '${key}/new',
+    element: <${value.name}NewPage pageName="${key}" />,
   },
   {
-    path: 'application/view/:id',
-    element: <ApplicationViewPage pageName="application" />,
+    path: '${key}/view/:id',
+    element: <${value.name}ViewPage pageName="${key}" />,
   },
   {
-    path: 'application/edit/:id',
-    element: <ApplicationEditPage pageName="application" />,
+    path: '${key}/edit/:id',
+    element: <${value.name}EditPage pageName="${key}" />,
   },
-  {
-    path: "applicationCharts/:id",
-    name: "Application Charts",
-    element: <ApplicationChartsPage />,
-    state: "applicationCharts"
-  },
+  </#list> 
   {
     path: "admin",
     element: <Outlet />,
