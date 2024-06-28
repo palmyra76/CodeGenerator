@@ -1,8 +1,8 @@
 import { useRef } from "react";
-import { CellGetter, ColumnDefinition, GridCustomizer, IPageQueryable, IPagination, gridColumnCustomizer } from "palmyra-rui";
-import { ServiceEndpoint } from "../../config/ServiceEndpoints";
+import { ColumnDefinition, IPageQueryable, } from "palmyra-rui";
+import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
 import { SummaryGrid } from "palmyra-template";
-import AppStoreFactory from "../wire/StoreFactory";
+import AppStoreFactory from "../../wire/StoreFactory";
 
 const ${name}Page = () => {
     const gridRef = useRef<IPageQueryable>(null);
@@ -11,6 +11,9 @@ const ${name}Page = () => {
 
     const fields: ColumnDefinition[] = [
 <#list fields as field>
+	<#if field["columnName"]=="createdBy" || field["columnName"]=="createdOn" || field["columnName"]=="lastUpdBy" || field["columnName"]=="lastUpdOn">
+	<#continue>
+	</#if>
 {
             attribute: "${field.columnName}",
             name: "${field.columnName}",
@@ -24,8 +27,8 @@ const ${name}Page = () => {
    
     return (
         <div>
-            <SummaryGrid storeFactory={store} errorText={errorText}
-                fields={fields} pageName="${name}" customizer={gridCustomizer}
+            <SummaryGrid storeFactory={store} 
+                fields={fields} pageName="${name}" 
                 title="${name}" gridRef={gridRef}
                 options={{ endPoint: endPoint }} />
         </div>

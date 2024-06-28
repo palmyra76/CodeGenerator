@@ -42,6 +42,11 @@ public class CodeGenMain {
 	private static void generate(List<KeyValue> userChoices, Schema schema) {
 		UserOptions options = new UserOptionsConverter().convert(userChoices);
 		Map<String, Table> tables = new TableMetaDataReader().getTable(schema, options);
+
+		if(tables.isEmpty()) {
+			System.out.println("Not able to read metadata from database, exiting");
+			return;
+		}
 		GeneratorContext ctx = new GeneratorContextImpl(options, schema, tables);
 		List<TemplateProcessor> processors = TemplateProcessorFactory.getProcessors(options);
 		for (TemplateProcessor tp : processors) {

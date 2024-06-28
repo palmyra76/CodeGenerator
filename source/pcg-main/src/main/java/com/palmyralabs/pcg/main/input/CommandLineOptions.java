@@ -7,6 +7,8 @@ public interface CommandLineOptions {
 	String L_REACT_BUILD = "build";
 	String L_MODE = "mode";
 	String L_PACKAGE = "package";
+	String L_PROJECT_NAME = "project";
+	String L_OUTPUT_PATH = "output";
 	String L_DATABASE_TYPE = "database";
 	String L_DATABASE_HOST = "host";
 	String L_DATABASE_PORT = "port";
@@ -18,6 +20,8 @@ public interface CommandLineOptions {
 	String S_SPRING_BUILD = "b";
 	String S_MODE = "m";
 	String S_PACKAGE = "p";
+	String S_PROJECT_NAME = "n";
+	String S_OUTPUT_PATH = "o";
 	String S_DATABASE_TYPE = "d";
 	String S_DATABASE_HOST = "h";
 	String S_DATABASE_PORT = "p";

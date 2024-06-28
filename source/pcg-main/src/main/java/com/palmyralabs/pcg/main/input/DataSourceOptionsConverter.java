@@ -4,6 +4,7 @@ import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_DATABASE_PASSW
 import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_DATABASE_SCHEMAS;
 import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_DATABASE_TYPE;
 import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_DATABASE_USERNAME;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_DATABASE_HOST;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +22,7 @@ public class DataSourceOptionsConverter {
 		for (KeyValue kv : options) {
 			valueMap.put(kv.getKey(), kv.getValue());
 		}
-
+		
 		r.setDbType(getDbType(valueMap.get(L_DATABASE_TYPE)));
 		r.setJdbcUrl(getJdbcUrl(r.getDbType(), valueMap));
 		r.setUserName(valueMap.get(L_DATABASE_USERNAME));
@@ -31,7 +32,7 @@ public class DataSourceOptionsConverter {
 	}
 
 	private String getJdbcUrl(DatabaseType dbType, Map<String, String> valueMap) {
-		return "jdbc:mariadb://192.168.12.1:3306/boothtracker";
+		return "jdbc:mariadb:" + valueMap.get(L_DATABASE_HOST)  + ":3306";
 	}
 
 	private DatabaseType getDbType(String type) {

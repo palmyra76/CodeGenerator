@@ -28,14 +28,12 @@ function DeleteConfirmDialog(props: DialogInput) {
     const closeDialog = props.onClose;
     const userData = props.userData;
     const groupData = props.groupData;
-    const applicationData = props.applicationData;
     const onDelete = props.onDelete;
     const id = props.id;
     const storeFactory = AppStoreFactory;
 
     const groupByUserEndPoint = ServiceEndpoint.aclmgmt.GroupsByUser.deleteApi;
     const userByGroupEndPoint = ServiceEndpoint.aclmgmt.UsersByGroup.deleteApi;
-    const userApplicationEndPoint = ServiceEndpoint.userApplicationByUser.deleteApi;
 
     const dataItem: DataItem | undefined = userData ? {
         endPoint: StringFormat(groupByUserEndPoint, { groupId: userData.groupId, userId: userData.userId }),
@@ -45,16 +43,12 @@ function DeleteConfirmDialog(props: DialogInput) {
         endPoint: StringFormat(userByGroupEndPoint, { userId: groupData.userId, groupId: groupData.groupId }),
         attributes: { "Group Name": groupData.groupName },
         typeName: 'Group'
-    } : applicationData ? {
-        endPoint: StringFormat(userApplicationEndPoint, { userId: applicationData.userId, applicationId: applicationData.applicationId }),
-        attributes: { "Application": applicationData.applicationName },
-        typeName: 'Application'
     } : undefined;
 
     const { endPoint, typeName, content } = getDialogAndEndpoint(dataItem);
 
     const successfullDeleteToast = () => {
-        toast.success(`${r"${typeName}"} Deleted Successfully`);
+        toast.success(`${typeName} Deleted Successfully`);
     }
 
     const handleDelete = () => {

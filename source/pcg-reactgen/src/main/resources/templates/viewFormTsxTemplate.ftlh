@@ -12,10 +12,10 @@
 </#list>
 import { useParams } from 'react-router-dom';
 import { FieldGroupContainer, <#if importLookupView>LookupView, </#if><#if importDateView>DateView, </#if><#if importTextView>TextView, </#if> } from "palmyra-rui";;
-import { IPageInput } from "../../templates/Types";
-import { ServiceEndpoint } from "../../config/ServiceEndpoints";
+import { IPageInput } from "../../../templates/Types";
+import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
 import { ViewForm } from 'palmyra-template';
-import AppStoreFactory from '../wire/StoreFactory';
+import AppStoreFactory from '../../wire/StoreFactory';
 
 const ${name}ViewPage = (props: IPageInput) => {
 
@@ -29,6 +29,9 @@ const ${name}ViewPage = (props: IPageInput) => {
 			<div className="palmyra-form-field-container-wrapper">
 				<FieldGroupContainer columns={2}>
 				<#list fields as field>
+				<#if field["columnName"]=="createdBy" || field["columnName"]=="createdOn" || field["columnName"]=="lastUpdBy" || field["columnName"]=="lastUpdOn">
+				<#continue>
+				</#if>
 				<#if field["isForeignKey"]!=0>
 					<LookupView attribute="${field["columnName"]}.${field["targetAttribute"]}" title="${field["splitedName"]}"
 						displayAttribute="${field["columnName"]}.${field["targetTableColumn"]}" 

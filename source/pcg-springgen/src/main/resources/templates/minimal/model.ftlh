@@ -21,6 +21,9 @@ import lombok.Setter;
 public class ${name}Model {
   <#list fields as field>
   
+	<#if field["columnName"]=="createdBy" || field["columnName"]=="createdOn" || field["columnName"]=="lastUpdBy" || field["columnName"]=="lastUpdOn">
+	<#continue>
+	</#if>
 	<#if field["isForeignKey"]!=0>
 		@PalmyraField(attribute = "${field["columnName"]}")
 		private ${field["convertedTargetTableName"]}Model ${field["targetTable"]}; 

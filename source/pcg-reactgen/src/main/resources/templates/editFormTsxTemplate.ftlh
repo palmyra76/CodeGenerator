@@ -14,11 +14,11 @@
     </#if>
 </#list>
 import { useParams } from 'react-router-dom';
-import { FieldGroupContainer, <#if importServerLookup>ServerLookup, </#if><#if importNumberField>NumberField, </#if><#if importDatePicker>DatePicker, </#if><#if importTextField>TextField, </#if> } from "../../components/form";
-import { IPageInput } from "../../templates/Types";
-import { ServiceEndpoint } from "../../config/ServiceEndpoints";
+import { FieldGroupContainer, <#if importServerLookup>ServerLookup, </#if><#if importNumberField>NumberField, </#if><#if importDatePicker>DatePicker, </#if><#if importTextField>TextField, </#if> } from "../../../components/form";
+import { IPageInput } from "../../../templates/Types";
+import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
 import { EditForm } from 'palmyra-template';
-import AppStoreFactory from '../wire/StoreFactory';
+import AppStoreFactory from '../../wire/StoreFactory';
 
 const ${name}EditPage = (props: IPageInput) => {
 
@@ -32,6 +32,9 @@ const ${name}EditPage = (props: IPageInput) => {
 			<div className="palmyra-form-field-container-wrapper">
 				<FieldGroupContainer columns={2}>
 				<#list fields as field>
+				<#if field["columnName"]=="createdBy" || field["columnName"]=="createdOn" || field["columnName"]=="lastUpdBy" || field["columnName"]=="lastUpdOn">
+				<#continue>
+				</#if>
 				<#if field["isForeignKey"]!=0>
 					<ServerLookup attribute="${field["columnName"]}.${field["targetAttribute"]}" title="${field["splitedName"]}"
 						placeHolder="Select ${field["splitedName"]}"
