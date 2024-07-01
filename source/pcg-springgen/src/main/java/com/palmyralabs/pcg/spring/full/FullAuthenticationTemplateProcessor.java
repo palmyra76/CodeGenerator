@@ -11,23 +11,15 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class DefaultHandlerTemplateProcessor extends SimpleTemplateProcessor {
+public class FullAuthenticationTemplateProcessor extends SimpleTemplateProcessor {
 
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
-		
-		TemplateInfo userManagementHandler = new DefaultTemplateInfo("UserManagementHandler.java",
-				"templates/full/userManagementHandler.ftlh");
-		templates.add(userManagementHandler);
-		
-		TemplateInfo userTypeHandler = new DefaultTemplateInfo("UserTypeHandler.java",
-				"templates/full/userTypeHandler.ftlh");
-		templates.add(userTypeHandler);
-		
-		TemplateInfo aboutUserHandler = new DefaultTemplateInfo("AboutUserHandler.java",
-				"templates/full/aboutUserHandler.ftlh");
-		templates.add(aboutUserHandler);
+
+		TemplateInfo authenticationController = new DefaultTemplateInfo("AuthenticationController.java",
+				"templates/full/authenticationController.ftlh");
+		templates.add(authenticationController);
 
 		return templates;
 	}
@@ -35,13 +27,13 @@ public class DefaultHandlerTemplateProcessor extends SimpleTemplateProcessor {
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
 		String[] packageName = options.getPackageName().split("\\.");
-		Path path = Paths.get("service", "src", "main", "java", String.join(File.separator, packageName), "handler");
+		Path path = Paths.get("service", "src", "main", "java", String.join(File.separator, packageName), "controller");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "handler";
+		return "controller";
 	}
 
 }

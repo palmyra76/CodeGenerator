@@ -23,8 +23,6 @@ dependencies {
     implementation deps.palmyra.spring
     implementation deps.palmyra.commons
     
-    implementation deps.palmyra.extn.pwdmgmt
-        
     implementation deps.org.lombok 
     implementation deps.springboot.web
     implementation deps.springboot.jpa

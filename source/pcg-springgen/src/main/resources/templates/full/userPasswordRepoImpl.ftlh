@@ -19,7 +19,7 @@ public class UserPasswordRepoImpl implements UserPasswordRepository {
 
     @Override
     public UserPasswordModel findByLoginName(String loginName) {
-        Optional<UserEntity> entityOpt = userRepository.findByEmail(loginName);
+        Optional<UserEntity> entityOpt = userRepository.findUserByLoginName(loginName);
         
         if (entityOpt.isPresent()) {
             UserEntity entity = entityOpt.get();

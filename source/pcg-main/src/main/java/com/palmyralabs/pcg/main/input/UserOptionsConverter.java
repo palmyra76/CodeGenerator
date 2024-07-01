@@ -28,10 +28,11 @@ public class UserOptionsConverter {
 		r.setMode(getMode(valueMap.get(L_MODE)));
 
 		r.setPackageName(valueMap.get(L_PACKAGE));
-		r.setBaseOutputFolder(Paths.get("./codeGen"));
+		r.setBaseOutputFolder(Paths
+				.get(valueMap.get(L_OUTPUT_PATH) + "/codeGen/" + valueMap.get(L_PROJECT_NAME).toLowerCase() + "/"));
 
 		r.setGroup(getGroup(valueMap.get(L_PACKAGE)));
-		r.setProjectName(getProjectName(valueMap.get(L_PACKAGE)));
+		r.setProjectName(valueMap.get(L_PROJECT_NAME).toLowerCase());
 		r.setConvertedProjectName(getConvertedProjectName(valueMap.get(L_PACKAGE)));
 		return r;
 	}
@@ -53,10 +54,10 @@ public class UserOptionsConverter {
 		return v.substring(0, lastIndex);
 	}
 
-	private String getProjectName(String v) {
-		int lastIndex = v.lastIndexOf('.');
-		return v.substring(lastIndex + 1);
-	}
+//	private String getProjectName(String v) {
+//		int lastIndex = v.lastIndexOf('.');
+//		return v.substring(lastIndex + 1);
+//	}
 
 	private String getConvertedProjectName(String v) {
 		int lastIndex = v.lastIndexOf('.');

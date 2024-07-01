@@ -17,10 +17,6 @@ public class ControllerTemplateProcessor extends SimpleTemplateProcessor {
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo authenticationController = new DefaultTemplateInfo("AuthenticationController.java",
-				"templates/full/authenticationController.ftlh");
-		templates.add(authenticationController);
-
 		TemplateInfo baseController = new DefaultTemplateInfo("BaseController.java", "templates/full/baseController.ftlh");
 		templates.add(baseController);
 

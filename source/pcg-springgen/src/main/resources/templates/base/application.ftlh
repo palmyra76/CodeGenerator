@@ -16,4 +16,4 @@ server:
 
 palmyra:
   servlet:
-    prefix-path: /${projectName}
+    prefix-path: /palmyra

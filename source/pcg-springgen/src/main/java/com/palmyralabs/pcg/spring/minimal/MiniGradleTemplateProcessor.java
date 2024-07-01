@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.spring.extended;
+package com.palmyralabs.pcg.spring.minimal;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -9,13 +9,13 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class ExtGradleTemplateProcessor extends SimpleTemplateProcessor {
+public class MiniGradleTemplateProcessor extends SimpleTemplateProcessor {
 
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 		
-		TemplateInfo buildGradle = new DefaultTemplateInfo("build.gradle", "templates/extended/buildGradle.ftlh");
+		TemplateInfo buildGradle = new DefaultTemplateInfo("build.gradle", "templates/minimal/buildGradle.ftlh");
 		templates.add(buildGradle);
 		
 		TemplateInfo depsGradle = new DefaultTemplateInfo("deps.gradle", "templates/base/depsGradle.ftlh");

@@ -18,10 +18,10 @@ public class FullGradleTemplateProcessor extends SimpleTemplateProcessor {
 		TemplateInfo buildGradle = new DefaultTemplateInfo("build.gradle", "templates/full/buildGradle.ftlh");
 		templates.add(buildGradle);
 		
-		TemplateInfo depsGradle = new DefaultTemplateInfo("deps.gradle", "templates/full/depsGradle.ftlh");
+		TemplateInfo depsGradle = new DefaultTemplateInfo("deps.gradle", "templates/base/depsGradle.ftlh");
 		templates.add(depsGradle);
 		
-		TemplateInfo settingsGradle = new DefaultTemplateInfo("settings.gradle", "templates/full/settingsGradle.ftlh");
+		TemplateInfo settingsGradle = new DefaultTemplateInfo("settings.gradle", "templates/base/settingsGradle.ftlh");
 		templates.add(settingsGradle);
 		
 		return templates;

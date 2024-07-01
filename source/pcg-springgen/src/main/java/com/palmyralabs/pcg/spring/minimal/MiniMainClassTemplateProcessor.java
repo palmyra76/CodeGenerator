@@ -1,5 +1,6 @@
-package com.palmyralabs.pcg.spring.full;
+package com.palmyralabs.pcg.spring.minimal;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -10,27 +11,28 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class ApplicationTemplateProcessor extends SimpleTemplateProcessor {
+public class MiniMainClassTemplateProcessor extends SimpleTemplateProcessor {
 
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
-		
-		TemplateInfo application = new DefaultTemplateInfo("application.yaml", "templates/base/application.ftlh");
-		templates.add(application);
+
+		TemplateInfo mainClass = new DefaultTemplateInfo("AppMain.java", "templates/minimal/mainClass.ftlh");
+		templates.add(mainClass);
 
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("service", "src", "main", "resources");
+		String[] packageName = options.getPackageName().split("\\.");
+		Path path = Paths.get("service", "src", "main", "java", String.join(File.separator, packageName));
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "gradleBuild";
+		return "MainClass";
 	}
 
 }
