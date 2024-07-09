@@ -16,19 +16,19 @@ public class ComponentTemplateProcessor extends DataModelPathTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo grid = new DefaultTemplateInfo("Page.tsx",
-				"templates/gridTemplate.ftlh");
+				"templates/minimal/gridTemplate.ftlh");
 		templates.add(grid);
 		
 		TemplateInfo newFormTsx = new DefaultTemplateInfo("NewPage.tsx",
-				"templates/newFormTsxTemplate.ftlh");
+				"templates/minimal/newFormTsxTemplate.ftlh");
 		templates.add(newFormTsx);
 		
 		TemplateInfo editFormTsx = new DefaultTemplateInfo("EditPage.tsx",
-				"templates/editFormTsxTemplate.ftlh");
+				"templates/minimal/editFormTsxTemplate.ftlh");
 		templates.add(editFormTsx);
 		
 		TemplateInfo viewFormTsx = new DefaultTemplateInfo("ViewPage.tsx",
-				"templates/viewFormTsxTemplate.ftlh");
+				"templates/minimal/viewFormTsxTemplate.ftlh");
 		templates.add(viewFormTsx);
 	
 		return templates;

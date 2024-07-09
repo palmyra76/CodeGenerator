@@ -16,23 +16,23 @@ public class GroupTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo editGroupPageTSX = new DefaultTemplateInfo("EditGroupPage.tsx",
-				"templates/user_group_management/group/editGroupPageTSXTemplate.ftlh");
+				"templates/extended/editGroupPageTSXTemplate.ftlh");
 		templates.add(editGroupPageTSX);
 
 		TemplateInfo groupPageTSX = new DefaultTemplateInfo("GroupPage.tsx",
-				"templates/user_group_management/group/groupPageTSXTemplate.ftlh");
+				"templates/extended/groupPageTSXTemplate.ftlh");
 		templates.add(groupPageTSX);
 
 		TemplateInfo newGroupPageTSX = new DefaultTemplateInfo("NewGroupPage.tsx",
-				"templates/user_group_management/group/newGroupPageTSXTemplate.ftlh");
+				"templates/extended/newGroupPageTSXTemplate.ftlh");
 		templates.add(newGroupPageTSX);
 
 		TemplateInfo viewGroupFormTSX = new DefaultTemplateInfo("ViewGroupForm.tsx",
-				"templates/user_group_management/group/viewGroupFormTSXTemplate.ftlh");
+				"templates/extended/viewGroupFormTSXTemplate.ftlh");
 		templates.add(viewGroupFormTSX);
 
 		TemplateInfo viewGroupPage = new DefaultTemplateInfo("ViewGroupPage.tsx",
-				"templates/user_group_management/group/viewGroupFormTSXTemplate.ftlh");
+				"templates/extended/viewGroupPageTSXTemplate.ftlh");
 		templates.add(viewGroupPage);
 		return templates;
 	}

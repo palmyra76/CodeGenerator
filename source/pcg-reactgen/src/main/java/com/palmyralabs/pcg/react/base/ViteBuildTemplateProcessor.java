@@ -13,16 +13,16 @@ public class ViteBuildTemplateProcessor extends SimpleTemplateProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
-		TemplateInfo viteConfig = new DefaultTemplateInfo("vite.config.ts", "templates/viteConfigtsTemplate.ftlh");
+		TemplateInfo viteConfig = new DefaultTemplateInfo("vite.config.ts", "templates/base/viteConfigtsTemplate.ftlh");
 		templates.add(viteConfig);
 
-		TemplateInfo tsConfigJson = new DefaultTemplateInfo("tsconfig.json", "templates/tsConfigJsonTemplate.ftlh");
+		TemplateInfo tsConfigJson = new DefaultTemplateInfo("tsconfig.json", "templates/base/tsConfigJsonTemplate.ftlh");
 		templates.add(tsConfigJson);
 
-		TemplateInfo packageJson = new DefaultTemplateInfo("package.json", "templates/packageJsonTemplate.ftlh");
+		TemplateInfo packageJson = new DefaultTemplateInfo("package.json", "templates/base/packageJsonTemplate.ftlh");
 		templates.add(packageJson);
 
-		TemplateInfo indexhtml = new DefaultTemplateInfo("index.html", "templates/indexHTMLTemplate.ftlh");
+		TemplateInfo indexhtml = new DefaultTemplateInfo("index.html", "templates/base/indexHTMLTemplate.ftlh");
 		templates.add(indexhtml);
 
 		return templates;

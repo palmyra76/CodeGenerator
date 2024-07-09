@@ -16,11 +16,11 @@ public class LoginTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo loginFormTSX = new DefaultTemplateInfo("LoginForm.tsx",
-				"templates/loginFormTSXTemplate.ftlh");
+				"templates/full/loginFormTSXTemplate.ftlh");
 		templates.add(loginFormTSX);
 		
 		TemplateInfo loginInputTSX = new DefaultTemplateInfo("LoginInput.tsx",
-				"templates/loginInputTSXTemplate.ftlh");
+				"templates/full/loginInputTSXTemplate.ftlh");
 		templates.add(loginInputTSX);
 
 		return templates;

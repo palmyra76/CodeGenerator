@@ -16,7 +16,7 @@ public class HomePageTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo homePageTSX = new DefaultTemplateInfo("HomePage.tsx",
-				"templates/homePageTemplateTSXTemplate.ftlh");
+				"templates/full/homePageTemplateTSXTemplate.ftlh");
 		templates.add(homePageTSX);
 		
 		return templates;

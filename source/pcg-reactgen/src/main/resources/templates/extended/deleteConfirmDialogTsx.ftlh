@@ -48,7 +48,7 @@ function DeleteConfirmDialog(props: DialogInput) {
     const { endPoint, typeName, content } = getDialogAndEndpoint(dataItem);
 
     const successfullDeleteToast = () => {
-        toast.success(`${typeName} Deleted Successfully`);
+       toast.success(`${r"${typeName}"} Deleted Successfully`);
     }
 
     const handleDelete = () => {

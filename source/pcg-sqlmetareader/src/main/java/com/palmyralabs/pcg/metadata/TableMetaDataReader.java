@@ -25,6 +25,7 @@ public class TableMetaDataReader {
 		for (TupleType tuple : tuples.values()) {
 			Table table = new Table();
 			table.setName(tuple.getName());
+			table.setSplitedName(NameUtil.splitData(tuple.getName()));
 			table.setConvertedName(TextUtil.camelCase(tuple.getTable()));
 			table.setFields(getFields(tuple));
 			table.setPackageName(options.getPackageName());
@@ -45,7 +46,7 @@ public class TableMetaDataReader {
 			field.setColumnName(attribute.getAttribute());
 			field.setJavaDataType(DataTypeConvertor.javaTypeConvert(attribute.getDataType()));
 			field.setReactDataType(DataTypeConvertor.reactTypeConvert(attribute.getDataType()));
-			field.setSplitedName(NameUtil.splitData(attribute.getAttribute()));
+			field.setSplitedColumnName(NameUtil.splitData(attribute.getAttribute()));
 			field.setMandatory(attribute.isMandatory());
 			field.setIsPrimaryKey(attribute.isPrimaryKey());
 			field.setIsForeignKey(attribute.getForeignKeyCount());

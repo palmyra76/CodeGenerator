@@ -16,7 +16,7 @@ public class StoreFactoryTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo storeFactoryTS = new DefaultTemplateInfo("StoreFactory.ts",
-				"templates/storeFactoryTS.ftlh");
+				"templates/minimal/storeFactoryTS.ftlh");
 		templates.add(storeFactoryTS);
 		
 		return templates;

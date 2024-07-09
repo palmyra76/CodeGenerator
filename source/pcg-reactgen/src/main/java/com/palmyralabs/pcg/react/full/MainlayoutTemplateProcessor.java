@@ -16,15 +16,15 @@ public class MainlayoutTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo mainLayoutTSX = new DefaultTemplateInfo("MainLayout.tsx",
-				"templates/main_layout_template/mainLayoutTSXTemplate.ftlh");
+				"templates/full/mainLayoutTSXTemplate.ftlh");
 		templates.add(mainLayoutTSX);
 		
 		TemplateInfo sidebarTSX = new DefaultTemplateInfo("Sidebar.tsx",
-				"templates/main_layout_template/sidebarTSXTemplate.ftlh");
+				"templates/full/sidebarTSXTemplate.ftlh");
 		templates.add(sidebarTSX);
 
 		TemplateInfo topbarTSX = new DefaultTemplateInfo("Topbar.tsx",
-				"templates/main_layout_template/topbarTSXTemplate.ftlh");
+				"templates/full/topbarTSXTemplate.ftlh");
 		templates.add(topbarTSX);
 
 		return templates;

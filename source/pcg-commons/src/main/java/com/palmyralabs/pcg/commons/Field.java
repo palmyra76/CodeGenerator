@@ -7,10 +7,10 @@ import lombok.Setter;
 @Setter
 public class Field {
 	private String columnName;
-	private String splitedName;
+	private String splitedColumnName;
 	private String javaDataType;
 	private String reactDataType;
-	private boolean mandatory;
+	private Boolean mandatory;
 	private Boolean isPrimaryKey;
 	private Integer isForeignKey;
 	private String targetSchema;

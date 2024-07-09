@@ -16,7 +16,7 @@ public class StyleThemeBlueColorTemplateProcessor extends SimpleTemplateProcesso
 		List<TemplateInfo> templates = new ArrayList<>();
 		
 		TemplateInfo colorsCSS = new DefaultTemplateInfo("Colors.css",
-				"templates/blueColorsCss.ftlh");
+				"templates/full/blueColorsCss.ftlh");
 		templates.add(colorsCSS);
 
 		return templates;

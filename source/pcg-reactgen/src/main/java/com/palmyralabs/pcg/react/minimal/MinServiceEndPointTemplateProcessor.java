@@ -16,7 +16,7 @@ public class MinServiceEndPointTemplateProcessor extends SchemaModelTemplateProc
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 		TemplateInfo endpoint = new DefaultTemplateInfo("ServiceEndpoints.ts",
-				"templates/minServiceEndPointTSTemplate.ftlh");
+				"templates/minimal/minServiceEndPointTSTemplate.ftlh");
 		templates.add(endpoint);
 
 		return templates;

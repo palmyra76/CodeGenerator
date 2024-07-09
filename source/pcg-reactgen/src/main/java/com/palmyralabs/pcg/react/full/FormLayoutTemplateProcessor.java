@@ -16,11 +16,11 @@ public class FormLayoutTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo formLayoutcss = new DefaultTemplateInfo("FormLayout.css",
-				"templates/formLayoutCSS.ftlh");
+				"templates/full/formLayoutCSS.ftlh");
 		templates.add(formLayoutcss);
 		
 		TemplateInfo muiXTreeMenuCss = new DefaultTemplateInfo("MuiXTreeMenu.css",
-				"templates/muiXTreeMenuCss.ftlh");
+				"templates/full/muiXTreeMenuCss.ftlh");
 		templates.add(muiXTreeMenuCss);
 
 		return templates;

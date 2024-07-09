@@ -16,11 +16,11 @@ public class IndexTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 		
 		TemplateInfo indexTSX = new DefaultTemplateInfo("index.tsx",
-				"templates/indexTSXTemplate.ftlh");
+				"templates/full/indexTSXTemplate.ftlh");
 		templates.add(indexTSX);
 		
 		TemplateInfo pageWrapper = new DefaultTemplateInfo("PageWrapper.tsx",
-				"templates/pageWrapperTSXTemplate.ftlh");
+				"templates/full/pageWrapperTSXTemplate.ftlh");
 		templates.add(pageWrapper);
 
 		return templates;

@@ -16,7 +16,7 @@ public class TypeTSTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo typesTS = new DefaultTemplateInfo("Types.ts",
-				"templates/typesTSTemplate.ftlh");
+				"templates/minimal/typesTSTemplate.ftlh");
 		templates.add(typesTS);
 	
 		return templates;

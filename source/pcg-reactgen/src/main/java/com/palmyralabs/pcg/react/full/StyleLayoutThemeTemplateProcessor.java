@@ -16,7 +16,7 @@ public class StyleLayoutThemeTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 		
 		TemplateInfo colorDefCSS = new DefaultTemplateInfo("colorDef.css",
-				"templates/colorDefCSS.ftlh");
+				"templates/full/colorDefCSS.ftlh");
 		templates.add(colorDefCSS);
 
 		return templates;

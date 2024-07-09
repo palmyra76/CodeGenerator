@@ -16,11 +16,11 @@ public class GroupUserTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo groupUserGridTSX = new DefaultTemplateInfo("GroupUserGrid.tsx",
-				"templates/user_group_management/group/groupUserGridTSXTemplate.ftlh");
+				"templates/extended/groupUserGridTSXTemplate.ftlh");
 		templates.add(groupUserGridTSX);
 
 		TemplateInfo userPageTSX = new DefaultTemplateInfo("UserPage.tsx",
-				"templates/user_group_management/group/userPageTSXTemplate.ftlh");
+				"templates/extended/userPageTSXTemplate.ftlh");
 		templates.add(userPageTSX);
 
 		return templates;

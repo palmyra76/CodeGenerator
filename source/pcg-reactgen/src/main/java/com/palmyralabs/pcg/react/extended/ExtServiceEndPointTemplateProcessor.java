@@ -9,14 +9,13 @@ import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SchemaModelTemplateProcessor;
-import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
 public class ExtServiceEndPointTemplateProcessor extends SchemaModelTemplateProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 		TemplateInfo endpoint = new DefaultTemplateInfo("ServiceEndpoints.ts",
-				"templates/extServiceEndPointTSTemplate.ftlh");
+				"templates/extended/extServiceEndPointTSTemplate.ftlh");
 		templates.add(endpoint);
 
 		return templates;

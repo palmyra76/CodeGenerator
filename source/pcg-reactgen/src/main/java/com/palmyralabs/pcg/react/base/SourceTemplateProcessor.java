@@ -16,11 +16,11 @@ public class SourceTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo loginFormTSX = new DefaultTemplateInfo("main.tsx",
-				"templates/mainTSXTemplate.ftlh");
+				"templates/base/mainTSXTemplate.ftlh");
 		templates.add(loginFormTSX);
 		
 		TemplateInfo loginInputTSX = new DefaultTemplateInfo("App.tsx",
-				"templates/appTSXTemplate.ftlh");
+				"templates/base/appTSXTemplate.ftlh");
 		templates.add(loginInputTSX);
 
 		return templates;

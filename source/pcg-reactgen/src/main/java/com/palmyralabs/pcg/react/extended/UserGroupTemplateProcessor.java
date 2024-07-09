@@ -16,15 +16,15 @@ public class UserGroupTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo userGroupGridTSX = new DefaultTemplateInfo("UserGroupGrid.tsx",
-				"templates/user_group_management/user/userGroupGridTSXTemplate.ftlh");
+				"templates/extended/userGroupGridTSXTemplate.ftlh");
 		templates.add(userGroupGridTSX);
 
 		TemplateInfo userGroupTSX = new DefaultTemplateInfo("UsersGroup.tsx",
-				"templates/user_group_management/user/userGroupTSXTemplate.ftlh");
+				"templates/extended/userGroupTSXTemplate.ftlh");
 		templates.add(userGroupTSX);
 
 		TemplateInfo userViewFormTSX = new DefaultTemplateInfo("UserViewForm.tsx",
-				"templates/user_group_management/user/userViewFormTSX.ftlh");
+				"templates/extended/userViewFormTSX.ftlh");
 		templates.add(userViewFormTSX);
 
 		return templates;

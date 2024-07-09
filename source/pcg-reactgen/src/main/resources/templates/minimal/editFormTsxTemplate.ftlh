@@ -27,7 +27,7 @@ const ${name}EditPage = (props: IPageInput) => {
 	const store = AppStoreFactory;
 
 	return <div className="user-form-container">
-		<EditForm storeFactory={store} id={params.id} title="New ${name}" pageName={props.pageName}
+		<EditForm storeFactory={store} id={params.id} title="Edit ${splitedName}" pageName={props.pageName}
 			options={{ endPoint: ${convertedName}EndPoint }}>
 			<div className="palmyra-form-field-container-wrapper">
 				<FieldGroupContainer columns={2}>
@@ -36,22 +36,22 @@ const ${name}EditPage = (props: IPageInput) => {
 				<#continue>
 				</#if>
 				<#if field["isForeignKey"]!=0>
-					<ServerLookup attribute="${field["columnName"]}.${field["targetAttribute"]}" title="${field["splitedName"]}"
-						placeHolder="Select ${field["splitedName"]}"
+					<ServerLookup attribute="${field["columnName"]}.${field["targetAttribute"]}" title="${field["splitedColumnName"]}"
+						placeHolder="Select ${field["splitedColumnName"]}"
 						storeOptions={{ endPoint: ServiceEndpoint.${field["targetTable"]}.restApi }} <#if field["mandatory"]>required</#if>
 						lookupOptions={{ idAttribute: '${field["targetAttribute"]}', displayAttribute: '${field["targetTableColumn"]}' }}
 					/>
 				<#elseif field["reactDataType"] == "number" >
 					<NumberField attribute="${field["columnName"]}"  
-						title="${field["splitedName"]}"  variant="standard" <#if field["mandatory"]>required</#if>
+						title="${field["splitedColumnName"]}"  variant="standard" <#if field["mandatory"]>required</#if>
 					/>
 				<#elseif field["reactDataType"] == "date" >
-					<DatePicker attribute="${field["columnName"]}" title="${field["splitedName"]}"
+					<DatePicker attribute="${field["columnName"]}" title="${field["splitedColumnName"]}"
 						variant="standard" displayPattern="DD-MM-YYYY" <#if field["mandatory"]>required</#if>
 					></DatePicker>
 				<#else>
 					<TextField attribute="${field["columnName"]}" 
-						title="${field["splitedName"]}" variant="standard"
+						title="${field["splitedColumnName"]}" variant="standard"
 						validationRule={"string"} <#if field["mandatory"]>required</#if>
 					/>
 				</#if>

@@ -16,7 +16,7 @@ public class UserFormTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo userForm = new DefaultTemplateInfo("ViewForm.tsx",
-				"templates/default_templates/viewFormTSXTemplate.ftlh");
+				"templates/extended/viewFormTSXTemplate.ftlh");
 		templates.add(userForm);
 	
 		return templates;

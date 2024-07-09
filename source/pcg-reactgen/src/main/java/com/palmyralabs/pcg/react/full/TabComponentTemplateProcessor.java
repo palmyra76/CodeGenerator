@@ -16,7 +16,7 @@ public class TabComponentTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo tabPanelTSX = new DefaultTemplateInfo("TabPanel.tsx",
-				"templates/tabPanelTSXTemplate.ftlh");
+				"templates/full/tabPanelTSXTemplate.ftlh");
 		templates.add(tabPanelTSX);
 	
 		return templates;

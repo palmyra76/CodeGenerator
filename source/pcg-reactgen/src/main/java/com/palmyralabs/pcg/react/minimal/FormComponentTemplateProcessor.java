@@ -16,7 +16,7 @@ public class FormComponentTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo formts = new DefaultTemplateInfo("form.ts",
-				"templates/formTSTemplate.ftlh");
+				"templates/minimal/formTSTemplate.ftlh");
 		templates.add(formts);
 		
 

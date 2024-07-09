@@ -24,7 +24,7 @@ const ${name}ViewPage = (props: IPageInput) => {
 	const store = AppStoreFactory;
 
 	return <div className="user-form-container">
-		<ViewForm storeFactory={store} id={params.id} title="View ${name}" pageName={props.pageName}
+		<ViewForm storeFactory={store} id={params.id} title="View ${splitedName}" pageName={props.pageName}
 			options={{ endPoint: ${convertedName}EndPoint }}>
 			<div className="palmyra-form-field-container-wrapper">
 				<FieldGroupContainer columns={2}>
@@ -33,17 +33,17 @@ const ${name}ViewPage = (props: IPageInput) => {
 				<#continue>
 				</#if>
 				<#if field["isForeignKey"]!=0>
-					<LookupView attribute="${field["columnName"]}.${field["targetAttribute"]}" title="${field["splitedName"]}"
+					<LookupView attribute="${field["columnName"]}.${field["targetAttribute"]}" title="${field["splitedColumnName"]}"
 						displayAttribute="${field["columnName"]}.${field["targetTableColumn"]}" 
 						variant="standard"
 					/>
 				<#elseif field["reactDataType"] == "date" >
-					<DateView attribute="${field["columnName"]}" title="${field["splitedName"]}"
+					<DateView attribute="${field["columnName"]}" title="${field["splitedColumnName"]}"
 						variant="standard" displayPattern="DD-MM-YYYY"
 					/>
 				<#else>
 					<TextView attribute="${field["columnName"]}" 
-						title="${field["splitedName"]}" variant="standard"
+						title="${field["splitedColumnName"]}" variant="standard"
 					/>
 				</#if>
 				</#list>     

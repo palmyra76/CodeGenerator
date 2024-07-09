@@ -16,15 +16,15 @@ public class ComponentDialogTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo deleteconfirmDialog = new DefaultTemplateInfo("DeleteConfirmDialog.tsx",
-				"templates/deleteConfirmDialogTsx.ftlh");
+				"templates/extended/deleteConfirmDialogTsx.ftlh");
 		templates.add(deleteconfirmDialog);
 		
 		TemplateInfo deleteDialogContent= new DefaultTemplateInfo("DeleteDialogContent.tsx",
-				"templates/deleteDialogContentTsx.ftlh");
+				"templates/extended/deleteDialogContentTsx.ftlh");
 		templates.add(deleteDialogContent);
 
 		TemplateInfo resetPasswordDialog= new DefaultTemplateInfo("ResetPasswordDialog.tsx",
-				"templates/resetPasswordDialogTsx.ftlh");
+				"templates/extended/resetPasswordDialogTsx.ftlh");
 		templates.add(resetPasswordDialog);
 		return templates;
 	}

@@ -16,10 +16,10 @@ public class ConfigTemplateProcessor extends SimpleTemplateProcessor {
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo titleConfig = new DefaultTemplateInfo("TitleConfig.ts", "templates/titleConfigTS.ftlh");
+		TemplateInfo titleConfig = new DefaultTemplateInfo("TitleConfig.ts", "templates/full/titleConfigTS.ftlh");
 		templates.add(titleConfig);
 		
-		TemplateInfo widthConfig = new DefaultTemplateInfo("WidthConfig.ts", "templates/widthConfigTs.ftlh");
+		TemplateInfo widthConfig = new DefaultTemplateInfo("WidthConfig.ts", "templates/full/widthConfigTs.ftlh");
 		templates.add(widthConfig);
 
 		return templates;

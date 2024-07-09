@@ -16,7 +16,7 @@ public class LoginPageTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo loginPageTSX = new DefaultTemplateInfo("LoginPage.tsx",
-				"templates/loginPageTSXTemplate.ftlh");
+				"templates/full/loginPageTSXTemplate.ftlh");
 		templates.add(loginPageTSX);
 	
 		return templates;

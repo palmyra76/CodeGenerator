@@ -17,7 +17,7 @@ public class FullRoutesTemplateProcessor extends SchemaModelTemplateProcessor{
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo appRouts = new DefaultTemplateInfo("appRoutes.tsx",
-				"templates/fullAppRoutesTsxTemplate.ftlh");
+				"templates/full/fullAppRoutesTsxTemplate.ftlh");
 		templates.add(appRouts);
 
 		return templates;

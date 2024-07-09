@@ -16,28 +16,28 @@ public class StyleLayoutTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo styleLayoutCSS = new DefaultTemplateInfo("Layout.css",
-				"templates/layoutCSSTemplate.ftlh");
+				"templates/full/layoutCSSTemplate.ftlh");
 		templates.add(styleLayoutCSS);
 		
 		TemplateInfo styleLoginCSS = new DefaultTemplateInfo("Login.css",
-				"templates/loginCSSTemplate.ftlh");
+				"templates/full/loginCSSTemplate.ftlh");
 		templates.add(styleLoginCSS);
 
 		TemplateInfo styleSidebarCSS = new DefaultTemplateInfo("Sidebar.css",
-				"templates/sidebarCSSTemplate.ftlh");
+				"templates/full/sidebarCSSTemplate.ftlh");
 		templates.add(styleSidebarCSS);
 
 
 		TemplateInfo styletopbarCSS = new DefaultTemplateInfo("Topbar.css",
-				"templates/topbarCSSTemplate.ftlh");
+				"templates/full/topbarCSSTemplate.ftlh");
 		templates.add(styletopbarCSS);
 		
 		TemplateInfo ruilayoutCSS = new DefaultTemplateInfo("RuiLayout.css",
-				"templates/ruiLayoutCSS.ftlh");
+				"templates/full/ruiLayoutCSS.ftlh");
 		templates.add(ruilayoutCSS);
 		
 		TemplateInfo layoutColorsCSS = new DefaultTemplateInfo("layoutColors.css",
-				"templates/layoutColorsCSS.ftlh");
+				"templates/full/layoutColorsCSS.ftlh");
 		templates.add(layoutColorsCSS);
 		
 		return templates;

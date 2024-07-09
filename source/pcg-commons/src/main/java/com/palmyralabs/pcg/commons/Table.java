@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class Table {
 	private String name;
+	private String splitedName;
 	private String convertedName;
 	private List<Field> fields;
 	private String packageName;

@@ -29,7 +29,7 @@ const ${name}Page = () => {
         <div>
             <SummaryGrid storeFactory={store} 
                 fields={fields} pageName="${name}" 
-                title="${name}" gridRef={gridRef}
+                title="${splitedName}" gridRef={gridRef}
                 options={{ endPoint: endPoint }} />
         </div>
     )

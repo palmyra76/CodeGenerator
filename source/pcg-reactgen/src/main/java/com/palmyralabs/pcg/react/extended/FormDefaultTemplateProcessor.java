@@ -16,7 +16,7 @@ public class FormDefaultTemplateProcessor extends SimpleTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo frmMenuFormTSX = new DefaultTemplateInfo("MenuForm.tsx",
-				"templates/default_templates/frmMenuFormTSXTemplate.ftlh");
+				"templates/extended/frmMenuFormTSXTemplate.ftlh");
 		templates.add(frmMenuFormTSX);
 
 		return templates;
