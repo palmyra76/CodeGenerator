@@ -5,12 +5,12 @@ interface AppMenu extends MenuDef {
 }
 
 const MasterDataMenu: AppMenu[] = [
- <#list tables as key, value> 
+ <#list tables?values?sort_by("splitedName") as value> 
   {
    		name: "${value.splitedName}",
         title: "${value.splitedName}",
         path: "${value.name}"
-    }<#if key?has_next>,</#if>
+    }<#if value?has_next>,</#if>
   </#list> 
 ]
 

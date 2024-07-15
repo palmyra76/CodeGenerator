@@ -17,7 +17,7 @@ const ${name}Page = () => {
 {
             attribute: "${field.columnName}",
             name: "${field.columnName}",
-            title:"${field.columnName}",
+            title:"${field.splitedColumnName}",
             type: "${field.reactDataType}"
         }<#if field_has_next>,</#if>
 </#list>
