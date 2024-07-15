@@ -19,7 +19,7 @@ public interface CommandLineOptions {
 	String S_FRAMEWORK = "f";
 	String S_SPRING_BUILD = "b";
 	String S_MODE = "m";
-	String S_PACKAGE = "p";
+	String S_PACKAGE = "g";
 	String S_PROJECT_NAME = "n";
 	String S_OUTPUT_PATH = "o";
 	String S_DATABASE_TYPE = "d";

@@ -8,17 +8,20 @@ import com.palmyralabs.pcg.commons.GeneratorContext;
 import com.palmyralabs.pcg.commons.KeyValue;
 import com.palmyralabs.pcg.commons.Table;
 import com.palmyralabs.pcg.commons.UserOptions;
+import com.palmyralabs.pcg.main.input.CommandLineOptions;
 import com.palmyralabs.pcg.main.input.DataSourceOptionsConverter;
 import com.palmyralabs.pcg.main.input.DummyUserOptions;
 import com.palmyralabs.pcg.main.input.GeneratorContextImpl;
+import com.palmyralabs.pcg.main.input.UserInputs;
 import com.palmyralabs.pcg.main.input.UserOptionsConverter;
 import com.palmyralabs.pcg.metadata.SchemaMetaDataProvider;
 import com.palmyralabs.pcg.metadata.TableMetaDataReader;
 import com.palmyralabs.pcg.template.TemplateProcessor;
 import com.palmyralabs.pcg.template.TemplateProcessorFactory;
+import com.palmyralabs.pcg.validator.cmdline.CommandLineValidator;
 import com.zitlab.palmyra.store.schema.Schema;
 
-public class CodeGenMain {
+public class CodeGenMain  {
 
 	public static void main(String[] args) {
 		List<KeyValue> userChoices = getUserInput(args);
@@ -34,9 +37,9 @@ public class CodeGenMain {
 	}
 
 	private static List<KeyValue> getUserInput(String[] args) {
-//		CommandLineValidator validator = new CommandLineValidator();
-//		return validator.validate(UserInputs.getProvider(), args);
-		return new DummyUserOptions().getOptions();
+		CommandLineValidator validator = new CommandLineValidator();
+		return validator.validate(UserInputs.getProvider(), args);
+//		return new DummyUserOptions().getOptions();
 	}
 
 	private static void generate(List<KeyValue> userChoices, Schema schema) {

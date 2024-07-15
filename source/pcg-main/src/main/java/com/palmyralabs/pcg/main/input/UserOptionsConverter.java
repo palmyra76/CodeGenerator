@@ -27,13 +27,17 @@ public class UserOptionsConverter {
 		r.setBuildTool(getBuildTool(valueMap.get(L_SPRING_BUILD)));
 		r.setMode(getMode(valueMap.get(L_MODE)));
 
-		r.setPackageName(valueMap.get(L_PACKAGE));
+		if(r.getFramework() == Framework.SpringBoot) {
+			r.setPackageName(valueMap.get(L_PACKAGE));
+			r.setGroup(getGroup(valueMap.get(L_PACKAGE)));
+		}
+		
 		r.setBaseOutputFolder(Paths
 				.get(valueMap.get(L_OUTPUT_PATH) + "/codeGen/" + valueMap.get(L_PROJECT_NAME).toLowerCase() + "/"));
-
-		r.setGroup(getGroup(valueMap.get(L_PACKAGE)));
+		
 		r.setProjectName(valueMap.get(L_PROJECT_NAME).toLowerCase());
-		r.setConvertedProjectName(getConvertedProjectName(valueMap.get(L_PACKAGE)));
+		
+		r.setConvertedProjectName(getConvertedProjectName(L_PROJECT_NAME));
 		return r;
 	}
 
@@ -60,8 +64,8 @@ public class UserOptionsConverter {
 //	}
 
 	private String getConvertedProjectName(String v) {
-		int lastIndex = v.lastIndexOf('.');
-		String projectName = v.substring(lastIndex + 1);
-		return TextUtil.camelCaseFirstLetterUpperCase(projectName);
+//		int lastIndex = v.lastIndexOf('.');
+//		String projectName = v.substring(lastIndex + 1);
+		return TextUtil.camelCaseFirstLetterUpperCase(v);
 	}
 }

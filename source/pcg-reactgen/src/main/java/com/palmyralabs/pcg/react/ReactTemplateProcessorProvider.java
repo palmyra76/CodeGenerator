@@ -7,7 +7,6 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.commons.options.BuildTool;
 import com.palmyralabs.pcg.commons.options.Framework;
 import com.palmyralabs.pcg.commons.options.Mode;
-import com.palmyralabs.pcg.react.base.SourceTemplateProcessor;
 import com.palmyralabs.pcg.react.base.ViteBuildTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.ComponentDialogTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.ExtRoutesTemplateProcessor;
@@ -18,24 +17,28 @@ import com.palmyralabs.pcg.react.extended.GroupUserTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.UserFormTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.UserGroupTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.UserTemplateProcessor;
-import com.palmyralabs.pcg.react.full.ConfigTemplateProcessor;
-import com.palmyralabs.pcg.react.full.FormLayoutTemplateProcessor;
-import com.palmyralabs.pcg.react.full.HomePageTemplateProcessor;
-import com.palmyralabs.pcg.react.full.IndexTemplateProcessor;
+import com.palmyralabs.pcg.react.full.FullRoutesTemplateProcessor;
+import com.palmyralabs.pcg.react.full.FullSourceTemplateProcessor;
+import com.palmyralabs.pcg.react.full.FullStoreFactoryTemplateProcessor;
 import com.palmyralabs.pcg.react.full.LoginPageTemplateProcessor;
 import com.palmyralabs.pcg.react.full.LoginTemplateProcessor;
 import com.palmyralabs.pcg.react.full.MainlayoutTemplateProcessor;
-import com.palmyralabs.pcg.react.full.FullRoutesTemplateProcessor;
-import com.palmyralabs.pcg.react.full.StyleLayoutTemplateProcessor;
-import com.palmyralabs.pcg.react.full.StyleLayoutThemeTemplateProcessor;
-import com.palmyralabs.pcg.react.full.StyleThemeBlueColorTemplateProcessor;
 import com.palmyralabs.pcg.react.full.TabComponentTemplateProcessor;
-import com.palmyralabs.pcg.react.full.TypesTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.ComponentTemplateProcessor;
+import com.palmyralabs.pcg.react.minimal.ConfigTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.FormComponentTemplateProcessor;
+import com.palmyralabs.pcg.react.minimal.HomePageTemplateProcessor;
+import com.palmyralabs.pcg.react.minimal.MinMainlayoutTemplateProcessor;
+import com.palmyralabs.pcg.react.minimal.MinRoutesTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.MinServiceEndPointTemplateProcessor;
-import com.palmyralabs.pcg.react.minimal.StoreFactoryTemplateProcessor;
+import com.palmyralabs.pcg.react.minimal.MinSourceTemplateProcessor;
+import com.palmyralabs.pcg.react.minimal.MinStoreFactoryTemplateProcessor;
+import com.palmyralabs.pcg.react.minimal.StyleLayoutTemplateProcessor;
+import com.palmyralabs.pcg.react.minimal.StyleLayoutThemeTemplateProcessor;
+import com.palmyralabs.pcg.react.minimal.StyleRuiLayoutTemplateProcessor;
+import com.palmyralabs.pcg.react.minimal.StyleThemeBlueColorTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.TypeTSTemplateProcessor;
+import com.palmyralabs.pcg.react.minimal.TypesTemplateProcessor;
 import com.palmyralabs.pcg.template.TemplateProcessor;
 import com.palmyralabs.pcg.template.TemplateProcessorProvider;
 
@@ -58,29 +61,36 @@ public class ReactTemplateProcessorProvider implements TemplateProcessorProvider
 			result.add(new ExtServiceEndPointTemplateProcessor());
 
 		case Full:
-			result.add(new HomePageTemplateProcessor());
 			result.add(new LoginPageTemplateProcessor());
 			result.add(new LoginTemplateProcessor());
 			result.add(new MainlayoutTemplateProcessor());
-			result.add(new StyleLayoutTemplateProcessor());
 			result.add(new TabComponentTemplateProcessor());
-			result.add(new StyleThemeBlueColorTemplateProcessor());
-			result.add(new StyleLayoutThemeTemplateProcessor());
-			result.add(new FormLayoutTemplateProcessor());
-			result.add(new IndexTemplateProcessor());
-			result.add(new TypesTemplateProcessor());
-			result.add(new ConfigTemplateProcessor());
+			result.add(new FullStoreFactoryTemplateProcessor());
+			result.add(new FullSourceTemplateProcessor());
+
 			if (options.getMode() == Mode.Full) {
 				result.add(new FullRoutesTemplateProcessor());
 			}
 
 		case Minimal:
-			result.add(new StoreFactoryTemplateProcessor());
+			result.add(new HomePageTemplateProcessor());
 			result.add(new ComponentTemplateProcessor());
 			result.add(new FormComponentTemplateProcessor());
 			result.add(new TypeTSTemplateProcessor());
+			result.add(new ConfigTemplateProcessor());
+			result.add(new TypesTemplateProcessor());
+
+			result.add(new StyleLayoutTemplateProcessor());
+			result.add(new StyleThemeBlueColorTemplateProcessor());
+			result.add(new StyleLayoutThemeTemplateProcessor());
+			result.add(new StyleRuiLayoutTemplateProcessor());
+
 			if (options.getMode() == Mode.Minimal) {
 				result.add(new MinServiceEndPointTemplateProcessor());
+				result.add(new MinStoreFactoryTemplateProcessor());
+				result.add(new MinMainlayoutTemplateProcessor());
+				result.add(new MinRoutesTemplateProcessor());
+				result.add(new MinSourceTemplateProcessor());
 			}
 
 		default:
@@ -88,7 +98,7 @@ public class ReactTemplateProcessorProvider implements TemplateProcessorProvider
 				result.add(new ViteBuildTemplateProcessor());
 //			else
 //				 result.add(new MavenTemplateProcessor());
-			result.add(new SourceTemplateProcessor());
+
 		}
 
 		return result;

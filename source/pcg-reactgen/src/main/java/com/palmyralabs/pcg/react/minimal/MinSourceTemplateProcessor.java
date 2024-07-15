@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react.full;
+package com.palmyralabs.pcg.react.minimal;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,27 +10,31 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class StyleThemeBlueColorTemplateProcessor extends SimpleTemplateProcessor {
+public class MinSourceTemplateProcessor extends SimpleTemplateProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
+
+		TemplateInfo loginFormTSX = new DefaultTemplateInfo("main.tsx",
+				"templates/base/mainTSXTemplate.ftlh");
+		templates.add(loginFormTSX);
 		
-		TemplateInfo colorsCSS = new DefaultTemplateInfo("Colors.css",
-				"templates/full/blueColorsCss.ftlh");
-		templates.add(colorsCSS);
+		TemplateInfo loginInputTSX = new DefaultTemplateInfo("App.tsx",
+				"templates/minimal/appTSXTemplate.ftlh");
+		templates.add(loginInputTSX);
 
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","style","themes","blue");
+		Path path = Paths.get("web","src");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "colors";
+		return "SourcetTempProcessor";
 	}
 
 }

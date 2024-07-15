@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react.full;
+package com.palmyralabs.pcg.react.minimal;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -8,27 +8,35 @@ import java.util.List;
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
+import com.palmyralabs.pcg.template.processor.SchemaModelTemplateProcessor;
 import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class IndexTemplateProcessor extends SimpleTemplateProcessor {
+public class MinRoutesTemplateProcessor extends SchemaModelTemplateProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
-		
-		TemplateInfo indexTSX = new DefaultTemplateInfo("index.tsx",
-				"templates/full/indexTSXTemplate.ftlh");
+
+		TemplateInfo appRouts = new DefaultTemplateInfo("appRoutes.tsx",
+				"templates/minimal/appRoutesTsxTemplate.ftlh");
+		templates.add(appRouts);
+
+		TemplateInfo indexTSX = new DefaultTemplateInfo("index.tsx", "templates/full/indexTSXTemplate.ftlh");
 		templates.add(indexTSX);
-		
+
 		TemplateInfo pageWrapper = new DefaultTemplateInfo("PageWrapper.tsx",
 				"templates/full/pageWrapperTSXTemplate.ftlh");
 		templates.add(pageWrapper);
+		
+		TemplateInfo sideMenuList = new DefaultTemplateInfo("SideMenuList.ts",
+				"templates/minimal/sideMenuListTs.ftlh");
+		templates.add(sideMenuList);
 
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","routes");
+		Path path = Paths.get("web", "src", "routes");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 

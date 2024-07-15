@@ -37,6 +37,16 @@ public class UserInputs {
 		packageName.setRequired(true);
 		options.addOption(packageName);
 
+		StringOption projectName = new StringOption(S_PROJECT_NAME, L_PROJECT_NAME, true, "Project name option",
+				"Enter Project Name");
+		projectName.setRequired(true);
+		options.addOption(projectName);
+
+		StringOption outputPath = new StringOption(S_OUTPUT_PATH, L_OUTPUT_PATH, true, "Output path option",
+				"Enter Output Path");
+		outputPath.setRequired(true);
+		options.addOption(outputPath);
+
 		ChoiceOption databaseType = new ChoiceOption(S_DATABASE_TYPE, L_DATABASE_TYPE, true, "Database Type option",
 				new String[] { "MariaDB", "MySQL", "Oracle" }, "Select database type (enter 1, 2, or 3)");
 		databaseType.setRequired(true);
@@ -64,8 +74,8 @@ public class UserInputs {
 
 		StringOption schemaOptions = new StringOption(S_DATABASE_SCHEMAS, L_DATABASE_SCHEMAS, true, "List of Schemas",
 				"Enter Schemas separated by comma");
-		password.setRequired(true);
-		options.addOption(password);
+		schemaOptions.setRequired(true);
+		options.addOption(schemaOptions);
 
 		DefaultOptionsProvider optionsProvider = new DefaultOptionsProvider(frameworkOption);
 		optionsProvider.addOption(springBuildOption, "spring");
@@ -73,13 +83,15 @@ public class UserInputs {
 		optionsProvider.addOption(frameworkOption, "spring", "react");
 		optionsProvider.addOption(modeOption, "spring", "react");
 		optionsProvider.addOption(packageName, "spring");
+		optionsProvider.addOption(projectName, "spring", "react");
+		optionsProvider.addOption(outputPath, "spring", "react");
 		optionsProvider.addOption(databaseType, "spring", "react");
 		optionsProvider.addOption(hostOption, "spring", "react");
 		optionsProvider.addOption(portOption, "spring", "react");
 		optionsProvider.addOption(userName, "spring", "react");
 		optionsProvider.addOption(password, "spring", "react");
 		optionsProvider.addOption(schemaOptions, "spring", "react");
-		
+
 		return optionsProvider;
 	}
 }

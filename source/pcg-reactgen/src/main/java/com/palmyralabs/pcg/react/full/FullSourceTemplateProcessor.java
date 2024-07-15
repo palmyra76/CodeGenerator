@@ -10,32 +10,31 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class FormLayoutTemplateProcessor extends SimpleTemplateProcessor {
+public class FullSourceTemplateProcessor extends SimpleTemplateProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo formLayoutcss = new DefaultTemplateInfo("FormLayout.css",
-				"templates/full/formLayoutCSS.ftlh");
-		templates.add(formLayoutcss);
+		TemplateInfo loginFormTSX = new DefaultTemplateInfo("main.tsx",
+				"templates/base/mainTSXTemplate.ftlh");
+		templates.add(loginFormTSX);
 		
-		TemplateInfo muiXTreeMenuCss = new DefaultTemplateInfo("MuiXTreeMenu.css",
-				"templates/full/muiXTreeMenuCss.ftlh");
-		templates.add(muiXTreeMenuCss);
+		TemplateInfo loginInputTSX = new DefaultTemplateInfo("App.tsx",
+				"templates/full/appTSXTemplate.ftlh");
+		templates.add(loginInputTSX);
 
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","style","layout","rui");
+		Path path = Paths.get("web","src");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "formLayout";
+		return "SourcetTempProcessor";
 	}
-
 
 }

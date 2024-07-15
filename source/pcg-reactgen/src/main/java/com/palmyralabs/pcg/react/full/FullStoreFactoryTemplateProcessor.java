@@ -8,32 +8,29 @@ import java.util.List;
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
-import com.palmyralabs.pcg.template.processor.SchemaModelTemplateProcessor;
 import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class ConfigTemplateProcessor extends SimpleTemplateProcessor {
+public class FullStoreFactoryTemplateProcessor extends SimpleTemplateProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo titleConfig = new DefaultTemplateInfo("TitleConfig.ts", "templates/full/titleConfigTS.ftlh");
-		templates.add(titleConfig);
+		TemplateInfo storeFactoryTS = new DefaultTemplateInfo("StoreFactory.ts",
+				"templates/full/storeFactoryTS.ftlh");
+		templates.add(storeFactoryTS);
 		
-		TemplateInfo widthConfig = new DefaultTemplateInfo("WidthConfig.ts", "templates/full/widthConfigTs.ftlh");
-		templates.add(widthConfig);
-
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web", "src", "config");
+		Path path = Paths.get("web","src","components","wire");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "ServiceEndpoint";
+		return "storeFactory";
 	}
 
 }

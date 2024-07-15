@@ -16,8 +16,15 @@ public class ExtRoutesTemplateProcessor extends SchemaModelTemplateProcessor {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo appRouts = new DefaultTemplateInfo("appRoutes.tsx",
-				"templates/extended/extAppRoutesTsxTemplate.ftlh");
+				"templates/extended/appRoutesTsxTemplate.ftlh");
 		templates.add(appRouts);
+
+		TemplateInfo indexTSX = new DefaultTemplateInfo("index.tsx", "templates/full/indexTSXTemplate.ftlh");
+		templates.add(indexTSX);
+
+		TemplateInfo pageWrapper = new DefaultTemplateInfo("PageWrapper.tsx",
+				"templates/full/pageWrapperTSXTemplate.ftlh");
+		templates.add(pageWrapper);
 
 		return templates;
 	}

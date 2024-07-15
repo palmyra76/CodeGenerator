@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react.full;
+package com.palmyralabs.pcg.react.minimal;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

@@ -11,21 +11,28 @@ import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SchemaModelTemplateProcessor;
 import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class FullRoutesTemplateProcessor extends SchemaModelTemplateProcessor{
+public class FullRoutesTemplateProcessor extends SchemaModelTemplateProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
 		TemplateInfo appRouts = new DefaultTemplateInfo("appRoutes.tsx",
-				"templates/full/fullAppRoutesTsxTemplate.ftlh");
+				"templates/full/appRoutesTsxTemplate.ftlh");
 		templates.add(appRouts);
+
+		TemplateInfo indexTSX = new DefaultTemplateInfo("index.tsx", "templates/full/indexTSXTemplate.ftlh");
+		templates.add(indexTSX);
+
+		TemplateInfo pageWrapper = new DefaultTemplateInfo("PageWrapper.tsx",
+				"templates/full/pageWrapperTSXTemplate.ftlh");
+		templates.add(pageWrapper);
 
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","routes");
+		Path path = Paths.get("web", "src", "routes");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
