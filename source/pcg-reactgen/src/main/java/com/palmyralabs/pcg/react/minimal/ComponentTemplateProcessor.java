@@ -15,28 +15,26 @@ public class ComponentTemplateProcessor extends DataModelPathTemplateProcessor {
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo grid = new DefaultTemplateInfo("Page.tsx",
-				"templates/minimal/gridTemplate.ftlh");
+		TemplateInfo grid = new DefaultTemplateInfo("Page.tsx", "templates/minimal/gridTemplate.ftlh");
 		templates.add(grid);
-		
-		TemplateInfo newFormTsx = new DefaultTemplateInfo("NewPage.tsx",
-				"templates/minimal/newFormTsxTemplate.ftlh");
+
+		TemplateInfo newFormTsx = new DefaultTemplateInfo("NewPage.tsx", "templates/minimal/newFormTsxTemplate.ftlh");
 		templates.add(newFormTsx);
-		
+
 		TemplateInfo editFormTsx = new DefaultTemplateInfo("EditPage.tsx",
 				"templates/minimal/editFormTsxTemplate.ftlh");
 		templates.add(editFormTsx);
-		
+
 		TemplateInfo viewFormTsx = new DefaultTemplateInfo("ViewPage.tsx",
 				"templates/minimal/viewFormTsxTemplate.ftlh");
 		templates.add(viewFormTsx);
-	
+
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","components","test");
+		Path path = Paths.get("web", "src", "components", "tables");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
