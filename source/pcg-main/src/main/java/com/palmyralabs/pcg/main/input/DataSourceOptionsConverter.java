@@ -32,7 +32,8 @@ public class DataSourceOptionsConverter {
 	}
 
 	private String getJdbcUrl(DatabaseType dbType, Map<String, String> valueMap) {
-		return "jdbc:mariadb:" + valueMap.get(L_DATABASE_HOST)  + ":3306";
+		String url=valueMap.get(L_DATABASE_HOST).replace("//", "");
+		return "jdbc:mariadb://" + url  + ":3306";
 	}
 
 	private DatabaseType getDbType(String type) {

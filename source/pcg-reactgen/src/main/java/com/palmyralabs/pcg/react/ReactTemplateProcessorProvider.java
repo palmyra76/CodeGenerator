@@ -84,9 +84,10 @@ public class ReactTemplateProcessorProvider implements TemplateProcessorProvider
 			result.add(new StyleThemeBlueColorTemplateProcessor());
 			result.add(new StyleLayoutThemeTemplateProcessor());
 			result.add(new StyleRuiLayoutTemplateProcessor());
+			result.add(new MinServiceEndPointTemplateProcessor());
 
 			if (options.getMode() == Mode.Minimal) {
-				result.add(new MinServiceEndPointTemplateProcessor());
+				
 				result.add(new MinStoreFactoryTemplateProcessor());
 				result.add(new MinMainlayoutTemplateProcessor());
 				result.add(new MinRoutesTemplateProcessor());

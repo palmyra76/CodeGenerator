@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.HelpFormatter;
 
 import com.palmyralabs.pcg.commons.KeyValue;
 import com.palmyralabs.pcg.validator.InputValidator;
@@ -20,32 +21,44 @@ public class CommandLineValidator implements InputValidator {
 	public List<KeyValue> validate(OptionsProvider optionsProvider, String[] command) {
 
 		List<KeyValue> result = new ArrayList<>();
+
 		CommandLineParser parser = new CommandParser();
 		CommandLine cmd = parser.parse(optionsProvider.getOptions(), command);
 
-		ValidOption primaryOption = optionsProvider.getPrimaryOption();
-
-		String primaryOptionValue = cmd.getOptionValue(primaryOption);
-
-		if (null == primaryOptionValue) {
-			KeyValue kv = getValue(cmd, primaryOption);
-			result.add(kv);
-			primaryOptionValue = kv.getValue();
-		}else {
-			KeyValue kv = getValue(cmd, primaryOption);
-			result.add(kv);
+		if (command.length == 0 || cmd.hasOption("help")) {
+			HelpFormatter formatter = new HelpFormatter();
+			formatter.printHelp(" ", optionsProvider.getOptions());
 		}
 
-		List<ValidOption> options = optionsProvider.getOptions(primaryOptionValue);
+		else {
 
-		for (ValidOption vo : options) {
-			if (vo != primaryOption) {
-				KeyValue kv = getValue(cmd, vo);
+//			CommandLineParser parser = new CommandParser();
+//			CommandLine cmd = parser.parse(optionsProvider.getOptions(), command);
+
+			ValidOption primaryOption = optionsProvider.getPrimaryOption();
+
+			String primaryOptionValue = cmd.getOptionValue(primaryOption);
+
+			if (null == primaryOptionValue) {
+				KeyValue kv = getValue(cmd, primaryOption);
+				result.add(kv);
+				primaryOptionValue = kv.getValue();
+			} else {
+				KeyValue kv = getValue(cmd, primaryOption);
 				result.add(kv);
 			}
-		}
 
+			List<ValidOption> options = optionsProvider.getOptions(primaryOptionValue);
+
+			for (ValidOption vo : options) {
+				if (vo != primaryOption) {
+					KeyValue kv = getValue(cmd, vo);
+					result.add(kv);
+				}
+			}
+		}
 		return result;
+
 	}
 
 	private KeyValue getValue(CommandLine cmd, ValidOption vo) {

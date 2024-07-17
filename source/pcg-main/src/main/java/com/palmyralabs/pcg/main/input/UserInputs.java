@@ -1,5 +1,32 @@
 package com.palmyralabs.pcg.main.input;
 
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_DATABASE_HOST;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_DATABASE_PASSWORD;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_DATABASE_PORT;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_DATABASE_SCHEMAS;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_DATABASE_TYPE;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_DATABASE_USERNAME;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_FRAMEWORK;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_MODE;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_OUTPUT_PATH;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_PACKAGE;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_PROJECT_NAME;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_SPRING_BUILD;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.L_HELP;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.S_DATABASE_HOST;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.S_DATABASE_PASSWORD;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.S_DATABASE_PORT;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.S_DATABASE_SCHEMAS;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.S_DATABASE_TYPE;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.S_DATABASE_USERNAME;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.S_FRAMEWORK;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.S_MODE;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.S_OUTPUT_PATH;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.S_PACKAGE;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.S_PROJECT_NAME;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.S_SPRING_BUILD;
+import static com.palmyralabs.pcg.main.input.CommandLineOptions.S_HELP;
+
 import org.apache.commons.cli.Options;
 
 import com.palmyralabs.pcg.validator.cmdline.options.ChoiceOption;
@@ -7,11 +34,12 @@ import com.palmyralabs.pcg.validator.cmdline.options.PortNumberOption;
 import com.palmyralabs.pcg.validator.cmdline.options.StringOption;
 import com.palmyralabs.pcg.validator.impl.DefaultOptionsProvider;
 
-import static com.palmyralabs.pcg.main.input.CommandLineOptions.*;
-
 public class UserInputs {
 	public static DefaultOptionsProvider getProvider() {
 		Options options = new Options();
+
+		StringOption helpOption = new StringOption(S_HELP, L_HELP, false, "Print the help message", "");
+		options.addOption(helpOption);
 
 		ChoiceOption frameworkOption = new ChoiceOption(S_FRAMEWORK, L_FRAMEWORK, true, "Framework option",
 				new String[] { "spring", "react" }, "Select your framework");
@@ -78,6 +106,7 @@ public class UserInputs {
 		options.addOption(schemaOptions);
 
 		DefaultOptionsProvider optionsProvider = new DefaultOptionsProvider(frameworkOption);
+		optionsProvider.addOption(helpOption);
 		optionsProvider.addOption(springBuildOption, "spring");
 		optionsProvider.addOption(reactBuildOption, "react");
 		optionsProvider.addOption(frameworkOption, "spring", "react");

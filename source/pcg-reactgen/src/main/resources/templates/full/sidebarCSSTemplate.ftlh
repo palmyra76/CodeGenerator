@@ -5,6 +5,14 @@
     position: relative;
 }
 
+.tree-menu,
+.tree-menu-list{
+    display: flex !important;
+    gap: 20px !important;
+    justify-content: space-between;
+    padding-left: 10px !important;
+}
+
 .sidebar-footer {
     /* padding: 5px; */
     width: 250px;

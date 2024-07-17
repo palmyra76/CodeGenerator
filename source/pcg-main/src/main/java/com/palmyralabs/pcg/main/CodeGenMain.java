@@ -8,9 +8,7 @@ import com.palmyralabs.pcg.commons.GeneratorContext;
 import com.palmyralabs.pcg.commons.KeyValue;
 import com.palmyralabs.pcg.commons.Table;
 import com.palmyralabs.pcg.commons.UserOptions;
-import com.palmyralabs.pcg.main.input.CommandLineOptions;
 import com.palmyralabs.pcg.main.input.DataSourceOptionsConverter;
-import com.palmyralabs.pcg.main.input.DummyUserOptions;
 import com.palmyralabs.pcg.main.input.GeneratorContextImpl;
 import com.palmyralabs.pcg.main.input.UserInputs;
 import com.palmyralabs.pcg.main.input.UserOptionsConverter;
@@ -21,11 +19,14 @@ import com.palmyralabs.pcg.template.TemplateProcessorFactory;
 import com.palmyralabs.pcg.validator.cmdline.CommandLineValidator;
 import com.zitlab.palmyra.store.schema.Schema;
 
-public class CodeGenMain  {
+public class CodeGenMain {
 
 	public static void main(String[] args) {
 		List<KeyValue> userChoices = getUserInput(args);
 
+		if (userChoices.isEmpty())
+			System.exit(0);
+		
 		Schema schema = getSchema(userChoices);
 		if (null == schema) {
 			System.out.println("Not able to read metadata from database, exiting");
@@ -46,7 +47,7 @@ public class CodeGenMain  {
 		UserOptions options = new UserOptionsConverter().convert(userChoices);
 		Map<String, Table> tables = new TableMetaDataReader().getTable(schema, options);
 
-		if(tables.isEmpty()) {
+		if (tables.isEmpty()) {
 			System.out.println("Not able to read metadata from database, exiting");
 			return;
 		}

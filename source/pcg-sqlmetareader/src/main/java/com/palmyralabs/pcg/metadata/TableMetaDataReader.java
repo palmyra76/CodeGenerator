@@ -60,17 +60,25 @@ public class TableMetaDataReader {
 				field.setTargetAttribute(foreignKey.getTargetAttributes().get(0));
 
 				String uniqueColumn = null;
+
 				Map<String, TupleAttribute> targetFields = foreignKey.getTargetType().getFirstAvailableUniqueKey()
 						.getColumns();
-				for (TupleAttribute targetAttribute : targetFields.values()) {
-					if (targetAttribute.getColumnName().contains("name")
-							|| targetAttribute.getColumnName().contains("code")) {
-						uniqueColumn = targetAttribute.getColumnName();
-						break;
-					}
+
+				for (Map.Entry<String, TupleAttribute> entry : targetFields.entrySet()) {
+					uniqueColumn = entry.getKey();
+					break;
 				}
-				if (null == uniqueColumn)
-					uniqueColumn = foreignKey.getTargetAttributes().get(0);
+
+//				for (TupleAttribute targetAttribute : targetFields.values()) {
+//					if (targetAttribute.getColumnName().contains("name")
+//							|| targetAttribute.getColumnName().contains("code")) {
+//						uniqueColumn = targetAttribute.getColumnName();
+//						break;
+//					}
+//					
+//				}
+//				if (null == uniqueColumn)
+//					uniqueColumn = foreignKey.getTargetAttributes().get(0);
 
 				field.setTargetTableColumn(uniqueColumn);
 			}
