@@ -72,7 +72,6 @@ public class UserInputs {
 
 		StringOption outputPath = new StringOption(S_OUTPUT_PATH, L_OUTPUT_PATH, true, "Output path option",
 				"Enter Output Path");
-		outputPath.setRequired(true);
 		options.addOption(outputPath);
 
 		ChoiceOption databaseType = new ChoiceOption(S_DATABASE_TYPE, L_DATABASE_TYPE, true, "Database Type option",
