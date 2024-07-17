@@ -1,3 +1,22 @@
+plugins {
+	id 'application'
+}
+
+application {
+    mainClass = 'com.palmyralabs.pcg.main.CodeGenMain'
+
+    startScripts {
+        classpath += files('conf')
+
+        doLast {
+            def windowsScriptFile = file getWindowsScript()
+            def unixScriptFile    = file getUnixScript()
+            windowsScriptFile.text = windowsScriptFile.text.replace('%APP_HOME%\\lib\\conf', '%APP_HOME%\\resources')
+            unixScriptFile.text  = unixScriptFile.text.replace('$APP_HOME/lib/conf', '$APP_HOME/resources')
+        }
+    }
+}
+
 
 dependencies {
 	implementation project(':pcg-commons')
@@ -11,4 +30,37 @@ dependencies {
     implementation deps.palmyra.store.schema
     implementation deps.palmyra.store.commons
     implementation group: 'commons-cli', name: 'commons-cli', version: '1.7.0'
+}
+
+
+
+distZip {
+   exclude('**/*.yaml')
+   exclude('**/*.xml')
+}
+
+jar {
+   exclude('**/*.yaml')
+   exclude('**/*.xml')
+}
+	
+distributions {
+    main {        
+        contents {            
+            from ('src/main/resources'){
+                exclude('application.yaml')
+                into 'resources'
+            }
+
+            from 'src/main/resources/application.yaml'
+        }
+    }
+}
+
+installDist {
+	into ('../dist')
+}
+
+applicationDistribution.with {
+    include 'application.yaml'
 }
