@@ -54,7 +54,7 @@ public class UserOptionsConverter {
 		if(null != output)
 			return Paths.get(output);
 		
-		return Paths.get("./", valueMap.get(L_PROJECT_NAME).toLowerCase());
+		return Paths.get(".").resolve(Paths.get(valueMap.get(L_PROJECT_NAME).toLowerCase())).normalize();
 	}
 
 	private Mode getMode(String v) {

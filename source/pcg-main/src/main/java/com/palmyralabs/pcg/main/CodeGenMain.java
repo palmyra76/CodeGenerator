@@ -8,6 +8,7 @@ import com.palmyralabs.pcg.commons.GeneratorContext;
 import com.palmyralabs.pcg.commons.KeyValue;
 import com.palmyralabs.pcg.commons.Table;
 import com.palmyralabs.pcg.commons.UserOptions;
+import com.palmyralabs.pcg.commons.options.Framework;
 import com.palmyralabs.pcg.main.input.DataSourceOptionsConverter;
 import com.palmyralabs.pcg.main.input.GeneratorContextImpl;
 import com.palmyralabs.pcg.main.input.UserInputs;
@@ -34,6 +35,8 @@ public class CodeGenMain {
 		}
 
 		generate(userChoices, schema);
+
+		System.out.println("The project was generated in the \"" + getOutputPath(userChoices) + "\" directory.");
 
 	}
 
@@ -64,6 +67,22 @@ public class CodeGenMain {
 		DataSourceOptions dsOptions = dsConverter.convert(userChoices);
 		SchemaMetaDataProvider metadataProvider = new SchemaMetaDataProvider(dsOptions);
 		return metadataProvider.getSchema();
+	}
+
+	private static String getOutputPath(List<KeyValue> userChoices) {
+		UserOptions options = new UserOptionsConverter().convert(userChoices);
+
+		if (options.getFramework().equals(Framework.SpringBoot)) {
+			String path = options.getBaseOutputFolder().toAbsolutePath().toString();
+			return path + "/service";
+		}
+
+		else if (options.getFramework().equals(Framework.React)) {
+			String path = options.getBaseOutputFolder().toAbsolutePath().toString();
+			return path + "/web";
+		}
+
+		return options.getBaseOutputFolder().toString();
 	}
 
 }
