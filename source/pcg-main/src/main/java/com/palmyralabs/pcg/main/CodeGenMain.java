@@ -26,7 +26,7 @@ public class CodeGenMain {
 
 		if (userChoices.isEmpty())
 			System.exit(0);
-		
+
 		Schema schema = getSchema(userChoices);
 		if (null == schema) {
 			System.out.println("Not able to read metadata from database, exiting");
@@ -45,13 +45,14 @@ public class CodeGenMain {
 
 	private static void generate(List<KeyValue> userChoices, Schema schema) {
 		UserOptions options = new UserOptionsConverter().convert(userChoices);
+		DataSourceOptions dsOptions = new DataSourceOptionsConverter().convert(userChoices);
 		Map<String, Table> tables = new TableMetaDataReader().getTable(schema, options);
 
 		if (tables.isEmpty()) {
 			System.out.println("Not able to read metadata from database, exiting");
 			return;
 		}
-		GeneratorContext ctx = new GeneratorContextImpl(options, schema, tables);
+		GeneratorContext ctx = new GeneratorContextImpl(dsOptions, options, schema, tables);
 		List<TemplateProcessor> processors = TemplateProcessorFactory.getProcessors(options);
 		for (TemplateProcessor tp : processors) {
 			tp.process(options, ctx);

@@ -14,9 +14,10 @@ import com.zitlab.palmyra.common.util.TextUtil;
 import com.zitlab.palmyra.sqlstore.base.dbmeta.ForeignKey;
 import com.zitlab.palmyra.sqlstore.base.dbmeta.TupleAttribute;
 import com.zitlab.palmyra.sqlstore.base.dbmeta.TupleType;
+import com.zitlab.palmyra.sqlstore.base.dbmeta.UniqueKey;
 import com.zitlab.palmyra.store.schema.Schema;
 
-public class TableMetaDataReader {
+public class TableMetaDataReader implements UniqueColumnProvider {
 
 	public Map<String, Table> getTable(Schema schema, UserOptions options) {
 		Map<String, TupleType> tuples = schema.getEntityMap();
@@ -59,26 +60,7 @@ public class TableMetaDataReader {
 				field.setConvertedTargetTableName(TextUtil.camelCaseFirstLetterUpperCase(foreignKey.getTargetTable()));
 				field.setTargetAttribute(foreignKey.getTargetAttributes().get(0));
 
-				String uniqueColumn = null;
-
-				Map<String, TupleAttribute> targetFields = foreignKey.getTargetType().getFirstAvailableUniqueKey()
-						.getColumns();
-
-				for (Map.Entry<String, TupleAttribute> entry : targetFields.entrySet()) {
-					uniqueColumn = entry.getKey();
-					break;
-				}
-
-//				for (TupleAttribute targetAttribute : targetFields.values()) {
-//					if (targetAttribute.getColumnName().contains("name")
-//							|| targetAttribute.getColumnName().contains("code")) {
-//						uniqueColumn = targetAttribute.getColumnName();
-//						break;
-//					}
-//					
-//				}
-//				if (null == uniqueColumn)
-//					uniqueColumn = foreignKey.getTargetAttributes().get(0);
+				String uniqueColumn = getUniqueColumn(foreignKey.getTargetType());
 
 				field.setTargetTableColumn(uniqueColumn);
 			}
@@ -87,4 +69,38 @@ public class TableMetaDataReader {
 		}
 		return fieldList;
 	}
+
+	@Override
+	public String getUniqueColumn(TupleType tuple) {
+		Map<String, UniqueKey> uniqueKey = tuple.getUniqueKeyMap();
+		UniqueKey selectedKey = null;
+		int satisifedCriterias = 0;
+
+		for (UniqueKey uq : uniqueKey.values()) {
+			if (uq.size() == 1) {
+				if (0 == satisifedCriterias) {
+					selectedKey = uq;
+					satisifedCriterias = 1;
+				}
+
+				String uniqueColumn = uq.getColumns().keySet().iterator().next().toLowerCase();
+
+				if (uniqueColumn.equals("name"))
+					break;
+
+				else if (uniqueColumn.contains("name") && satisifedCriterias < 3) {
+					selectedKey = uq;
+					satisifedCriterias = 3;
+					continue;
+				} else if (uniqueColumn.contains("code") && satisifedCriterias < 2) {
+					selectedKey = uq;
+					satisifedCriterias = 2;
+					continue;
+				}
+			}
+		}
+
+		return selectedKey.getColumns().keySet().iterator().next();
+	}
+
 }

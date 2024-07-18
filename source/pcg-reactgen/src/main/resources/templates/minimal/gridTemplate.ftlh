@@ -14,12 +14,21 @@ const ${name}Page = () => {
 	<#if field["columnName"] == "id" || field["columnName"] == "createdBy" || field["columnName"] == "createdOn" || field["columnName"] == "lastUpdBy" || field["columnName"] == "lastUpdOn">
 	<#continue>
 	</#if>
-{
-            attribute: "${field.columnName}",
-            name: "${field.columnName}",
-            title:"${field.splitedColumnName}",
-            type: "${field.reactDataType}"
-        }<#if field_has_next>,</#if>
+<#if field["isForeignKey"]!=0>
+	{
+		attribute: "${field["columnName"]}.${field["targetTableColumn"]}",
+		name: "${field.columnName}",
+		title:"${field.splitedColumnName}",
+		type: "${field.reactDataType}"
+	}<#if field_has_next>,</#if>
+<#else>
+	{
+		attribute: "${field.columnName}",
+		name: "${field.columnName}",
+		title:"${field.splitedColumnName}",
+		type: "${field.reactDataType}"
+	}<#if field_has_next>,</#if>
+</#if>
 </#list>
 ];
         

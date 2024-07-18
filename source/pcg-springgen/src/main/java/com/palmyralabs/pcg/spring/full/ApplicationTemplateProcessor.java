@@ -8,9 +8,9 @@ import java.util.List;
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
-import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
+import com.palmyralabs.pcg.template.processor.DataSourceTemplateProcessor;
 
-public class ApplicationTemplateProcessor extends SimpleTemplateProcessor {
+public class ApplicationTemplateProcessor extends DataSourceTemplateProcessor {
 
 	@Override
 	public List<TemplateInfo> getTemplates() {

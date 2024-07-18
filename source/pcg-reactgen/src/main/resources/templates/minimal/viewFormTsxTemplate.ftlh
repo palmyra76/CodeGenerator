@@ -39,7 +39,7 @@ const ${name}ViewPage = (props: IPageInput) => {
 					/>
 				<#elseif field["reactDataType"] == "date" >
 					<DateView attribute="${field["columnName"]}" title="${field["splitedColumnName"]}"
-						variant="standard" displayPattern="DD-MM-YYYY"
+						variant="standard" displayPattern="dd-mm-yyyy"
 					/>
 				<#else>
 					<TextView attribute="${field["columnName"]}" 

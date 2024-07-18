@@ -9,10 +9,10 @@ import EditGroupPage from "../pages/userManagement/group/EditGroupPage";
 import ViewGroupPage from "../pages/userManagement/group/ViewGroupPage";
 import NewGroupPage from "../pages/userManagement/group/NewGroupPage";
 <#list tables as key, value> 
-import ${value.name}Page from "../components/test/${value.name}/${value.name}Page";
-import ${value.name}NewPage from "../components/test/${value.name}/${value.name}NewPage";
-import ${value.name}ViewPage from "../components/test/${value.name}/${value.name}ViewPage";
-import ${value.name}EditPage from "../components/test/${value.name}/${value.name}EditPage";
+import ${value.name}Page from "../components/tables/${value.name}/${value.name}Page";
+import ${value.name}NewPage from "../components/tables/${value.name}/${value.name}NewPage";
+import ${value.name}ViewPage from "../components/tables/${value.name}/${value.name}ViewPage";
+import ${value.name}EditPage from "../components/tables/${value.name}/${value.name}EditPage";
 </#list> 
 
 const appRoutes = [
