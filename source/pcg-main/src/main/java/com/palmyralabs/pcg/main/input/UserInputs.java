@@ -49,17 +49,17 @@ public class UserInputs {
 		options.addOption(frameworkOption);
 
 		ChoiceOption springBuildOption = new ChoiceOption(S_SPRING_BUILD, L_SPRING_BUILD, true, "Build tool option",
-				new String[] { "maven", "gradle" }, "Select Build tool (enter 1 or 2)");
+				new String[] { "maven", "gradle" }, "Select Build tool (enter 1 or 2)", 1);
 		springBuildOption.setRequired(true);
 		options.addOption(springBuildOption);
 
 		ChoiceOption reactBuildOption = new ChoiceOption(S_SPRING_BUILD, L_SPRING_BUILD, true, "Build tool option",
-				new String[] { "vite", "rollup" }, "Select Build tool (enter 1 or 2)");
+				new String[] { "vite", "rollup" }, "Select Build tool (enter 1 or 2)", 0);
 		reactBuildOption.setRequired(true);
 		options.addOption(reactBuildOption);
 
 		ChoiceOption modeOption = new ChoiceOption(S_MODE, L_MODE, true, "Mode (Minimal / Full / Extended)",
-				new String[] { "Minimal", "Full", "Extended" }, "Select generation Mode  (enter 1,2 or 3)");
+				new String[] { "Minimal", "Full", "Extended" }, "Select generation Mode  (enter 1,2 or 3)", 0);
 		options.addOption(modeOption);
 
 		StringOption packageName = new StringOption(S_PACKAGE, L_PACKAGE, true, "Package name option",

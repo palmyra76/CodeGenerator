@@ -14,6 +14,12 @@ public class ChoiceOption extends ValidOption {
 		this.choices = choices;
 	}
 
+	public ChoiceOption(String opt, String longOpt, boolean hasArg, String description, String choices[],
+			String invalidMessage, int defaultChoice) {
+		super(opt, longOpt, hasArg, description, new ChoiceInputReader(invalidMessage, choices, defaultChoice));
+		this.choices = choices;
+	}
+
 	public String[] getChoices() {
 		return choices;
 	}
