@@ -6,6 +6,7 @@ application {
     mainClass = 'com.palmyralabs.pcg.main.CodeGenMain'
 
     startScripts {
+        applicationName = 'codeGen'
         classpath += files('conf')
 
         doLast {

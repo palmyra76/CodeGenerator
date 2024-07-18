@@ -31,5 +31,6 @@ replay_pid*
 .settings
 .classpath
 **/bin/
-
+**/dist/
+./dist/
 docs/public
