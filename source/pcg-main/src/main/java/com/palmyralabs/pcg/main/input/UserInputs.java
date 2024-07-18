@@ -41,7 +41,7 @@ public class UserInputs {
 		StringOption helpOption = new StringOption(S_HELP, L_HELP, false, "Print the help message", "");
 		options.addOption(helpOption);
 
-		ChoiceOption frameworkOption = new ChoiceOption(S_FRAMEWORK, L_FRAMEWORK, true, "Framework option",
+		ChoiceOption frameworkOption = new ChoiceOption(S_FRAMEWORK, L_FRAMEWORK, true, "Framework (React / Spring)",
 				new String[] { "spring", "react" }, "Select your framework");
 		frameworkOption.setRequired(true);
 		options.addOption(frameworkOption);
@@ -56,7 +56,7 @@ public class UserInputs {
 		reactBuildOption.setRequired(true);
 		options.addOption(reactBuildOption);
 
-		ChoiceOption modeOption = new ChoiceOption(S_MODE, L_MODE, true, "Mode option",
+		ChoiceOption modeOption = new ChoiceOption(S_MODE, L_MODE, true, "Mode (Minimal / Full / Extended)",
 				new String[] { "Minimal", "Full", "Extended" }, "Select generation Mode  (enter 1,2 or 3)");
 		options.addOption(modeOption);
 
@@ -74,7 +74,7 @@ public class UserInputs {
 				"Enter Output Path");
 		options.addOption(outputPath);
 
-		ChoiceOption databaseType = new ChoiceOption(S_DATABASE_TYPE, L_DATABASE_TYPE, true, "Database Type option",
+		ChoiceOption databaseType = new ChoiceOption(S_DATABASE_TYPE, L_DATABASE_TYPE, true, "Database Type (MariaDB / MySQL / Oracle)",
 				new String[] { "MariaDB", "MySQL", "Oracle" }, "Select database type (enter 1, 2, or 3)");
 		databaseType.setRequired(true);
 		options.addOption(databaseType);
@@ -89,12 +89,12 @@ public class UserInputs {
 		portOption.setRequired(true);
 		options.addOption(portOption);
 
-		StringOption userName = new StringOption(S_DATABASE_USERNAME, L_DATABASE_USERNAME, true, "User name option",
+		StringOption userName = new StringOption(S_DATABASE_USERNAME, L_DATABASE_USERNAME, true, "Database User name option",
 				"Enter User Name");
 		userName.setRequired(true);
 		options.addOption(userName);
 
-		StringOption password = new StringOption(S_DATABASE_PASSWORD, L_DATABASE_PASSWORD, true, "Password option",
+		StringOption password = new StringOption(S_DATABASE_PASSWORD, L_DATABASE_PASSWORD, true, "Database Password option",
 				"Enter Password");
 		password.setRequired(true);
 		options.addOption(password);

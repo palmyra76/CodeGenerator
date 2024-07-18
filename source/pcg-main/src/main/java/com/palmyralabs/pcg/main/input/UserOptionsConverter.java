@@ -23,20 +23,27 @@ public class UserOptionsConverter {
 			valueMap.put(kv.getKey(), kv.getValue());
 		}
 
-		r.setFramework(getFramework(valueMap.get(L_FRAMEWORK)));
+		r.setFramework(getFramework(valueMap.get(L_FRAMEWORK).toLowerCase()));
 		r.setBuildTool(getBuildTool(valueMap.get(L_SPRING_BUILD)));
 		r.setMode(getMode(valueMap.get(L_MODE)));
 
-		if(r.getFramework() == Framework.SpringBoot) {
-			r.setPackageName(valueMap.get(L_PACKAGE));
-			r.setGroup(getGroup(valueMap.get(L_PACKAGE)));
+		if (r.getFramework() == Framework.SpringBoot) {
+			String projectName = valueMap.get(L_PROJECT_NAME).toLowerCase();
+			String packageName = valueMap.get(L_PACKAGE).toLowerCase();
+			if (packageName.substring(packageName.lastIndexOf(".")).equals(projectName)) {
+				r.setGroup(getGroup(packageName));
+				r.setPackageName(packageName);
+			} else {
+				r.setPackageName(packageName.concat("." + projectName));
+				r.setGroup(packageName);
+			}
 		}
-		
+
 		r.setBaseOutputFolder(Paths
 				.get(valueMap.get(L_OUTPUT_PATH) + "/codeGen/" + valueMap.get(L_PROJECT_NAME).toLowerCase() + "/"));
-		
+
 		r.setProjectName(valueMap.get(L_PROJECT_NAME).toLowerCase());
-		
+
 		r.setConvertedProjectName(getConvertedProjectName(L_PROJECT_NAME));
 		return r;
 	}

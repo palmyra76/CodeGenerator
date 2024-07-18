@@ -11,7 +11,7 @@ const ${name}Page = () => {
 
     const fields: ColumnDefinition[] = [
 <#list fields as field>
-	<#if field["columnName"]=="createdBy" || field["columnName"]=="createdOn" || field["columnName"]=="lastUpdBy" || field["columnName"]=="lastUpdOn">
+	<#if field["columnName"] == "id" || field["columnName"] == "createdBy" || field["columnName"] == "createdOn" || field["columnName"] == "lastUpdBy" || field["columnName"] == "lastUpdOn">
 	<#continue>
 	</#if>
 {

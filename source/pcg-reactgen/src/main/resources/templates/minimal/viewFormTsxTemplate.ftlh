@@ -29,7 +29,7 @@ const ${name}ViewPage = (props: IPageInput) => {
 			<div className="palmyra-form-field-container-wrapper">
 				<FieldGroupContainer columns={2}>
 				<#list fields as field>
-				<#if field["columnName"]=="createdBy" || field["columnName"]=="createdOn" || field["columnName"]=="lastUpdBy" || field["columnName"]=="lastUpdOn">
+				<#if field["columnName"] == "id" || field["columnName"] == "createdBy" || field["columnName"] == "createdOn" || field["columnName"] == "lastUpdBy" || field["columnName"] == "lastUpdOn">
 				<#continue>
 				</#if>
 				<#if field["isForeignKey"]!=0>
