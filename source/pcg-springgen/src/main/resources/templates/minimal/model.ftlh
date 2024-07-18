@@ -24,7 +24,7 @@ public class ${name}Model {
 	</#if>
 	<#if field["isForeignKey"]!=0>
 	@PalmyraField(attribute = "${field["columnName"]}")
-	private ${field["convertedTargetTableName"]}Model ${field["targetTable"]};
+	private ${field["convertedTargetTableName"]}Model ${field["columnName"]};
 	
 	<#else>
 	@PalmyraField

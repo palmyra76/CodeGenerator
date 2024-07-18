@@ -41,8 +41,10 @@ public class UserInputs {
 		StringOption helpOption = new StringOption(S_HELP, L_HELP, false, "Print the help message", "");
 		options.addOption(helpOption);
 
+		// Framework name must be provided in lowerCase
 		ChoiceOption frameworkOption = new ChoiceOption(S_FRAMEWORK, L_FRAMEWORK, true, "Framework (React / Spring)",
 				new String[] { "spring", "react" }, "Select your framework");
+		
 		frameworkOption.setRequired(true);
 		options.addOption(frameworkOption);
 

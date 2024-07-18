@@ -1,5 +1,6 @@
 package com.palmyralabs.pcg.main.input;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
@@ -39,13 +40,21 @@ public class UserOptionsConverter {
 			}
 		}
 
-		r.setBaseOutputFolder(Paths
-				.get(valueMap.get(L_OUTPUT_PATH) + "/codeGen/" + valueMap.get(L_PROJECT_NAME).toLowerCase() + "/"));
+		r.setBaseOutputFolder(getOutputFolder(valueMap));
 
 		r.setProjectName(valueMap.get(L_PROJECT_NAME).toLowerCase());
 
 		r.setConvertedProjectName(getConvertedProjectName(L_PROJECT_NAME));
 		return r;
+	}
+
+	private Path getOutputFolder(Map<String, String> valueMap) {
+		String output = valueMap.get(L_OUTPUT_PATH);
+		
+		if(null != output)
+			return Paths.get(output);
+		
+		return Paths.get("./", valueMap.get(L_PROJECT_NAME).toLowerCase());
 	}
 
 	private Mode getMode(String v) {
