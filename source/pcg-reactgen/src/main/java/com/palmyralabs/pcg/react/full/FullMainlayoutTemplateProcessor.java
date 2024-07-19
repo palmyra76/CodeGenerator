@@ -10,7 +10,7 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class MainlayoutTemplateProcessor extends SimpleTemplateProcessor {
+public class FullMainlayoutTemplateProcessor extends SimpleTemplateProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
@@ -18,13 +18,12 @@ public class MainlayoutTemplateProcessor extends SimpleTemplateProcessor {
 		TemplateInfo mainLayoutTSX = new DefaultTemplateInfo("MainLayout.tsx",
 				"templates/full/mainLayoutTSXTemplate.ftlh");
 		templates.add(mainLayoutTSX);
-		
+
 		TemplateInfo sidebarTSX = new DefaultTemplateInfo("Sidebar.tsx",
-				"templates/full/sidebarTSXTemplate.ftlh");
+				"templates/minimal/sidebarTSXTemplate.ftlh");
 		templates.add(sidebarTSX);
 
-		TemplateInfo topbarTSX = new DefaultTemplateInfo("Topbar.tsx",
-				"templates/full/topbarTSXTemplate.ftlh");
+		TemplateInfo topbarTSX = new DefaultTemplateInfo("Topbar.tsx", "templates/full/topbarTSXTemplate.ftlh");
 		templates.add(topbarTSX);
 
 		return templates;
@@ -32,7 +31,7 @@ public class MainlayoutTemplateProcessor extends SimpleTemplateProcessor {
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","layout","mainLayout");
+		Path path = Paths.get("web", "src", "layout", "mainLayout");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 

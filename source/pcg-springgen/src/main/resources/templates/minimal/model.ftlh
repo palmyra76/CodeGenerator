@@ -26,6 +26,10 @@ public class ${name}Model {
 	@PalmyraField(attribute = "${field["columnName"]}")
 	private ${field["convertedTargetTableName"]}Model ${field["columnName"]};
 	
+	<#elseif field["javaDataType"] == "LocalDate">
+	@PalmyraField(pattern = "dd-MM-yyyy")
+	private ${field["javaDataType"]} ${field["columnName"]};
+	
 	<#else>
 	@PalmyraField
 	private ${field["javaDataType"]} ${field["columnName"]};

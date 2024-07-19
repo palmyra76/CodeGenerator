@@ -51,8 +51,6 @@
     border-radius: 7px;
 }
 
-.MuiPaginationItem-root {}
-
 .grid-renderer-container .grid-footer .MuiInput-input.MuiSelect-select,
 .card-pagination .MuiInput-input.MuiSelect-select {
     border: 1.2px solid #80808047;

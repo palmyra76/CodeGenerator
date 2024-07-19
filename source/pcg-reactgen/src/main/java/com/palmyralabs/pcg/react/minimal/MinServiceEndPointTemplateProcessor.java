@@ -9,7 +9,6 @@ import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SchemaModelTemplateProcessor;
-import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
 public class MinServiceEndPointTemplateProcessor extends SchemaModelTemplateProcessor {
 	@Override

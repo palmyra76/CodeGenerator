@@ -19,7 +19,7 @@ const ${name}Page = () => {
 		attribute: "${field["columnName"]}.${field["targetTableColumn"]}",
 		name: "${field.columnName}",
 		title:"${field.splitedColumnName}",
-		type: "${field.reactDataType}"
+		type: "${field.targetColumnReactType}"
 	}<#if field_has_next>,</#if>
 <#else>
 	{

@@ -9,7 +9,6 @@ import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SchemaModelTemplateProcessor;
-import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
 public class FullRoutesTemplateProcessor extends SchemaModelTemplateProcessor {
 	@Override
@@ -26,6 +25,11 @@ public class FullRoutesTemplateProcessor extends SchemaModelTemplateProcessor {
 		TemplateInfo pageWrapper = new DefaultTemplateInfo("PageWrapper.tsx",
 				"templates/full/pageWrapperTSXTemplate.ftlh");
 		templates.add(pageWrapper);
+		
+		TemplateInfo sideMenuList = new DefaultTemplateInfo("SideMenuList.ts",
+				"templates/minimal/sideMenuListTs.ftlh");
+		templates.add(sideMenuList);
+
 
 		return templates;
 	}

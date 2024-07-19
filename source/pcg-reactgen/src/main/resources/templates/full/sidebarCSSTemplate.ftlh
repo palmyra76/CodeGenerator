@@ -31,7 +31,6 @@
     color: var(--sidebar-title-color);
 }
 
-.sidebar-logo-text {}
 
 .sidebar-logo-subtext {
     font-size: 15px;
@@ -55,10 +54,6 @@
     margin-bottom: 0px;
 }
 
-.sidebar-header {
-    /* margin-bottom: 20px; */
-}
-
 .css-1vxbjdn-MuiToolbar-root {
     margin-bottom: 0px !important;
     padding-left: 16px !important;
@@ -70,10 +65,6 @@
     font-kerning: normal;
     letter-spacing: 0.05rem;
     bottom: 0;
-}
-
-.css-snhrq-MuiStack-root {
-    /* width: auto !important; */
 }
 
 .MuiTypography-root {

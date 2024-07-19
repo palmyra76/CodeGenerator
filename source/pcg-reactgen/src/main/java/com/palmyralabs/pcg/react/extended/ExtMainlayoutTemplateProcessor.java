@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react.minimal;
+package com.palmyralabs.pcg.react.extended;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,29 +10,35 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class ConfigTemplateProcessor extends SimpleTemplateProcessor {
+public class ExtMainlayoutTemplateProcessor extends SimpleTemplateProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo titleConfig = new DefaultTemplateInfo("TitleConfig.ts", "templates/minimal/titleConfigTS.ftlh");
-		templates.add(titleConfig);
+		TemplateInfo mainLayoutTSX = new DefaultTemplateInfo("MainLayout.tsx",
+				"templates/full/mainLayoutTSXTemplate.ftlh");
+		templates.add(mainLayoutTSX);
+		
+		TemplateInfo sidebarTSX = new DefaultTemplateInfo("Sidebar.tsx",
+				"templates/full/sidebarTSXTemplate.ftlh");
+		templates.add(sidebarTSX);
 
-		TemplateInfo widthConfig = new DefaultTemplateInfo("WidthConfig.ts", "templates/minimal/widthConfigTs.ftlh");
-		templates.add(widthConfig);
+		TemplateInfo topbarTSX = new DefaultTemplateInfo("Topbar.tsx",
+				"templates/full/topbarTSXTemplate.ftlh");
+		templates.add(topbarTSX);
 
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web", "src", "config");
+		Path path = Paths.get("web","src","layout","mainLayout");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "ServiceEndpoint";
+		return "MainLayout";
 	}
 
 }

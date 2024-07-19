@@ -36,7 +36,7 @@ const ${name}NewPage = (props: IPageInput) => {
 				<#continue>
 				</#if>
 				<#if field["isForeignKey"]!=0>
-					<ServerLookup attribute="${field["columnName"]}.${field["targetAttribute"]}" title="${field["splitedColumnName"]}"
+					<ServerLookup attribute="${field["columnName"]}" title="${field["splitedColumnName"]}"
 						placeHolder="Select ${field["splitedColumnName"]}"
 						storeOptions={{ endPoint: ServiceEndpoint.${field["targetTable"]}.restApi }} <#if field["mandatory"]>required</#if>
 						lookupOptions={{ idAttribute: '${field["targetAttribute"]}', displayAttribute: '${field["targetTableColumn"]}' }}

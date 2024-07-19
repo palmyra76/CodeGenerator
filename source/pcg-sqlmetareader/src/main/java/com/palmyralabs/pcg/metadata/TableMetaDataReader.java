@@ -60,9 +60,11 @@ public class TableMetaDataReader implements UniqueColumnProvider {
 				field.setConvertedTargetTableName(TextUtil.camelCaseFirstLetterUpperCase(foreignKey.getTargetTable()));
 				field.setTargetAttribute(foreignKey.getTargetAttributes().get(0));
 
-				String uniqueColumn = getUniqueColumn(foreignKey.getTargetType());
+				UniqueColumn uniqueColumn = getUniqueColumn(foreignKey.getTargetType());
 
-				field.setTargetTableColumn(uniqueColumn);
+				field.setTargetTableColumn(uniqueColumn.getName());
+				field.setTargetColumnJavaType(uniqueColumn.getJavaDataType());
+				field.setTargetColumnReactType(uniqueColumn.getReactDataType());
 			}
 
 			fieldList.add(field);
@@ -71,10 +73,13 @@ public class TableMetaDataReader implements UniqueColumnProvider {
 	}
 
 	@Override
-	public String getUniqueColumn(TupleType tuple) {
+	public UniqueColumn getUniqueColumn(TupleType tuple) {
+		UniqueColumn uniqueColumn = new UniqueColumn();
+		
 		Map<String, UniqueKey> uniqueKey = tuple.getUniqueKeyMap();
 		UniqueKey selectedKey = null;
 		int satisifedCriterias = 0;
+		
 
 		for (UniqueKey uq : uniqueKey.values()) {
 			if (uq.size() == 1) {
@@ -83,24 +88,29 @@ public class TableMetaDataReader implements UniqueColumnProvider {
 					satisifedCriterias = 1;
 				}
 
-				String uniqueColumn = uq.getColumns().keySet().iterator().next().toLowerCase();
+				String uqColumn = uq.getColumns().keySet().iterator().next().toLowerCase();
 
-				if (uniqueColumn.equals("name"))
+				if (uqColumn.equals("name"))
 					break;
 
-				else if (uniqueColumn.contains("name") && satisifedCriterias < 3) {
+				else if (uqColumn.contains("name") && satisifedCriterias < 3) {
 					selectedKey = uq;
 					satisifedCriterias = 3;
 					continue;
-				} else if (uniqueColumn.contains("code") && satisifedCriterias < 2) {
+				} else if (uqColumn.contains("code") && satisifedCriterias < 2) {
 					selectedKey = uq;
 					satisifedCriterias = 2;
 					continue;
 				}
 			}
 		}
-
-		return selectedKey.getColumns().keySet().iterator().next();
+		
+		int dataType = selectedKey.getColumns().entrySet().iterator().next().getValue().getDataType();
+		uniqueColumn.setName(selectedKey.getColumns().keySet().iterator().next());
+		uniqueColumn.setJavaDataType(DataTypeConvertor.javaTypeConvert(dataType));
+		uniqueColumn.setReactDataType(DataTypeConvertor.reactTypeConvert(dataType));
+		
+		return uniqueColumn;
 	}
 
 }

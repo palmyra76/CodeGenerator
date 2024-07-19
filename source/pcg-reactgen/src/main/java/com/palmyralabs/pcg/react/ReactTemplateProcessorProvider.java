@@ -14,15 +14,16 @@ import com.palmyralabs.pcg.react.extended.ExtServiceEndPointTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.FormDefaultTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.GroupTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.GroupUserTemplateProcessor;
+import com.palmyralabs.pcg.react.extended.ExtMainlayoutTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.UserFormTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.UserGroupTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.UserTemplateProcessor;
+import com.palmyralabs.pcg.react.full.FullMainlayoutTemplateProcessor;
 import com.palmyralabs.pcg.react.full.FullRoutesTemplateProcessor;
 import com.palmyralabs.pcg.react.full.FullSourceTemplateProcessor;
 import com.palmyralabs.pcg.react.full.FullStoreFactoryTemplateProcessor;
 import com.palmyralabs.pcg.react.full.LoginPageTemplateProcessor;
 import com.palmyralabs.pcg.react.full.LoginTemplateProcessor;
-import com.palmyralabs.pcg.react.full.MainlayoutTemplateProcessor;
 import com.palmyralabs.pcg.react.full.TabComponentTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.ComponentTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.ConfigTemplateProcessor;
@@ -59,11 +60,12 @@ public class ReactTemplateProcessorProvider implements TemplateProcessorProvider
 			result.add(new UserTemplateProcessor());
 			result.add(new ExtRoutesTemplateProcessor());
 			result.add(new ExtServiceEndPointTemplateProcessor());
+			result.add(new ExtMainlayoutTemplateProcessor());
 
 		case Full:
 			result.add(new LoginPageTemplateProcessor());
 			result.add(new LoginTemplateProcessor());
-			result.add(new MainlayoutTemplateProcessor());
+			result.add(new FullMainlayoutTemplateProcessor());
 			result.add(new TabComponentTemplateProcessor());
 			result.add(new FullStoreFactoryTemplateProcessor());
 			result.add(new FullSourceTemplateProcessor());

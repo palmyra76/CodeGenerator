@@ -18,4 +18,6 @@ public class Field {
 	private String convertedTargetTableName;
 	private String targetAttribute;
 	private String targetTableColumn;
+	private String targetColumnJavaType;
+	private String targetColumnReactType;
 }
