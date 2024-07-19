@@ -3,6 +3,9 @@
 <#assign importDatePicker = false>
 <#assign importTextField = false>
 <#list fields as field>
+	<#if field["columnName"] == "id" || field["columnName"] == "createdBy" || field["columnName"] == "createdOn" || field["columnName"] == "lastUpdBy" || field["columnName"] == "lastUpdOn">
+	<#continue>
+	</#if>
     <#if field["isForeignKey"] != 0>
         <#assign importServerLookup = true>
     <#elseif field["reactDataType"] == "number">
@@ -14,7 +17,7 @@
     </#if>
 </#list>
 import { useParams } from 'react-router-dom';
-import { FieldGroupContainer, <#if importServerLookup>ServerLookup, </#if><#if importNumberField>NumberField, </#if><#if importDatePicker>DatePicker, </#if><#if importTextField>TextField, </#if> } from "../../../components/form";
+import { FieldGroupContainer, <#if importServerLookup>ServerLookup, </#if><#if importNumberField>NumberField, </#if><#if importDatePicker>DatePicker, </#if><#if importTextField>TextField </#if> } from "../../../components/form";
 import { IPageInput } from "../../../templates/Types";
 import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
 import { NewForm } from 'palmyra-template';

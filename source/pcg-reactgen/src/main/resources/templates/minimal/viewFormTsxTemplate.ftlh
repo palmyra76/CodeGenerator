@@ -2,6 +2,9 @@
 <#assign importDateView = false>
 <#assign importTextView = false>
 <#list fields as field>
+	<#if field["columnName"] == "id" || field["columnName"] == "createdBy" || field["columnName"] == "createdOn" || field["columnName"] == "lastUpdBy" || field["columnName"] == "lastUpdOn">
+	<#continue>
+	</#if>
     <#if field["isForeignKey"] != 0>
         <#assign importLookupView = true>
     <#elseif field["reactDataType"] == "date">
@@ -11,7 +14,7 @@
     </#if>
 </#list>
 import { useParams } from 'react-router-dom';
-import { FieldGroupContainer, <#if importLookupView>LookupView, </#if><#if importDateView>DateView, </#if><#if importTextView>TextView, </#if> } from "palmyra-rui";;
+import { FieldGroupContainer, <#if importLookupView>LookupView, </#if><#if importDateView>DateView, </#if><#if importTextView>TextView </#if> } from "palmyra-rui";;
 import { IPageInput } from "../../../templates/Types";
 import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
 import { ViewForm } from 'palmyra-template';

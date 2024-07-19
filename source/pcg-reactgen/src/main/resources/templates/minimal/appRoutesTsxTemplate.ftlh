@@ -1,13 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
 import HomePage from "../pages/home/HomePage";
-import UserPage from "../pages/userManagement/user/UserPage";
-import UserEditPage from "../pages/userManagement/user/UserEditPage";
-import UserViewPage from "../pages/userManagement/user/UserViewPage";
-import UserNewPage from "../pages/userManagement/user/UserNewPage";
-import GroupPage from "../pages/userManagement/group/GroupPage";
-import EditGroupPage from "../pages/userManagement/group/EditGroupPage";
-import ViewGroupPage from "../pages/userManagement/group/ViewGroupPage";
-import NewGroupPage from "../pages/userManagement/group/NewGroupPage";
 <#list tables as key, value> 
 import ${value.name}Page from "../components/tables/${value.name}/${value.name}Page";
 import ${value.name}NewPage from "../components/tables/${value.name}/${value.name}NewPage";

@@ -65,8 +65,10 @@ const LoginInput = () => {
             'X-Skip-Interceptor': 'true'
           }
         })
-       .then(function () {
-          navigate('/app');
+        .then(function (res) {
+          localStorage.removeItem("palmyra.rui.sidemenu.expanded.selected");
+          const displayPage = res.data.homeMenu;
+          navigate('/app/' + displayPage)
         })
         .catch(function (error) {
           if (error.response && error.response.status === 401) {

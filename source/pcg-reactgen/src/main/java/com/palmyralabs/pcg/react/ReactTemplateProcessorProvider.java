@@ -9,6 +9,7 @@ import com.palmyralabs.pcg.commons.options.Framework;
 import com.palmyralabs.pcg.commons.options.Mode;
 import com.palmyralabs.pcg.react.base.ViteBuildTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.ComponentDialogTemplateProcessor;
+import com.palmyralabs.pcg.react.extended.ExtLoginTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.ExtRoutesTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.ExtServiceEndPointTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.FormDefaultTemplateProcessor;
@@ -23,7 +24,7 @@ import com.palmyralabs.pcg.react.full.FullRoutesTemplateProcessor;
 import com.palmyralabs.pcg.react.full.FullSourceTemplateProcessor;
 import com.palmyralabs.pcg.react.full.FullStoreFactoryTemplateProcessor;
 import com.palmyralabs.pcg.react.full.LoginPageTemplateProcessor;
-import com.palmyralabs.pcg.react.full.LoginTemplateProcessor;
+import com.palmyralabs.pcg.react.full.FullLoginTemplateProcessor;
 import com.palmyralabs.pcg.react.full.TabComponentTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.ComponentTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.ConfigTemplateProcessor;
@@ -61,10 +62,10 @@ public class ReactTemplateProcessorProvider implements TemplateProcessorProvider
 			result.add(new ExtRoutesTemplateProcessor());
 			result.add(new ExtServiceEndPointTemplateProcessor());
 			result.add(new ExtMainlayoutTemplateProcessor());
+			result.add(new ExtLoginTemplateProcessor());
 
 		case Full:
 			result.add(new LoginPageTemplateProcessor());
-			result.add(new LoginTemplateProcessor());
 			result.add(new FullMainlayoutTemplateProcessor());
 			result.add(new TabComponentTemplateProcessor());
 			result.add(new FullStoreFactoryTemplateProcessor());
@@ -72,6 +73,7 @@ public class ReactTemplateProcessorProvider implements TemplateProcessorProvider
 
 			if (options.getMode() == Mode.Full) {
 				result.add(new FullRoutesTemplateProcessor());
+				result.add(new FullLoginTemplateProcessor());
 			}
 
 		case Minimal:
@@ -89,7 +91,7 @@ public class ReactTemplateProcessorProvider implements TemplateProcessorProvider
 			result.add(new MinServiceEndPointTemplateProcessor());
 
 			if (options.getMode() == Mode.Minimal) {
-				
+
 				result.add(new MinStoreFactoryTemplateProcessor());
 				result.add(new MinMainlayoutTemplateProcessor());
 				result.add(new MinRoutesTemplateProcessor());

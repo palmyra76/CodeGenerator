@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react.full;
+package com.palmyralabs.pcg.react.extended;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,7 +10,7 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class LoginTemplateProcessor extends SimpleTemplateProcessor {
+public class ExtLoginTemplateProcessor extends SimpleTemplateProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
@@ -20,7 +20,7 @@ public class LoginTemplateProcessor extends SimpleTemplateProcessor {
 		templates.add(loginFormTSX);
 		
 		TemplateInfo loginInputTSX = new DefaultTemplateInfo("LoginInput.tsx",
-				"templates/full/loginInputTSXTemplate.ftlh");
+				"templates/extended/loginInputTSXTemplate.ftlh");
 		templates.add(loginInputTSX);
 
 		return templates;
