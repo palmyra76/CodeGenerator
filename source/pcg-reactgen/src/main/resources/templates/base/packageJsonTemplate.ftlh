@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "@mui/x-tree-view": "^7.3.1",
-    "chartjs-adapter-date-fns": "^3.0.0",
-    "chartjs-adapter-moment": "^1.0.1",
     "moment": "^2.30.1",
     "palmyra-rui": "github:palmyra76/palmyra-rui",
     "palmyra-template": "github:palmyra76/palmyra-rui-template",

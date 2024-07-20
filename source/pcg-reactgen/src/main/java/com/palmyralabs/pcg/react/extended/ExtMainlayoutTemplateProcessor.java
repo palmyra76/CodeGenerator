@@ -20,7 +20,7 @@ public class ExtMainlayoutTemplateProcessor extends SimpleTemplateProcessor {
 		templates.add(mainLayoutTSX);
 		
 		TemplateInfo sidebarTSX = new DefaultTemplateInfo("Sidebar.tsx",
-				"templates/full/sidebarTSXTemplate.ftlh");
+				"templates/extended/sidebarTSXTemplate.ftlh");
 		templates.add(sidebarTSX);
 
 		TemplateInfo topbarTSX = new DefaultTemplateInfo("Topbar.tsx",

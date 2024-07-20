@@ -10,7 +10,15 @@ values
 (2,null,'Administration','Administration',2,'admin',current_timestamp()),
 (3,2, 'User Management', 'userMgmt', 1, 'admin', current_timestamp()),
 (4,3, 'Users', 'admin/userManagement', 1, 'admin', current_timestamp()),
-(5,3, 'Groups', 'admin/groups', 2, 'admin', current_timestamp());
+(5,3, 'Groups', 'admin/groups', 2, 'admin', current_timestamp()),
+(6,null,'Master Data','masterdata',3,'admin',current_timestamp()),
+<#assign id = 6>
+<#assign order = 0>
+<#list tables?values?sort_by("splitedName") as value> 
+<#assign id = id + 1>
+<#assign order = order + 1>
+(${id},6,'${value.splitedName}','${value.name}',${order},'admin',current_timestamp())<#if value?has_next>,</#if>
+</#list>;
 
 
 INSERT INTO `xpm_user` (display_name,login_name, email, gender, dob, first_name, last_name, user_type, phone_number, address, home_menu, random, salt, created_by, created_on, last_upd_by, last_upd_on) VALUES

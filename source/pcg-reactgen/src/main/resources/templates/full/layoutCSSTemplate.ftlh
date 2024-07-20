@@ -330,7 +330,34 @@
 /* -- View Form -- */
 
 .user-view-form-container {
+    display: flex;
+    justify-content: space-between;
     padding: 10px;
+}
+
+.user-view-form-left-container {
+    width: 50%;
+}
+
+.user-view-form-right-container {
+    width: 50%;
+}
+
+.user-view-form-detail {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.user-view-form-label {
+    width: 100%;
+    color: var(--disable-text-color);
+}
+
+.user-view-form-data {
+    width: 100%;
 }
 
 /* -- Grid -- */

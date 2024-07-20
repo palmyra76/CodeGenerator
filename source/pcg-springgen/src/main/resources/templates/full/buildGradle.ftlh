@@ -28,6 +28,9 @@ dependencies {
     implementation deps.org.lombok 
     implementation deps.springboot.web
     implementation deps.springboot.jpa
+    implementation deps.spring.core
+    implementation deps.jackson.jsr310
+    implementation deps.springboot.security
 
     compileOnly deps.org.lombok
     annotationProcessor deps.org.lombok

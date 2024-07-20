@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.react.minimal;
+package com.palmyralabs.pcg.react.full;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,12 +10,12 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SchemaModelTemplateProcessor;
 
-public class MinServiceEndPointTemplateProcessor extends SchemaModelTemplateProcessor {
+public class FullServiceEndPointTemplateProcessor extends SchemaModelTemplateProcessor {
 	@Override
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 		TemplateInfo endpoint = new DefaultTemplateInfo("ServiceEndpoints.ts",
-				"templates/minimal/serviceEndPointTSTemplate.ftlh");
+				"templates/full/serviceEndPointTSTemplate.ftlh");
 		templates.add(endpoint);
 
 		return templates;

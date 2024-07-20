@@ -21,6 +21,7 @@ import com.palmyralabs.pcg.react.extended.UserGroupTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.UserTemplateProcessor;
 import com.palmyralabs.pcg.react.full.FullMainlayoutTemplateProcessor;
 import com.palmyralabs.pcg.react.full.FullRoutesTemplateProcessor;
+import com.palmyralabs.pcg.react.full.FullServiceEndPointTemplateProcessor;
 import com.palmyralabs.pcg.react.full.FullSourceTemplateProcessor;
 import com.palmyralabs.pcg.react.full.FullStoreFactoryTemplateProcessor;
 import com.palmyralabs.pcg.react.full.LoginPageTemplateProcessor;
@@ -66,7 +67,6 @@ public class ReactTemplateProcessorProvider implements TemplateProcessorProvider
 
 		case Full:
 			result.add(new LoginPageTemplateProcessor());
-			result.add(new FullMainlayoutTemplateProcessor());
 			result.add(new TabComponentTemplateProcessor());
 			result.add(new FullStoreFactoryTemplateProcessor());
 			result.add(new FullSourceTemplateProcessor());
@@ -74,6 +74,8 @@ public class ReactTemplateProcessorProvider implements TemplateProcessorProvider
 			if (options.getMode() == Mode.Full) {
 				result.add(new FullRoutesTemplateProcessor());
 				result.add(new FullLoginTemplateProcessor());
+				result.add(new FullMainlayoutTemplateProcessor());
+				result.add(new FullServiceEndPointTemplateProcessor());
 			}
 
 		case Minimal:
@@ -88,10 +90,11 @@ public class ReactTemplateProcessorProvider implements TemplateProcessorProvider
 			result.add(new StyleThemeBlueColorTemplateProcessor());
 			result.add(new StyleLayoutThemeTemplateProcessor());
 			result.add(new StyleRuiLayoutTemplateProcessor());
-			result.add(new MinServiceEndPointTemplateProcessor());
+			
 
 			if (options.getMode() == Mode.Minimal) {
-
+				
+				result.add(new MinServiceEndPointTemplateProcessor());
 				result.add(new MinStoreFactoryTemplateProcessor());
 				result.add(new MinMainlayoutTemplateProcessor());
 				result.add(new MinRoutesTemplateProcessor());

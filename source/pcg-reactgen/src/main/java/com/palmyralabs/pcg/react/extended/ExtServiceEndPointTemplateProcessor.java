@@ -15,7 +15,7 @@ public class ExtServiceEndPointTemplateProcessor extends SchemaModelTemplateProc
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 		TemplateInfo endpoint = new DefaultTemplateInfo("ServiceEndpoints.ts",
-				"templates/extended/extServiceEndPointTSTemplate.ftlh");
+				"templates/extended/serviceEndPointTSTemplate.ftlh");
 		templates.add(endpoint);
 
 		return templates;

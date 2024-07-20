@@ -7,9 +7,9 @@ import java.util.List;
 import com.palmyralabs.pcg.commons.TemplateInfo;
 import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
-import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
+import com.palmyralabs.pcg.template.processor.SchemaModelTemplateProcessor;
 
-public class ExtMySqlDataTemplateProcessor extends SimpleTemplateProcessor {
+public class ExtMySqlDataTemplateProcessor extends SchemaModelTemplateProcessor {
 
 	@Override
 	public List<TemplateInfo> getTemplates() {
