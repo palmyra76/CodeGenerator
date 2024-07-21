@@ -17,6 +17,9 @@ java {
 repositories {
     mavenLocal()
     mavenCentral()
+    maven {
+        url "https://repo.palmyralabs.com/releases"
+    }
 }
 
 dependencies {
