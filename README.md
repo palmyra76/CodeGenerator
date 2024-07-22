@@ -21,6 +21,39 @@
 |   -c      | --password | Yes / - | Specify the Database password |
 |   -s      | --schemas | Yes / - | Specify the List of schemas name. (separated by , ) |
 
+## Framework 
+
+ The code generator tool creates the backend project using the Spring framework and the frontend project using the React framework.
+
+ ## Build Tool
+
+### _Spring Framework_
+Uses Gradle as the primary build tool and supports Maven in future.
+
+### _React Framework_
+Uses Vite as the current build tool and supports Rollup in future. 
+
+## Mode
+The tool operates in 3 different modes
+
+* Minimal
+* Full
+* Extended
+
+### _Minimal Mode:_
+Creates Grid and Form pages along with their corresponding APIs.
+
+### _Full Mode:_
+Includes everything from Minimal Mode and adds:
+
+* Login Page and related APIs
+* User management Query and Initial Data.
+
+### _Extended Mode:_
+Encompasses everything from Full Mode and further includes:
+
+* ACL (Access Control List) management
+* Creating queries and initial data.
 
 ## Download CodeGenerator
 You can download or clone Code Generator from GitHub:
