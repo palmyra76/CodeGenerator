@@ -1,10 +1,10 @@
 const TitleConfig = {
     appTitle: {
-        text: "${projectName}"
+        text: "${projectName?upper_case}"
        
     },
     subTitle: {
-        text: "${projectName}"
+        text: "${projectName?upper_case}"
     }
 }
 

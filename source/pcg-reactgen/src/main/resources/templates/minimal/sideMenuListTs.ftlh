@@ -6,10 +6,13 @@ interface AppMenu extends MenuDef {
 
 const MasterDataMenu: AppMenu[] = [
  <#list tables?values?sort_by("splitedName") as value> 
+  <#if value.convertedName?starts_with("xpm")>
+  	<#continue>
+  </#if>
   {
    		name: "${value.splitedName}",
         title: "${value.splitedName}",
-        path: "${value.name}"
+        path: "${value.convertedName}"
     }<#if value?has_next>,</#if>
   </#list> 
 ]

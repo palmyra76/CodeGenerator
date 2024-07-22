@@ -23,10 +23,13 @@ public abstract class DataModelPathTemplateProcessor implements TemplateProcesso
 
 		for (TemplateInfo template : getTemplates()) {
 			Path outputPath = getOutputPath(template, userOptions);
-	
+
 			for (Table table : context.getTables().values()) {
-				Path updatedOutputPath=outputPath.resolve(table.getName());
-				TargetFileInfo target = new TargetFileInfo(template.getFileLocation(), table.getName()+template.getName(), updatedOutputPath);
+				if (table.getName().substring(0, 3).equalsIgnoreCase("xpm"))
+					continue;
+				Path updatedOutputPath = outputPath.resolve(table.getName());
+				TargetFileInfo target = new TargetFileInfo(template.getFileLocation(),
+						table.getName() + template.getName(), updatedOutputPath);
 				generator.generateSingleFile(target, table);
 			}
 		}

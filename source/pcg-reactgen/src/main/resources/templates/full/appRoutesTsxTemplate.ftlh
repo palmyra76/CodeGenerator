@@ -25,6 +25,9 @@ const appRoutes = [
     state: "home"
   },
    <#list tables as key, value> 
+   <#if value.convertedName?starts_with("xpm")>
+  		<#continue>
+  	</#if>
   {
     path: "${key}",
     name: "${value.name}",
