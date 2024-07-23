@@ -6,18 +6,21 @@ VALUES
  
  INSERT INTO xpm_menu (id,parent, name, code, display_order, created_by, created_on) 
 values
-(1,null,'Home','home',1,'admin',current_timestamp()),
-(2,null,'Administration','Administration',2,'admin',current_timestamp()),
-(3,2, 'User Management', 'userMgmt', 1, 'admin', current_timestamp()),
-(4,3, 'Users', 'admin/userManagement', 1, 'admin', current_timestamp()),
-(5,3, 'Groups', 'admin/groups', 2, 'admin', current_timestamp()),
-(6,null,'Master Data','masterdata',3,'admin',current_timestamp()),
+(1,null,'Home','home',1,'admin',current_timestamp())
+,(2,null,'Administration','Administration',2,'admin',current_timestamp())
+,(3,2, 'User Management', 'userMgmt', 1, 'admin', current_timestamp())
+,(4,3, 'Users', 'admin/userManagement', 1, 'admin', current_timestamp())
+,(5,3, 'Groups', 'admin/groups', 2, 'admin', current_timestamp())
+,(6,null,'Master Data','masterdata',3,'admin',current_timestamp())
 <#assign id = 6>
-<#assign order = 0>
+<#assign order = 6>
 <#list tables?values?sort_by("splitedName") as value> 
+ <#if value.convertedName?starts_with("xpm")>
+ 	<#continue>
+ </#if>
 <#assign id = id + 1>
 <#assign order = order + 1>
-(${id},6,'${value.splitedName}','${value.name}',${order},'admin',current_timestamp())<#if value?has_next>,</#if>
+,(${id},6,'${value.splitedName}','${value.convertedName}',${order},'admin',current_timestamp())
 </#list>;
 
 

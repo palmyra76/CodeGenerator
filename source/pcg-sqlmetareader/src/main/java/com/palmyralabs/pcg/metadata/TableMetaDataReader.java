@@ -49,8 +49,8 @@ public class TableMetaDataReader implements UniqueColumnProvider {
 			field.setReactDataType(DataTypeConvertor.reactTypeConvert(attribute.getDataType()));
 			field.setSplitedColumnName(NameUtil.splitData(attribute.getAttribute()));
 			field.setMandatory(attribute.isMandatory());
-			field.setIsPrimaryKey(attribute.isPrimaryKey());
-			field.setIsForeignKey(attribute.getForeignKeyCount());
+			field.setPrimaryKey(attribute.isPrimaryKey());
+			field.setForeignKey(attribute.getForeignKeyCount());
 
 			ForeignKey foreignKey = tuple.getForeignKey(attribute.getAttribute());
 

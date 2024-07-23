@@ -22,7 +22,7 @@ public class ${name}Model {
 	<#if field["columnName"]=="createdBy" || field["columnName"]=="createdOn" || field["columnName"]=="lastUpdBy" || field["columnName"]=="lastUpdOn">
 	<#continue>
 	</#if>
-	<#if field["isForeignKey"]!=0>
+	<#if field["foreignKey"]!=0>
 	@PalmyraField(attribute = "${field["columnName"]}")
 	private ${field["convertedTargetTableName"]}Model ${field["columnName"]};
 	

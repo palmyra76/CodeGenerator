@@ -11,14 +11,16 @@ const ${name}Page = () => {
 
     const fields: ColumnDefinition[] = [
 <#list fields as field>
-	<#if field["columnName"] == "id" || field["columnName"] == "createdBy" || field["columnName"] == "createdOn" || field["columnName"] == "lastUpdBy" || field["columnName"] == "lastUpdOn">
+	<#if field["primaryKey"]  || field["columnName"] == "createdBy" || field["columnName"] == "createdOn" || field["columnName"] == "lastUpdBy" || field["columnName"] == "lastUpdOn">
 	<#continue>
 	</#if>
-<#if field["isForeignKey"]!=0>
+<#if field["foreignKey"]!=0>
 	{
 		attribute: "${field["columnName"]}.${field["targetTableColumn"]}",
 		name: "${field.columnName}",
 		title:"${field.splitedColumnName}",
+		searchable: true,
+      	sortable: true,
 		type: "${field.targetColumnReactType}"
 	}<#if field_has_next>,</#if>
 <#else>
@@ -26,6 +28,8 @@ const ${name}Page = () => {
 		attribute: "${field.columnName}",
 		name: "${field.columnName}",
 		title:"${field.splitedColumnName}",
+		searchable: true,
+      	sortable: true,
 		type: "${field.reactDataType}"
 	}<#if field_has_next>,</#if>
 </#if>
@@ -36,7 +40,7 @@ const ${name}Page = () => {
    
     return (
         <div>
-            <SummaryGrid storeFactory={store} 
+            <SummaryGrid storeFactory={store} pagination={[15,30,45]}
                 fields={fields} pageName="${name}" 
                 title="${splitedName}" gridRef={gridRef}
                 options={{ endPoint: endPoint }} />

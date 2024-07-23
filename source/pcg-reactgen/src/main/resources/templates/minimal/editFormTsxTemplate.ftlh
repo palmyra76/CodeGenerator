@@ -6,7 +6,7 @@
 	<#if field["columnName"] == "id" || field["columnName"] == "createdBy" || field["columnName"] == "createdOn" || field["columnName"] == "lastUpdBy" || field["columnName"] == "lastUpdOn">
 	<#continue>
 	</#if>
-    <#if field["isForeignKey"] != 0>
+    <#if field["foreignKey"] != 0>
         <#assign importServerLookup = true>
     <#elseif field["reactDataType"] == "number">
         <#assign importNumberField = true>
@@ -38,7 +38,7 @@ const ${name}EditPage = (props: IPageInput) => {
 				<#if field["columnName"] == "id" || field["columnName"] == "createdBy" || field["columnName"] == "createdOn" || field["columnName"] == "lastUpdBy" || field["columnName"] == "lastUpdOn">
 				<#continue>
 				</#if>
-				<#if field["isForeignKey"]!=0>
+				<#if field["foreignKey"]!=0>
 					<ServerLookup attribute="${field["columnName"]}" title="${field["splitedColumnName"]}"
 						placeHolder="Select ${field["splitedColumnName"]}" 
 						storeOptions={{ endPoint: ServiceEndpoint.${field["targetTable"]}.restApi }} <#if field["mandatory"]>required</#if>

@@ -5,7 +5,7 @@
 	<#if field["columnName"] == "id" || field["columnName"] == "createdBy" || field["columnName"] == "createdOn" || field["columnName"] == "lastUpdBy" || field["columnName"] == "lastUpdOn">
 	<#continue>
 	</#if>
-    <#if field["isForeignKey"] != 0>
+    <#if field["foreignKey"] != 0>
         <#assign importLookupView = true>
     <#elseif field["reactDataType"] == "date">
         <#assign importDateView = true>
@@ -35,7 +35,7 @@ const ${name}ViewPage = (props: IPageInput) => {
 				<#if field["columnName"] == "id" || field["columnName"] == "createdBy" || field["columnName"] == "createdOn" || field["columnName"] == "lastUpdBy" || field["columnName"] == "lastUpdOn">
 				<#continue>
 				</#if>
-				<#if field["isForeignKey"]!=0>
+				<#if field["foreignKey"]!=0>
 					<LookupView attribute="${field["columnName"]}.${field["targetAttribute"]}" title="${field["splitedColumnName"]}"
 						displayAttribute="${field["columnName"]}.${field["targetTableColumn"]}" 
 						variant="standard"

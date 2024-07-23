@@ -11,8 +11,8 @@ public class Field {
 	private String javaDataType;
 	private String reactDataType;
 	private Boolean mandatory;
-	private Boolean isPrimaryKey;
-	private Integer isForeignKey;
+	private Boolean primaryKey;
+	private Integer foreignKey;
 	private String targetSchema;
 	private String targetTable;
 	private String convertedTargetTableName;
