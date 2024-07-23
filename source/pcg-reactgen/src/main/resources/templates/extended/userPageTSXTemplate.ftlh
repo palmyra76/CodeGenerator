@@ -93,6 +93,7 @@ const UserPage = (props: UserPageInput) => {
     <div className="usermanagement-grid-container">
       <SummaryDialogGrid
         storeFactory={store} Child={GroupUserGrid} childProps={{ gridRefresh, groupId }}
+        dialogeTitle='User List'
         customizer={gridCustomizer} defaultParams={{ filter: { active: 1 } }}
         fields={fields} pageName={props.pageName}
         title="GROUP USERS" gridRef={gridRef} minWidth="800px"

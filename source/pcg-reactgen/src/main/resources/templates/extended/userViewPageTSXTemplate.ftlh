@@ -39,7 +39,6 @@ const UserViewPage = (props: IPageInput) => {
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" className="user-tabs">
                     <Tab label="General" className="user-tab" disableRipple />
                     <Tab label="Groups" className="user-tab" disableRipple />
-                    <Tab label="Application" className="user-tab" disableRipple />
                 </Tabs>
                 <Button onClick={() => window.history.back()}
                     className='filled-button tab-btn-height'

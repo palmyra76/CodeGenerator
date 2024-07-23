@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mui/x-tree-view": "^7.3.1",
+    "@mui/x-tree-view": "^6.0.0-beta.0",
     "moment": "^2.30.1",
     "palmyra-rui": "github:palmyra76/palmyra-rui",
     "palmyra-template": "github:palmyra76/palmyra-rui-template",

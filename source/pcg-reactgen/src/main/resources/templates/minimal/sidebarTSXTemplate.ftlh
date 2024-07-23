@@ -1,5 +1,5 @@
 import { Drawer, IconButton, List, Stack, Toolbar, Typography } from "@mui/material";
-import {  StaticTreeMenu } from "palmyra-rui";
+import {  MuiTreeMenu } from "palmyra-rui";
 import '../../style/layout/Sidebar.css';
 import { useState } from "react";
 import { MenuList } from "../../routes/SideMenuList";
@@ -79,7 +79,7 @@ const Sidebar = (props: SidebarInput) => {
         </Toolbar>
       </div>
       <div className='sidebar-middle' style={{ display: isMinimized ? 'block' : 'block' }}>
-        <StaticTreeMenu data={MenuList}/>
+         <MuiTreeMenu data={MenuList}/>
       </div>
       <div className='sidebar-footer' style={{ display: isMinimized ? 'none' : 'block' }}>
         <p className='sidebar-footer-text'>Powered by Palmyra</p>

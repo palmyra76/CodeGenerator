@@ -71,42 +71,10 @@
     line-height: 17px !important;
 }
 
-/* .sidebar-middle {
-    .MuiTreeView-root {
-        height: 85vh;
-    }
-
-    .MuiTreeItem-content .MuiTreeItem-iconContainer {
-        display: none !important;
-        width: 0px !important;
-        margin: 0 !important;
-        padding: 35px 0px 0px 0px !important;
-    }
-
-    .MuiTreeItem-content {
-        padding: 6px !important;
-        padding-left: 15px !important;
-    }
-
-    .MuiTreeItem-content:hover {
-        background-color: var(--sidebar-hover-list-bgcolor) !important;
-        color: var(--sidebar-hover-list-color) !important;
-        border-radius: 5px !important;
-    }
-
-
-    .MuiTreeItem-content.Mui-selected {
-        background-color: var(--sidebar-select-list-bgcolor) !important;
-        color: var(--sidebar-select-list-color) !important;
-        border-radius: 5px !important;
-    }
-
-    .MuiTreeItem-group {
-        margin-left: 35px !important;
-    }
-} */
-
 .sidebar-middle {
+	.MuiTreeView-root{
+        height: calc(100vh - 110px) !important;
+    }
     height: calc(100% - 110px);
     overflow: auto;
 

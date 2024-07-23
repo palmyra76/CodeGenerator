@@ -107,10 +107,10 @@ const UsersGroup = (props: UserPageInput) => {
     return (
         <div className="user-group-grid">
             <SummaryDialogGrid
-                storeFactory={store} Child={UserGroupGrid} dialogeTitle='Group Dialog'
+                storeFactory={store} Child={UserGroupGrid} dialogeTitle='Group List'
                 childProps={{ userId, gridRefresh }} defaultParams={{ filter: { active: 1 } }}
                 fields={fields} pageName={props.pageName} customizer={gridCustomizer}
-                title="USERS GROUPS" gridRef={gridRef} minWidth="800px"
+                title="USER GROUPS" gridRef={gridRef} minWidth="800px"
                 options={{ endPoint: apiEndPoint, endPointVars: { userId: props.userId } }} />
 
             <DeleteConfirmDialog groupData={data} onDelete={onDelete}
