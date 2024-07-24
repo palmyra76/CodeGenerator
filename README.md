@@ -2,6 +2,29 @@
 
  The Code Generator tool is used to create project code for both the front end and back end based on database details. 
 
+## Download CodeGenerator
+You can download or clone Code Generator from GitHub:
+
+    https://github.com/palmyra76/CodeGenerator
+
+## Install Dist
+
+Open terminal in the path **_CodeGenerator/source_** and run the following command:
+
+    > gradle installDist
+
+## Run Command
+
+After installation, open terminal in the path **_CodeGenerator/source/dist/bin/_** 
+
+For windows,
+
+    > codeGen.bat
+
+For Linux,
+
+    > sh codeGen
+
 ## Input Command Options
 
 
@@ -54,29 +77,6 @@ Encompasses everything from Full Mode and further includes:
 
 * ACL (Access Control List) management
 * Creating queries and initial data.
-
-## Download CodeGenerator
-You can download or clone Code Generator from GitHub:
-
-    https://github.com/palmyra76/CodeGenerator
-
-## Install Dist
-
-Open terminal in the path **_CodeGenerator/source_** and run the following command:
-
-    > gradle installDist
-
-## Run Command
-
-After installation, open terminal in the path **_CodeGenerator/source/dist/bin/_** 
-
-For windows,
-
-    > codeGen.bat
-
-For Linux,
-
-    > sh codeGen
 
 ## Example Command
 
