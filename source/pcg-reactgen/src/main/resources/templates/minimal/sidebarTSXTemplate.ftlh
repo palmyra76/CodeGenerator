@@ -1,18 +1,14 @@
-import { Drawer, IconButton, List, Stack, Toolbar, Typography } from "@mui/material";
-import {  MuiTreeMenu } from "palmyra-rui";
-import '../../style/layout/Sidebar.css';
+import { Drawer, List, Stack, Toolbar, Typography } from "@mui/material";
 import { useState } from "react";
-import { MenuList } from "../../routes/SideMenuList";
-import MenuIcon from '@mui/icons-material/Menu';
-import { useNavigate } from "react-router-dom";
-
+import '../../style/layout/Sidebar.css'
+import SideMenu from "../../treemenu/SideMenu";
 
 interface SidebarInput {
   appTitle: string,
   width: string,
   mobileOpen?: boolean,
   setMobileOpen?: any,
-  responsive?: boolean
+  responsive?: boolean,
 }
 
 const Sidebar = (props: SidebarInput) => {
@@ -22,26 +18,11 @@ const Sidebar = (props: SidebarInput) => {
   const setMobileOpen = props.setMobileOpen;
   const responsive = props.responsive;
 
-  const [isMinimized, setIsMinimized] = useState(false);
-  const [isRotated, setIsRotated] = useState(false);
-  const navigate = useNavigate();
-
-  const barMenu = () => {
-    setIsRotated(!isRotated);
-    setIsMinimized(!isMinimized);
-  }
+  const [isMinimized, _setIsMinimized] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   }
-
-  const navigateHome = () => {
-    navigate('../app/home')
-  }
-  const iconStyles = {
-    transform: isRotated ? 'rotate(180deg)' : 'rotate(0deg)',
-    transition: 'transform 0.3s ease',
-  };
 
   let drawerList = <List disablePadding>
     <div className="sidebar">
@@ -53,24 +34,14 @@ const Sidebar = (props: SidebarInput) => {
             position={'relative'}
             justifyContent="center"
           >
-            <Typography variant="h6" className={`sidebar-title ${r"\${!isMinimized ? 'minimized' : ''}"}`}>
-              <div>
-                {!responsive && (
-                  <IconButton
-                    color="default"
-                    aria-label="open drawer"
-                    edge="start"
-                    onClick={barMenu}
-                    sx={{ mr: 0 }}
-                  >
-                    <MenuIcon style={iconStyles} className='sidebar-title-menu-icon' />
-                  </IconButton>
-                )}
+             <Typography variant="h6" className={`sidebar-title ${r"\${!isMinimized ? 'minimized' : ''}"}`}>
+              <div className="sidebar-logo">
+                
               </div>
               <div>
                 {!isMinimized && (
-                  <div onClick={navigateHome} className="sidebar-logo-container">
-                    <span className="sidebar-logo-text">{props.appTitle}</span>
+                  <div className="sidebar-title-text">
+                    {props.appTitle}
                   </div>
                 )}
               </div>
@@ -79,7 +50,7 @@ const Sidebar = (props: SidebarInput) => {
         </Toolbar>
       </div>
       <div className='sidebar-middle' style={{ display: isMinimized ? 'block' : 'block' }}>
-         <MuiTreeMenu data={MenuList}/>
+                <SideMenu/>
       </div>
       <div className='sidebar-footer' style={{ display: isMinimized ? 'none' : 'block' }}>
         <p className='sidebar-footer-text'>Powered by Palmyra</p>
@@ -153,7 +124,6 @@ const Sidebar = (props: SidebarInput) => {
       </Drawer>
     );
 };
-
 
 export { Sidebar };
 

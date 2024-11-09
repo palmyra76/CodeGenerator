@@ -1,27 +1,16 @@
-import { PalmyraForm, PalmyraStoreFactory, usePalmyraViewForm } from "palmyra-rui";
-import { useState } from "react";
-import { Button} from "@mui/material";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LockReset, ArrowBack,BorderColor} from '@mui/icons-material/';
+import { Button } from "@mui/material";
+import { LockReset, ArrowBack, BorderColor } from '@mui/icons-material';
 import { IFormViewInput } from "../../Types";
 import ResetPasswordDialog from "../../../components/dialog/ResetPasswordDialog";
-
+import { ISaveForm, PalmyraViewForm } from "@palmyralabs/rt-forms";
 
 function ViewForm(props: IFormViewInput) {
-
-    const [_isValid, setValid] = useState<boolean>(false);
-    const storeFactory = new PalmyraStoreFactory({ baseUrl: "/api/palmyra" });
-
     const pageName = props.pageName;
     const navigate = useNavigate();
+    const formRef = useRef<ISaveForm>();
     const [showPopup, setShowPopup] = useState<boolean>(false);
-
-
-    const { data } = usePalmyraViewForm({
-        storeFactory,
-        endPoint: props.options.endPoint,
-        id: props.id
-    })
 
     const goToEditForm = () => {
         return navigate('../' + pageName + '/edit/' + props.id);
@@ -51,7 +40,7 @@ function ViewForm(props: IFormViewInput) {
                         disableRipple onClick={resetPassword}>
                         <LockReset className='button-icon' />
                         Reset Password
-                        <ResetPasswordDialog isOpen={showPopup} onClose={handleClose} data={data} />
+                        <ResetPasswordDialog isOpen={showPopup} onClose={handleClose} data={formRef.current.saveData()} />
                     </Button>
                     <Button
                         className='filled-button'
@@ -61,10 +50,11 @@ function ViewForm(props: IFormViewInput) {
                     </Button>
                 </div>
             </div>
-            <PalmyraForm formData={data} mode="view" onValidChange={setValid}>
+            <PalmyraViewForm endPoint={props.options.endPoint} id={props.id} formRef={formRef}>
                 {props.children}
-            </PalmyraForm>
+            </PalmyraViewForm>
         </div>
     );
 }
+
 export default ViewForm;

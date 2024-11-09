@@ -1,28 +1,46 @@
-interface DataItem {
-    endPoint: string;
-    attributes: Record<string, string>;
-    typeName: string;
-}
+import { StringFormat } from "@palmyralabs/ts-utils";
+import { ServiceEndpoint } from "../../config/ServiceEndpoints";
 
 interface DialogData {
     endPoint: string;
-    typeName: string;
+    dialogData: string;
     content: JSX.Element | null;
 }
+export function getDialogAndEndpoint(userData?: any, groupData?: any): DialogData {
+    let content: JSX.Element | null = null;
+    let endPoint = '/defaultEndpoint';
+    let dialogData = 'default data';
 
-export function getDialogAndEndpoint(dataItem?: DataItem): DialogData {
-    const content = dataItem ? (
-        <div className="dialog-data-content">
-            {Object.entries(dataItem.attributes).map(([label, value], index) => (
-                <div className="dialog-data-content-field" key={index}>
-                    <span className="dialog-data-content-field-label">{label}:</span>
-                    <div className="dialog-data-content-field-data">{value}</div>
+    const groupByUserEndPoint = ServiceEndpoint.aclmgmt.GroupsByUser.deleteApi;
+    const userByGroupEndPoint = ServiceEndpoint.aclmgmt.UsersByGroup.deleteApi;
+
+    if (userData?.userId) {
+        content = (
+            <div className="dialog-data-content">
+                <div className="dialog-data-content-field">
+                    <span className="dialog-data-content-field-label"> User Name:</span>
+                    <div className="dialog-data-content-field-data">{userData.loginName}</div>
                 </div>
-            ))}
-        </div>
-    ) : null;
+            </div>
+        );
+        endPoint = StringFormat(groupByUserEndPoint, { groupId: userData.groupId, userId: userData.userId });
+        dialogData = 'user';
+    } else if (groupData?.groupId) {
+        content = (
+            <div className="dialog-data-content">
+                <div className="dialog-data-content-field">
+                    <span className="dialog-data-content-field-label">Group Name: </span>
+                    <div className="dialog-data-content-field-data">{groupData.groupName}</div>
+                </div>
+            </div>
+        );
+        endPoint = StringFormat(userByGroupEndPoint, { userId: groupData.userId, groupId: groupData.groupId });
+        dialogData = 'group';
+    }else{
+        content=(
+            <>none</>
+        )
+    }
 
-    let endPoint = dataItem ? dataItem.endPoint : '/defaultEndpoint';
-
-    return { endPoint, typeName: dataItem?.typeName ?? 'default', content };
+    return { endPoint: endPoint, dialogData: dialogData, content: content };
 }

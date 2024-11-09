@@ -18,20 +18,24 @@ public class ComponentDialogTemplateProcessor extends SimpleTemplateProcessor {
 		TemplateInfo deleteconfirmDialog = new DefaultTemplateInfo("DeleteConfirmDialog.tsx",
 				"templates/extended/deleteConfirmDialogTsx.ftlh");
 		templates.add(deleteconfirmDialog);
-		
-		TemplateInfo deleteDialogContent= new DefaultTemplateInfo("DeleteDialogContent.tsx",
+
+		TemplateInfo deleteDialogContent = new DefaultTemplateInfo("DeleteDialogContent.tsx",
 				"templates/extended/deleteDialogContentTsx.ftlh");
 		templates.add(deleteDialogContent);
 
-		TemplateInfo resetPasswordDialog= new DefaultTemplateInfo("ResetPasswordDialog.tsx",
+		TemplateInfo resetPasswordDialog = new DefaultTemplateInfo("ResetPasswordDialog.tsx",
 				"templates/extended/resetPasswordDialogTsx.ftlh");
 		templates.add(resetPasswordDialog);
+
+		TemplateInfo dropdownPortal = new DefaultTemplateInfo("DropdownPortal.tsx",
+				"templates/extended/dropDownPortalTsx.ftlh");
+		templates.add(dropdownPortal);
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","components","dialog");
+		Path path = Paths.get("web", "src", "components", "dialog");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 

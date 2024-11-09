@@ -1,8 +1,8 @@
-import { ColumnDefinition, GridCustomizer, IPageQueryable, gridColumnCustomizer } from "palmyra-rui";
 import { useRef } from "react";
 import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
-import { SummaryGrid } from "palmyra-template";
-import AppStoreFactory from "../../../components/wire/StoreFactory";
+import { ColumnDefinition, GridCustomizer, IPageQueryable, useGridColumnCustomizer } from "@palmyralabs/rt-forms";
+import { SummaryGrid } from "@palmyralabs/template-stine";
+import { SummaryGridControls } from "../../../components/gridControl/SummaryGridControls";
 
 const statusRenderer = (data: any) => {
   let type: String;
@@ -23,13 +23,12 @@ const statusRenderer = (data: any) => {
 const GroupPage = () => {
   const gridRef = useRef<IPageQueryable>(null);
   const apiEndPoint = ServiceEndpoint.aclmgmt.group;
-  const store = AppStoreFactory;
 
   const fields: ColumnDefinition[] = [
     {
       attribute: "name",
       name: "group",
-      title: "Group",
+      label: "Group",
       searchable: true,
       quickSearch: true,
       type: "string"
@@ -37,7 +36,7 @@ const GroupPage = () => {
     {
       attribute: "description",
       name: "description",
-      title: "Description",
+      label: "Description",
       searchable: true,
       quickSearch: true,
       type: "string"
@@ -45,18 +44,19 @@ const GroupPage = () => {
     {
       attribute: "active",
       name: "active",
-      title: "Status",
+      label: "Status",
       type: 'string',
       cellRenderer: statusRenderer
     }
   ];
 
-  const gridCustomizer: GridCustomizer = gridColumnCustomizer({});
-  const pageName = 'group'
+  const gridCustomizer: GridCustomizer = useGridColumnCustomizer({});
+  const pageName = 'group';
+
   return (
-    <div className="user-group-grid">
-      <SummaryGrid
-        storeFactory={store} fields={fields} pageName={pageName}
+    <div className="grid-container">
+      <SummaryGrid DataGridControls={SummaryGridControls}
+        columns={fields} pageName={pageName}
         title="GROUPS" gridRef={gridRef} customizer={gridCustomizer}
         options={{ endPoint: apiEndPoint }} />
     </div>

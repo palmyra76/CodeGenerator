@@ -60,7 +60,6 @@
 
 .login-textfield {
   width: 100% !important;
-  /* display: inline-block !important; */
   background-color: var(--login-textfield-bgcolor) !important;
   color: var(--login-textfield-color) !important;
   border-radius: 10px !important;
@@ -116,22 +115,6 @@
 input:focus {
   outline: none;
 }
-
-/* .css-1ff8729-MuiInputBase-root-MuiFilledInput-root::before,
-.css-1ff8729-MuiInputBase-root-MuiFilledInput-root::after {
-  border: none !important;
-}
-
-.css-1ff8729-MuiInputBase-root-MuiFilledInput-root {
-  background-color: unset !important;
-  border: none !important;
-  width: 100% !important;
-  font-size: large;
-}
-
-.css-1ff8729-MuiInputBase-root-MuiFilledInput-root:hover {
-  background-color: unset !important;
-} */
 
 .custom-alert-container {
   display: flex;

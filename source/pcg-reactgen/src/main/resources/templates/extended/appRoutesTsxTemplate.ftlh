@@ -66,7 +66,7 @@ const appRoutes = [
     children: [
       {
         path: 'userManagement',
-        element: <UserPage pageName="userManagement" />,
+        element: <UserPage/>,
       },
       {
         path: 'userManagement/edit/:id',

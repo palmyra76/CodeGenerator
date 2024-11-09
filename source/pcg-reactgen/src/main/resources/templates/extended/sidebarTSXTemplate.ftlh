@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Drawer, IconButton, List, Stack, Toolbar, Typography } from "@mui/material";
-import { TreeQueryStore } from "palmyra-rui";
+import { TreeQueryStore } from "@palmyralabs/palmyra-wire";
+import AppStoreFactory from "../../wire/StoreFactory";
 import { TreeMenu } from "../../components/form";
 import { ServiceEndpoint } from "../../config/ServiceEndpoints";
-import AppStoreFactory from "../../components/wire/StoreFactory";
 import '../../style/layout/Sidebar.css';
 
 interface SidebarInput {

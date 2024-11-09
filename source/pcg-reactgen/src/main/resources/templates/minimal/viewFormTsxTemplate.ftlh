@@ -14,20 +14,18 @@
     </#if>
 </#list>
 import { useParams } from 'react-router-dom';
-import { FieldGroupContainer, <#if importLookupView>LookupView, </#if><#if importDateView>DateView, </#if><#if importTextView>TextView </#if> } from "palmyra-rui";;
+import { FieldGroupContainer, <#if importLookupView>LookupView, </#if><#if importDateView>DateView, </#if><#if importTextView>TextView </#if> } from "../../form";
 import { IPageInput } from "../../../templates/Types";
 import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
-import { ViewForm } from 'palmyra-template';
-import AppStoreFactory from '../../wire/StoreFactory';
+import { ViewForm } from '@palmyralabs/template-stine';
 
 const ${name}ViewPage = (props: IPageInput) => {
 
 	const params: any = useParams();
 	const ${convertedName}EndPoint = ServiceEndpoint.${convertedName}.restApi;
-	const store = AppStoreFactory;
 
 	return <div className="user-form-container">
-		<ViewForm storeFactory={store} id={params.id} title="View ${splitedName}" pageName={props.pageName}
+		<ViewForm id={params.id} title="View ${splitedName}" pageName={props.pageName}
 			options={{ endPoint: ${convertedName}EndPoint }}>
 			<div className="palmyra-form-field-container-wrapper">
 				<FieldGroupContainer columns={2}>
@@ -36,8 +34,7 @@ const ${name}ViewPage = (props: IPageInput) => {
 				<#continue>
 				</#if>
 				<#if field["foreignKey"]!=0>
-					<LookupView attribute="${field["columnName"]}.${field["targetAttribute"]}" title="${field["splitedColumnName"]}"
-						displayAttribute="${field["columnName"]}.${field["targetTableColumn"]}" 
+					<TextView attribute="${field["columnName"]}.${field["targetAttribute"]}" title="${field["splitedColumnName"]}"
 						variant="standard"
 					/>
 				<#elseif field["reactDataType"] == "date" >

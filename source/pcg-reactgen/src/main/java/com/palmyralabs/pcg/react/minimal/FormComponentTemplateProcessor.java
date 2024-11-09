@@ -15,23 +15,24 @@ public class FormComponentTemplateProcessor extends SimpleTemplateProcessor {
 	public List<TemplateInfo> getTemplates() {
 		List<TemplateInfo> templates = new ArrayList<>();
 
-		TemplateInfo formts = new DefaultTemplateInfo("form.ts",
-				"templates/minimal/formTSTemplate.ftlh");
+		TemplateInfo formts = new DefaultTemplateInfo("form.ts", "templates/minimal/formTSTemplate.ftlh");
 		templates.add(formts);
-		
+
+		TemplateInfo pyform = new DefaultTemplateInfo("pyform.ts", "templates/minimal/pyformTs.ftlh");
+		templates.add(pyform);
 
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","components");
+		Path path = Paths.get("web", "src", "components");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 
 	@Override
 	public String getName() {
-		return "Login";
+		return "Form";
 	}
 
 }

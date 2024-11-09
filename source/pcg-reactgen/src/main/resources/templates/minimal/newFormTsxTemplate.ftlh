@@ -20,17 +20,15 @@ import { useParams } from 'react-router-dom';
 import { FieldGroupContainer, <#if importServerLookup>ServerLookup, </#if><#if importNumberField>NumberField, </#if><#if importDatePicker>DatePicker, </#if><#if importTextField>TextField </#if> } from "../../../components/form";
 import { IPageInput } from "../../../templates/Types";
 import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
-import { NewForm } from 'palmyra-template';
-import AppStoreFactory from '../../wire/StoreFactory';
+import { NewForm } from '@palmyralabs/template-stine';
 
 const ${name}NewPage = (props: IPageInput) => {
 
 	const params: any = useParams();
 	const ${convertedName}EndPoint = ServiceEndpoint.${convertedName}.restApi;
-	const store = AppStoreFactory;
 
 	return <div className="user-form-container">
-		<NewForm storeFactory={store} id={params.id} title="New ${splitedName}" pageName={props.pageName}
+		<NewForm id={params.id} title="New ${splitedName}" pageName={props.pageName}
 			options={{ endPoint: ${convertedName}EndPoint }}>
 			<div className="palmyra-form-field-container-wrapper">
 				<FieldGroupContainer columns={2}>
@@ -40,9 +38,9 @@ const ${name}NewPage = (props: IPageInput) => {
 				</#if>
 				<#if field["foreignKey"]!=0>
 					<ServerLookup attribute="${field["columnName"]}" title="${field["splitedColumnName"]}"
-						placeHolder="Select ${field["splitedColumnName"]}"
-						storeOptions={{ endPoint: ServiceEndpoint.${field["targetTable"]}.restApi }} <#if field["mandatory"]>required</#if>
-						lookupOptions={{ idAttribute: '${field["targetAttribute"]}', displayAttribute: '${field["targetTableColumn"]}' }}
+						placeholder="Select ${field["splitedColumnName"]}"
+						queryOptions={{ endPoint: ServiceEndpoint.${field["targetTable"]}.restApi }} <#if field["mandatory"]>required</#if>
+						lookupOptions={{ idAttribute: '${field["targetAttribute"]}', labelAttribute: '${field["targetTableColumn"]}' }}
 					/>
 				<#elseif field["reactDataType"] == "number" >
 					<NumberField attribute="${field["columnName"]}"  
@@ -55,7 +53,7 @@ const ${name}NewPage = (props: IPageInput) => {
 				<#else>
 					<TextField attribute="${field["columnName"]}" 
 						title="${field["splitedColumnName"]}" variant="standard"
-						validationRule={"string"} <#if field["mandatory"]>required</#if>
+						validRule={"string"} <#if field["mandatory"]>required</#if>
 					/>
 				</#if>
 				</#list>     

@@ -1,4 +1,4 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import HomePage from "../pages/home/HomePage";
 <#list tables as key, value> 
  <#if value.convertedName?starts_with("xpm")>

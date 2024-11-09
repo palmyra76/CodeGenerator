@@ -1,4 +1,6 @@
-import { ColumnDefinition, IEndPoint, IExportOptions, IFormCustomizer } from "palmyra-rui"
+import { IEndPoint } from "@palmyralabs/palmyra-wire"
+import { ColumnDefinition, IExportOptions } from "@palmyralabs/rt-forms"
+
 
 interface IPageInput {
     title?: string,
@@ -19,7 +21,7 @@ interface IFormEditInput extends IPageInput {
     options: IOptions,
     id: string,
     children?: any,
-    customizer?: IFormCustomizer,
+    // customizer?: IFormCustomizer,
     onDataRefresh?: (data: any) => void
 }
 
@@ -28,7 +30,7 @@ interface IFormNewInput extends IPageInput {
     options: IOptions,
     children?: any,
     id?: string,
-    customizer?: IFormCustomizer,
+    // customizer?: IFormCustomizer,
     formListener?: any
 }
 

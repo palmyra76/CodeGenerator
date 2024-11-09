@@ -18,13 +18,16 @@ public class MinStoreFactoryTemplateProcessor extends SimpleTemplateProcessor {
 		TemplateInfo storeFactoryTS = new DefaultTemplateInfo("StoreFactory.ts",
 				"templates/minimal/storeFactoryTS.ftlh");
 		templates.add(storeFactoryTS);
-		
+
+		TemplateInfo errorToast = new DefaultTemplateInfo("errorToast.tsx", "templates/minimal/errorToastTsx.ftlh");
+		templates.add(errorToast);
+
 		return templates;
 	}
 
 	@Override
 	protected Path getOutputPath(TemplateInfo template, UserOptions options) {
-		Path path = Paths.get("web","src","components","wire");
+		Path path = Paths.get("web", "src", "wire");
 		return options.getBaseOutputFolder().resolve(path);
 	}
 

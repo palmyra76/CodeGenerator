@@ -1,18 +1,15 @@
-import { ColumnDefinition } from "palmyra-rui";
-import { SummaryGrid } from "palmyra-template";
+import { ColumnDefinition } from "@palmyralabs/rt-forms";
 import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
-import AppStoreFactory from "../../../components/wire/StoreFactory";
-import { IPageInput } from "../../../templates/Types";
+import { SummaryGrid } from "@palmyralabs/template-stine";
+import { SummaryGridControls } from "../../../components/gridControl/SummaryGridControls";
 
-const UserPage = (props: IPageInput) => {
-	
-  const store = AppStoreFactory;
-	
+const UserPage = () => {
+
   const fields: ColumnDefinition[] = [
     {
       attribute: "displayName",
       name: "Display Name",
-      title: "User Name",
+      label: "User Name",
       searchable: true,
       sortable: true,
       quickSearch: true,
@@ -21,7 +18,7 @@ const UserPage = (props: IPageInput) => {
     {
       attribute: "firstName",
       name: "First Name",
-      title: "First Name",
+      label: "First Name",
       searchable: true,
       sortable: true,
       quickSearch: true,
@@ -30,7 +27,7 @@ const UserPage = (props: IPageInput) => {
     {
       attribute: "lastName",
       name: "Last Name",
-      title: "Last Name",
+      label: "Last Name",
       searchable: true,
       sortable: true,
       quickSearch: true,
@@ -39,7 +36,7 @@ const UserPage = (props: IPageInput) => {
     {
       attribute: "gender",
       name: "gender",
-      title: "Gender",
+      label: "Gender",
       options: { M: 'Male', F: 'Female' },
       sortable: true,
       type: "select"
@@ -47,25 +44,26 @@ const UserPage = (props: IPageInput) => {
     {
       attribute: "dob",
       name: "dob",
-      title: "DOB",
-      type: "date"
+      label: "DOB",
+      type: "date",
+      displayPattern: 'DD-MM-YYYY'
     },
     {
       attribute: "userType.userType",
       name: "userType",
-      title: "Role",
+      label: "Role",
       type: "string"
     },
     {
       attribute: "email",
       name: "email",
-      title: "Email",
+      label: "Email",
       type: "string"
     },
     {
       attribute: "phoneNumber",
       name: "phoneNumber",
-      title: "Phone Number",
+      label: "Phone Number",
       searchable: true,
       sortable: true,
       quickSearch: true,
@@ -74,7 +72,7 @@ const UserPage = (props: IPageInput) => {
     {
       attribute: "address",
       name: "address",
-      title: "Address",
+      label: "Address",
       searchable: true,
       sortable: true,
       quickSearch: true,
@@ -82,11 +80,13 @@ const UserPage = (props: IPageInput) => {
     }
   ];
 
+  const pageName = "userManagement";
+
   return (
-    <div>
-      <SummaryGrid
-        storeFactory={store} fields={fields} pageName={props.pageName}
-        title="USER MANAGEMENT"
+    <div className="grid-container">
+      <SummaryGrid exportOptions={{ csv: 'Export CSV', pdf: 'Export PDF' }}
+        columns={fields} pageName={pageName}
+        title="USER MANAGEMENT" DataGridControls={SummaryGridControls}
         options={{ endPoint: ServiceEndpoint.userManagement.users.restApi }} />
     </div>
   )

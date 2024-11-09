@@ -1,12 +1,13 @@
-import { PalmyraForm, PalmyraStoreFactory, StringFormat } from "palmyra-rui";
-import { IFormEditInput } from "../../Types";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { IFormEditInput } from "../../Types";
 import { Button } from "@mui/material";
 import { Done, Close } from '@mui/icons-material';
-import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
-import axios from 'axios';
 import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
+import axios from 'axios';
+import { StringFormat } from "@palmyralabs/ts-utils";
+import { PalmyraEditForm } from "@palmyralabs/rt-forms";
 
 interface input extends IFormEditInput {
     treeRef?: any
@@ -18,10 +19,9 @@ function MenuForm(props: input) {
     const formRef = useRef<any>()
     const navigate = useNavigate();
 
-    const storeFactory = new PalmyraStoreFactory({ baseUrl: "/api/palmyra" });
     const treeRef = props.treeRef;
     const pageName = props.pageName;
-    const endPoint = 'api/palmyra/admin/acl/group/' + props.id;
+    const endPoint = '/admin/acl/group';
     const rootMenuApi = 'api/palmyra' + StringFormat(ServiceEndpoint.aclmgmt.menuApi.aclPutMenuEditorApi, { groupId: props.id });
     // const formDataApi = 'api/palmyra' + StringFormat(ServiceEndpoint.aclmgmt.groupById, { id: props.id });
 
@@ -65,14 +65,6 @@ function MenuForm(props: input) {
             }
         }
     };
-
-    useEffect(() => {
-        if (formRef?.current?.isValid) {
-            if (formRef.current.isValid()) {
-                setValid(true);
-            }
-        }
-    }, [formRef.current])
     return (
         <div className='form-container'>
             <form onKeyDown={handleKeyPress}>
@@ -93,13 +85,13 @@ function MenuForm(props: input) {
                         </Button>
                     </div>
                 </div>
-                <PalmyraForm customizer={props.customizer} formData={data} mode="edit"
-                    onValidChange={setValid} ref={formRef} storeFactory={storeFactory}>
+                <PalmyraEditForm endPoint={endPoint} id={props.id}
+                    onValidChange={setValid} ref={formRef} >
                     {props.children}
-                </PalmyraForm>
+                </PalmyraEditForm>
             </form>
         </div >
     );
 }
-export default MenuForm;
 
+export default MenuForm;

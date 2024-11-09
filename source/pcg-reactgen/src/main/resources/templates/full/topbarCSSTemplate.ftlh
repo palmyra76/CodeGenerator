@@ -3,17 +3,6 @@
   color: var(--topbar-color) !important;
 }
 
-/* .topbar-avathar {
-  display: flex;
-  margin-left: auto;
-  padding: 1px 20px 0px 20px;
-  gap: 10px;
-  width: auto;
-  align-items: center;
-  vertical-align: middle;
-  cursor: pointer;
-} */
-
 .avatar {
   font-size: 30px !important;
 }

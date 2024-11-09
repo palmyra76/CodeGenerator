@@ -2,22 +2,14 @@ import { Dialog, DialogContent, ClickAwayListener } from "@mui/material";
 import { Close, WarningAmber } from '@mui/icons-material';
 import { Button } from "@mui/material";
 import { getDialogAndEndpoint } from "./DeleteDialogContent";
-import AppStoreFactory from "../wire/StoreFactory";
 import { toast } from "react-toastify";
-import { ServiceEndpoint } from "../../config/ServiceEndpoints";
-import { StringFormat } from "palmyra-rui";
-
-interface DataItem {
-    endPoint: string;
-    attributes: Record<string, string>;
-    typeName: string;
-}
+import AppStoreFactory from "../../wire/StoreFactory";
 
 interface DialogInput {
     isOpen?: any;
     onClose?: any;
+    data?: any;
     userData?: any;
-    applicationData?: any
     groupData?: any;
     onDelete: Function;
     id?: any;
@@ -32,23 +24,20 @@ function DeleteConfirmDialog(props: DialogInput) {
     const id = props.id;
     const storeFactory = AppStoreFactory;
 
-    const groupByUserEndPoint = ServiceEndpoint.aclmgmt.GroupsByUser.deleteApi;
-    const userByGroupEndPoint = ServiceEndpoint.aclmgmt.UsersByGroup.deleteApi;
+    const handleKeyClose = (event: any) => {
+        if (event.keyCode === 27) {
+            closeDialog();
+        }
+    }
 
-    const dataItem: DataItem | undefined = userData ? {
-        endPoint: StringFormat(groupByUserEndPoint, { groupId: userData.groupId, userId: userData.userId }),
-        attributes: { "User Name": userData.loginName },
-        typeName: 'User'
-    } : groupData ? {
-        endPoint: StringFormat(userByGroupEndPoint, { userId: groupData.userId, groupId: groupData.groupId }),
-        attributes: { "Group Name": groupData.groupName },
-        typeName: 'Group'
-    } : undefined;
-
-    const { endPoint, typeName, content } = getDialogAndEndpoint(dataItem);
+    const { endPoint, dialogData, content } = getDialogAndEndpoint(userData, groupData);
 
     const successfullDeleteToast = () => {
-       toast.success(`${r"${typeName}"} Deleted Successfully`);
+        if (userData) {
+            toast.success('User Deleted Successfully');
+        } else if (groupData) {
+            toast.success('Group Deleted Successfully');
+        }
     }
 
     const handleDelete = () => {
@@ -57,15 +46,10 @@ function DeleteConfirmDialog(props: DialogInput) {
             .then((_d: any) => {
                 onDelete();
                 successfullDeleteToast();
-                closeDialog();
+                closeDialog()
             })
     }
 
-    const handleKeyClose = (event: any) => {
-        if (event.keyCode === 27) {
-            closeDialog();
-        }
-    }
     return (
         <div >
             <Dialog open={openDialog} onClose={closeDialog} onKeyDown={handleKeyClose}
@@ -87,7 +71,7 @@ function DeleteConfirmDialog(props: DialogInput) {
                         <DialogContent>
                             <div className="dialog-confirm-text">
                                 <WarningAmber className="dialog-warn-icon" />
-                                Are you sure you want to delete this {typeName} ?
+                                Are you sure you want to delete this {dialogData} ?
                             </div>
                             <div>
                                 {content}
@@ -111,4 +95,5 @@ function DeleteConfirmDialog(props: DialogInput) {
         </div>
     );
 }
+
 export default DeleteConfirmDialog;

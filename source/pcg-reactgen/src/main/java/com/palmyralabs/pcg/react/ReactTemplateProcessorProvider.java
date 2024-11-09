@@ -10,38 +10,42 @@ import com.palmyralabs.pcg.commons.options.Mode;
 import com.palmyralabs.pcg.react.base.ViteBuildTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.ComponentDialogTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.ExtLoginTemplateProcessor;
+import com.palmyralabs.pcg.react.extended.ExtMainlayoutTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.ExtRoutesTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.ExtServiceEndPointTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.FormDefaultTemplateProcessor;
+import com.palmyralabs.pcg.react.extended.GridControlTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.GroupTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.GroupUserTemplateProcessor;
-import com.palmyralabs.pcg.react.extended.ExtMainlayoutTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.UserFormTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.UserGroupTemplateProcessor;
 import com.palmyralabs.pcg.react.extended.UserTemplateProcessor;
+import com.palmyralabs.pcg.react.full.FullLoginTemplateProcessor;
 import com.palmyralabs.pcg.react.full.FullMainlayoutTemplateProcessor;
 import com.palmyralabs.pcg.react.full.FullRoutesTemplateProcessor;
 import com.palmyralabs.pcg.react.full.FullServiceEndPointTemplateProcessor;
 import com.palmyralabs.pcg.react.full.FullSourceTemplateProcessor;
 import com.palmyralabs.pcg.react.full.FullStoreFactoryTemplateProcessor;
 import com.palmyralabs.pcg.react.full.LoginPageTemplateProcessor;
-import com.palmyralabs.pcg.react.full.FullLoginTemplateProcessor;
 import com.palmyralabs.pcg.react.full.TabComponentTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.ComponentTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.ConfigTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.FormComponentTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.HomePageTemplateProcessor;
+import com.palmyralabs.pcg.react.minimal.MenuDataJSonTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.MinMainlayoutTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.MinRoutesTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.MinServiceEndPointTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.MinSourceTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.MinStoreFactoryTemplateProcessor;
+import com.palmyralabs.pcg.react.minimal.SideMenuTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.StyleLayoutTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.StyleLayoutThemeTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.StyleRuiLayoutTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.StyleThemeBlueColorTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.TypeTSTemplateProcessor;
 import com.palmyralabs.pcg.react.minimal.TypesTemplateProcessor;
+import com.palmyralabs.pcg.react.minimal.UtilsTemplateProcessor;
 import com.palmyralabs.pcg.template.TemplateProcessor;
 import com.palmyralabs.pcg.template.TemplateProcessorProvider;
 
@@ -64,6 +68,7 @@ public class ReactTemplateProcessorProvider implements TemplateProcessorProvider
 			result.add(new ExtServiceEndPointTemplateProcessor());
 			result.add(new ExtMainlayoutTemplateProcessor());
 			result.add(new ExtLoginTemplateProcessor());
+			result.add(new GridControlTemplateProcessor());
 
 		case Full:
 			result.add(new LoginPageTemplateProcessor());
@@ -90,15 +95,20 @@ public class ReactTemplateProcessorProvider implements TemplateProcessorProvider
 			result.add(new StyleThemeBlueColorTemplateProcessor());
 			result.add(new StyleLayoutThemeTemplateProcessor());
 			result.add(new StyleRuiLayoutTemplateProcessor());
-			
+			result.add(new UtilsTemplateProcessor());
 
 			if (options.getMode() == Mode.Minimal) {
-				
+
 				result.add(new MinServiceEndPointTemplateProcessor());
 				result.add(new MinStoreFactoryTemplateProcessor());
 				result.add(new MinMainlayoutTemplateProcessor());
 				result.add(new MinRoutesTemplateProcessor());
 				result.add(new MinSourceTemplateProcessor());
+			}
+
+			if (options.getMode() == Mode.Minimal || options.getMode() == Mode.Full) {
+				result.add(new MenuDataJSonTemplateProcessor());
+				result.add(new SideMenuTemplateProcessor());
 			}
 
 		default:

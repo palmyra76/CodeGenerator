@@ -5,16 +5,7 @@
     position: relative;
 }
 
-.tree-menu,
-.tree-menu-list{
-    display: flex !important;
-    gap: 20px !important;
-    justify-content: space-between;
-    padding-left: 10px !important;
-}
-
 .sidebar-footer {
-    /* padding: 5px; */
     width: 250px;
     position: fixed;
     bottom: 0;
@@ -30,7 +21,6 @@
     width: 100% !important;
     color: var(--sidebar-title-color);
 }
-
 
 .sidebar-logo-subtext {
     font-size: 15px;
@@ -72,9 +62,6 @@
 }
 
 .sidebar-middle {
-	.MuiTreeView-root{
-        height: calc(100vh - 110px) !important;
-    }
     height: calc(100% - 110px);
     overflow: auto;
 

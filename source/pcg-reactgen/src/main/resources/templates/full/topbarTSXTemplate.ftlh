@@ -2,11 +2,10 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { AppBar, Toolbar, ClickAwayListener } from "@mui/material";
 import { AccountCircle, KeyboardArrowDown, Logout, Menu } from '@mui/icons-material';
-import { PalmyraStoreFactory } from 'palmyra-rui';
+import { ServiceEndpoint } from '../../config/ServiceEndpoints';
+import AppStoreFactory, { getStoreFactory } from '../../wire/StoreFactory';
 import IconButton from '@mui/material/IconButton';
 import '../../style/layout/Topbar.css';
-import AppStoreFactory from '../../components/wire/StoreFactory';
-import { ServiceEndpoint } from '../../config/ServiceEndpoints';
 
 interface TopbarProps {
   mobileOpen?: boolean,
@@ -16,12 +15,12 @@ interface TopbarProps {
 
 const Topbar: React.FC<TopbarProps> = ({ mobileOpen, setMobileOpen, display }) => {
 
-  const [user, setUser] = useState<any>({});
+  const [user, setUser,] = useState<any>({});
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
   const store = AppStoreFactory;
-  const storeFactory = new PalmyraStoreFactory({ baseUrl: "api" });
+  const storeFactory = getStoreFactory("api");
   const userProfileEndPoint = ServiceEndpoint.userManagement.userProfileApi;
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const Topbar: React.FC<TopbarProps> = ({ mobileOpen, setMobileOpen, display }) =
     });
   }, []);
 
-  const handleLogOut = (event: any) => {
+  const handleLogOut = (_event: any) => {
     event.stopPropagation();
     const d: any = {};
     storeFactory.getFormStore(d, '/auth/logout', '').get({}).then(() => {
@@ -58,6 +57,7 @@ const Topbar: React.FC<TopbarProps> = ({ mobileOpen, setMobileOpen, display }) =
       sx={{
         width: { md: `calc(100%)` },
         ml: { md: '240px' },
+        zIndex: 1
       }}
       className='topbar'
     >

@@ -1,24 +1,27 @@
-import { CellGetter, ColumnDefinition, GridCustomizer, IPageQueryable, StringFormat, gridColumnCustomizer, topic } from "palmyra-rui";
 import { useRef, useState } from "react";
 import { ServiceEndpoint } from "../../../../config/ServiceEndpoints";
 import { DeleteOutline } from '@mui/icons-material';
-import DeleteConfirmDialog from "../../../../components/dialog/DeleteConfirmDialog";
 import { IPageInput } from "../../../../templates/Types";
 import UserGroupGrid from "./UserGroupGrid";
-import { SummaryDialogGrid } from "palmyra-template";
-import AppStoreFactory from "../../../../components/wire/StoreFactory";
+import DeleteConfirmDialog from "../../../../components/dialog/DeleteConfirmDialog";
+import { CellGetter, ColumnDefinition, GridCustomizer, IPageQueryable, useGridColumnCustomizer } from "@palmyralabs/rt-forms";
+import { StringFormat, topic } from "@palmyralabs/ts-utils";
+import { PalmyraGrid } from "@palmyralabs/rt-forms-mui";
+import { DataGridControls } from "../../../../components/gridControl/DataGridControls";
+import { Dialog } from "@mui/material";
 
 interface UserPageInput extends IPageInput {
     userId?: number
 }
+
 const UsersGroup = (props: UserPageInput) => {
     const [showDeletePopup, setShowDeletePopup] = useState<boolean>(false);
     const [data, setData] = useState<any>({});
+    const [open, setOpen] = useState<any>(false);
     const gridRef = useRef<IPageQueryable>(null);
 
     const userId = props.userId;
     const apiEndPoint = StringFormat(ServiceEndpoint.aclmgmt.UsersByGroup.restApi, { userId: userId });
-    const store = AppStoreFactory;
 
     const statusRenderer = (data: any) => {
         let type: String;
@@ -35,11 +38,12 @@ const UsersGroup = (props: UserPageInput) => {
 
         return <span>{type}</span>;
     };
+
     const fields: ColumnDefinition[] = [
         {
             attribute: "groupName",
             name: "groupName",
-            title: "Group",
+            label: "Group",
             searchable: true,
             quickSearch: true,
             type: "string"
@@ -47,7 +51,7 @@ const UsersGroup = (props: UserPageInput) => {
         {
             attribute: "displayName",
             name: "displayName",
-            title: "User Name",
+            label: "User Name",
             searchable: true,
             quickSearch: true,
             type: "string"
@@ -55,7 +59,7 @@ const UsersGroup = (props: UserPageInput) => {
         {
             attribute: "loginName",
             name: "loginName",
-            title: "Login Name",
+            label: "Login Name",
             searchable: true,
             quickSearch: true,
             type: "string"
@@ -63,23 +67,22 @@ const UsersGroup = (props: UserPageInput) => {
         {
             attribute: "active",
             name: "active",
-            title: "Active",
+            label: "Active",
             type: 'string',
             cellRenderer: statusRenderer
         },
         {
             attribute: "action",
             name: "action",
-            title: "Action",
+            label: "Action",
             type: 'string'
         }
     ];
 
     const gridRefresh = () => {
-        if (gridRef.current) {
-            gridRef.current.refresh();
-        }
+        gridRef.current.refresh();
     }
+
     const customConfig: Record<string, ((d: CellGetter) => CellGetter)> = {
         'action': enhance
     }
@@ -92,7 +95,9 @@ const UsersGroup = (props: UserPageInput) => {
 
     const onDelete = () => {
         topic.publish(props.pageName + "/refresh", {});
+        gridRefresh();
     }
+
     function enhance(): CellGetter {
         return (info: any) => {
             const data: any = info.row.original;
@@ -103,16 +108,22 @@ const UsersGroup = (props: UserPageInput) => {
             )
         };
     }
-    const gridCustomizer: GridCustomizer = gridColumnCustomizer(customConfig);
+
+    const gridCustomizer: GridCustomizer = useGridColumnCustomizer(customConfig);
+    const getPluginOptions = (): any => {
+        return { export: { visible: false }, onNewClick: () => setOpen(true) }
+    }
     return (
         <div className="user-group-grid">
-            <SummaryDialogGrid
-                storeFactory={store} Child={UserGroupGrid} dialogeTitle='Group List'
-                childProps={{ userId, gridRefresh }} defaultParams={{ filter: { active: 1 } }}
-                fields={fields} pageName={props.pageName} customizer={gridCustomizer}
-                title="USER GROUPS" gridRef={gridRef} minWidth="800px"
-                options={{ endPoint: apiEndPoint, endPointVars: { userId: props.userId } }} />
+            <PalmyraGrid defaultParams={{ filter: { active: 1 } }} DataGridControls={DataGridControls}
+                columns={fields} customizer={gridCustomizer}
+                title="USERS GROUPS" ref={gridRef} endPoint={apiEndPoint} getPluginOptions={getPluginOptions} />
 
+            <Dialog open={open} onClose={close}
+                title="Group Dialog"
+                >
+                <UserGroupGrid userId={userId} gridRefresh={gridRefresh} onClose={close} />
+            </Dialog>
             <DeleteConfirmDialog groupData={data} onDelete={onDelete}
                 isOpen={showDeletePopup} onClose={() => { setShowDeletePopup(false) }} />
         </div>

@@ -1,16 +1,16 @@
-import { CheckboxGridEnhancer, ColumnDefinition, GridCustomizer, IGridEnhancer, IPageQueryable, StringFormat, gridColumnCustomizer } from "palmyra-rui";
 import { useRef } from "react";
 import { Button } from '@mui/material';
 import { Done } from '@mui/icons-material';
-import axios from 'axios';
 import { ServiceEndpoint } from "../../../../config/ServiceEndpoints";
-import { SummaryGrid } from "palmyra-template";
-import AppStoreFactory from "../../../../components/wire/StoreFactory";
+import axios from 'axios';
+import { CheckboxGridEnhancer, ColumnDefinition, GridCustomizer, IGridEnhancer, IPageQueryable, useGridColumnCustomizer } from "@palmyralabs/rt-forms";
+import { StringFormat } from "@palmyralabs/ts-utils";
+import { PalmyraGrid } from "@palmyralabs/rt-forms-mui";
 
 interface IUserGroupGrid {
     userId: number,
-    onClose?: () => void,
-    gridRefresh?: () => void
+    onClose: () => void,
+    gridRefresh: () => void
 }
 
 const UserGroupGrid = (props: IUserGroupGrid) => {
@@ -18,19 +18,18 @@ const UserGroupGrid = (props: IUserGroupGrid) => {
     const gridEnhancer: IGridEnhancer = CheckboxGridEnhancer();
 
     const userId = props.userId;
-    const onClose: any = props.onClose;
-    const refresh: any = props.gridRefresh;
+    const onClose = props.onClose;
+    const refresh = props.gridRefresh;
 
     const groupLooupEndpoint = ServiceEndpoint.aclmgmt.UsersByGroup.lookup.restApi;
     const apiEndPoint = StringFormat(groupLooupEndpoint, { userId: userId });
     const aclGroupApi = '/api/palmyra' + StringFormat(ServiceEndpoint.aclmgmt.UsersByGroup.restApi, { userId });
-    const store = AppStoreFactory;
 
     const fields: ColumnDefinition[] = [
         {
             attribute: "name",
             name: "name",
-            title: "Group",
+            label: "Group",
             searchable: true,
             quickSearch: true,
             type: "string"
@@ -38,7 +37,7 @@ const UserGroupGrid = (props: IUserGroupGrid) => {
         {
             attribute: "description",
             name: "description",
-            title: "Description",
+            label: "Description",
             searchable: true,
             quickSearch: true,
             type: "string"
@@ -46,8 +45,8 @@ const UserGroupGrid = (props: IUserGroupGrid) => {
     ];
 
     const handleSave = () => {
-        const selectedGroupId = gridEnhancer.getSelectedIds();
-        const groupId = Object.keys(selectedGroupId)
+        const selectedUserId = gridEnhancer.getSelectedIds();
+        const groupId = Object.keys(selectedUserId)
             .map(key => parseInt(key, 10))
 
         const requestBody = groupId.map(id => ({
@@ -60,15 +59,12 @@ const UserGroupGrid = (props: IUserGroupGrid) => {
         })
     }
 
-    const gridCustomizer: GridCustomizer = { ...gridColumnCustomizer({}), ...gridEnhancer };
-    const pageName = 'group'
+    const gridCustomizer: GridCustomizer = { ...useGridColumnCustomizer({}), ...gridEnhancer };
     return (
         <div className="user-group-grid">
             <div className="user-dialog-group-grid">
-                <SummaryGrid
-                    storeFactory={store} fields={fields} pageName={pageName} disableViewTopic
-                    title="GROUPS" gridRef={gridRef} customizer={gridCustomizer}
-                    options={{ endPoint: apiEndPoint }} />
+                <PalmyraGrid endPoint={apiEndPoint}
+                    columns={fields} title="GROUPS" ref={gridRef} customizer={gridCustomizer} />
             </div>
             <div>
                 <div className="user-group-grid-btn-container">

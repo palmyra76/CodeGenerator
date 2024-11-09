@@ -1,4 +1,4 @@
-import { IEndPoint } from "palmyra-rui"
+import { IEndPoint } from "@palmyralabs/palmyra-wire"
 
 interface IPageApiRef {
     restApi: IEndPoint
@@ -10,6 +10,14 @@ interface IServerApiConfig extends IPageApiRef {
 }
 
 const ServiceEndpoint = {
+    userManagement: {
+        users: { restApi: '/userManagement' },
+        userProfileApi: '/user/about',
+        usersById: { restApi: '/userManagement/{id}' },
+        lookup: {
+            userType: '/userType',
+        }
+    },
     <#list tables as key, value> 
     ${key}: {
         restApi: '/${key}',

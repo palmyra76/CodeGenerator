@@ -1,8 +1,7 @@
 import { Route, Outlet } from "react-router-dom";
 import PageWrapper from "./PageWrapper";
 import appRoutes from "./appRoutes";
-import { MenuDef } from "palmyra-rui";
-
+import { MenuDef } from "@palmyralabs/rt-forms-mui";
 
 function getHandler(route: any, path: any) {
   //@ts-ignore
@@ -20,6 +19,7 @@ function getHandler(route: any, path: any) {
 
   return (
     <Route key={path} path={route.path} element={<Outlet />} >
+
     </Route>
   )
 }
@@ -77,6 +77,5 @@ const generateMenu = (routes: any, parentPath?: string): MenuDef[] => {
       return result;
     });
 };
-
 
 export const routes = generateRoute(appRoutes);

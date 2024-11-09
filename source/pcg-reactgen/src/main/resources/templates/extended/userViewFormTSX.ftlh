@@ -30,7 +30,7 @@ const UserViewForm = (props: FormInput) => {
 
     const gender = user.gender == 'M' ? 'Male' : 'Female';
     const maritalStatus = user.maritalStatus == 'M' ? 'Married' : 'UnMarried';
-    const userStatus = user.status == 'active' ? 'Active' : 'de-active' ? 'De-Active' : 'suspend' ? 'Suepend' : null;
+    const userStatus = user.status == 'active' ? 'Active' : user.status =='de-active' ? 'De-Active' : user.status == 'suspend' ? 'Suepend' : null;
 
 
     return (

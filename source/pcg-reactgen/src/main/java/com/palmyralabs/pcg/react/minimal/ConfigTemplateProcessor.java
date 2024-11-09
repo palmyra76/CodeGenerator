@@ -21,6 +21,10 @@ public class ConfigTemplateProcessor extends SimpleTemplateProcessor {
 		TemplateInfo widthConfig = new DefaultTemplateInfo("WidthConfig.ts", "templates/minimal/widthConfigTs.ftlh");
 		templates.add(widthConfig);
 
+		TemplateInfo notFoundPage = new DefaultTemplateInfo("NotFoundPage.tsx",
+				"templates/minimal/notFoundPageTsx.ftlh");
+		templates.add(notFoundPage);
+
 		return templates;
 	}
 

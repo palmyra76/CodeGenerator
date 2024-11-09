@@ -1,10 +1,11 @@
+import { useRef, useState } from "react";
 import { Dialog, ClickAwayListener } from "@mui/material";
 import { Button } from "@mui/material";
 import { Done, Close } from '@mui/icons-material';
-import { PalmyraForm, PalmyraStoreFactory, usePalmyraNewForm } from "palmyra-rui";
-import { useState } from "react";
 import { Password } from "../form";
 import { toast } from "react-toastify";
+import { getStoreFactory } from "../../wire/StoreFactory";
+import { ISaveForm, PalmyraNewForm } from "@palmyralabs/rt-forms";
 
 interface passwordInput {
     isOpen?: any;
@@ -14,17 +15,19 @@ interface passwordInput {
 }
 
 function ResetPasswordDialog(props: passwordInput) {
+    const formRef = useRef<ISaveForm>();
     const openDialog = props.isOpen;
     const closeDialog = props.onClose;
     const loginName = props.loginName;
 
     const [isValid, setValid] = useState<boolean>(false);
-    const storeFactory = new PalmyraStoreFactory({ baseUrl: "/api" });
+    const storeFactory = getStoreFactory("api");
+    const endPoint = '/admin/resetPassword';
 
-    const { data, formRef } = usePalmyraNewForm({
-        storeFactory,
-        endPoint: '/admin/resetPassword'
-    })
+    // const { data, formRef } = usePalmyraNewForm({
+    //     storeFactory,
+    //     
+    // })
 
     const showServerErrorToast = () => {
         toast.error("Server problem.. Please try again later");
@@ -48,6 +51,7 @@ function ResetPasswordDialog(props: passwordInput) {
             }
         })
     }
+
     const handleDialogClick = (event: any) => {
         event.stopPropagation();
     };
@@ -60,15 +64,14 @@ function ResetPasswordDialog(props: passwordInput) {
 
     return (
         <div>
-            <PalmyraForm formData={data} mode="new" onValidChange={setValid} ref={formRef}>
+            <PalmyraNewForm onValidChange={setValid} endPoint={endPoint} ref={formRef}>
                 <Dialog className="reset-pwd-dialog" open={openDialog} onClick={handleDialogClick}
                     onClose={closeDialog} onKeyDown={handleKeyClose}
                     PaperProps={{
                         sx: {
                             width: 'auto', minWidth: '400px', height: 'auto', borderRadius: '15px'
                         }
-                    }}
-                >
+                    }}>
                     <ClickAwayListener onClickAway={closeDialog}>
                         <div>
                             <div className="dialog-header-container">
@@ -80,17 +83,18 @@ function ResetPasswordDialog(props: passwordInput) {
                                 </div>
                             </div>
                             <div className="dialog-content">
-                                <Password attribute="password" label="New Password"
-                                    required={true}
-                                    validationRule={["oneUpperCase", 'oneLowerCase', 'oneSpecialChar']}
-                                    errorMessage={{
-                                        'oneLowerCase': 'Invalid lower case',
-                                        'oneUpperCase': 'Invalid upper',
-                                        'oneSpecialChar': 'One Special Char'
-                                    }}
-                                    length={{ min: 8, message: 'Atleast min 8 chars' }}
+                                <Password attribute="password" title="New Password"
+                                    required={true} 
+                                    // validRule={["oneUpperCase", 'oneLowerCase', 'oneSpecialChar']}
+                                    // invalidMessage={{
+                                    //     'oneLowerCase': 'Invalid lower case',
+                                    //     'oneUpperCase': 'Invalid upper',
+                                    //     'oneSpecialChar': 'One Special Char'
+                                    // }}
+                                    length={{ min: 8, errorMessage: 'Atleast min 8 chars' }}
                                 />
-                                <Password attribute="confirmPassword" label="Confirm Password" required={true} />
+                                <Password attribute="confirmPassword" title="Confirm Password"
+                                    required={true} />
                             </div>
                             <div className='reset-pwd-form-btn-container'>
                                 <Button onClick={closeDialog}
@@ -110,8 +114,9 @@ function ResetPasswordDialog(props: passwordInput) {
                         </div>
                     </ClickAwayListener>
                 </Dialog>
-            </PalmyraForm>
+            </PalmyraNewForm>
         </div>
     );
 }
+
 export default ResetPasswordDialog;

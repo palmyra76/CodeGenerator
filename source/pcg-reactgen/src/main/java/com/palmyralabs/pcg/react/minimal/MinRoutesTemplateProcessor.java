@@ -26,9 +26,9 @@ public class MinRoutesTemplateProcessor extends SchemaModelTemplateProcessor {
 				"templates/full/pageWrapperTSXTemplate.ftlh");
 		templates.add(pageWrapper);
 		
-		TemplateInfo sideMenuList = new DefaultTemplateInfo("SideMenuList.ts",
-				"templates/minimal/sideMenuListTs.ftlh");
-		templates.add(sideMenuList);
+		// TemplateInfo sideMenuList = new DefaultTemplateInfo("SideMenuList.ts",
+		// 		"templates/minimal/sideMenuListTs.ftlh");
+		// templates.add(sideMenuList);
 
 		return templates;
 	}

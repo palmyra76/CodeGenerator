@@ -1,16 +1,16 @@
 import { useRef } from "react";
-import { CheckboxGridEnhancer, ColumnDefinition, GridCustomizer, IGridEnhancer, IPageQueryable, StringFormat, gridColumnCustomizer } from "palmyra-rui";
 import { Button } from '@mui/material';
 import { Done } from '@mui/icons-material';
 import { ServiceEndpoint } from "../../../../config/ServiceEndpoints";
 import axios from 'axios';
-import { SummaryGrid } from "palmyra-template";
-import AppStoreFactory from "../../../../components/wire/StoreFactory";
+import { CheckboxGridEnhancer, ColumnDefinition, GridCustomizer, IGridEnhancer, IPageQueryable, useGridColumnCustomizer } from "@palmyralabs/rt-forms";
+import { StringFormat } from "@palmyralabs/ts-utils";
+import { PalmyraGrid } from "@palmyralabs/rt-forms-mui";
 
 interface IGroupUserGrid {
     groupId: number,
-    onClose?: any
-    gridRefresh?: any
+    onClose: () => void,
+    gridRefresh?: () => void
 }
 
 const GroupUserGrid = (props: IGroupUserGrid) => {
@@ -22,13 +22,12 @@ const GroupUserGrid = (props: IGroupUserGrid) => {
     const gridEnhancer: IGridEnhancer = CheckboxGridEnhancer();
     const userLooupEndpoint = ServiceEndpoint.aclmgmt.GroupsByUser.lookup.restApi;
     const apiEndPoint = StringFormat(userLooupEndpoint, { groupId: groupId });
-    const store = AppStoreFactory;
 
     const fields: ColumnDefinition[] = [
         {
             attribute: "displayName",
             name: "displayName",
-            title: "User Name",
+            label: "User Name",
             sortable: true,
             searchable: true,
             quickSearch: true,
@@ -37,7 +36,7 @@ const GroupUserGrid = (props: IGroupUserGrid) => {
         {
             attribute: "loginName",
             name: "loginName",
-            title: "Login Name",
+            label: "Login Name",
             sortable: true,
             searchable: true,
             quickSearch: true,
@@ -61,17 +60,13 @@ const GroupUserGrid = (props: IGroupUserGrid) => {
             refresh();
         })
     }
-    
-    const gridCustomizer: GridCustomizer = { ...gridColumnCustomizer({}), ...gridEnhancer };
-    const pageName = 'group'
 
+    const gridCustomizer: GridCustomizer = { ...useGridColumnCustomizer({}), ...gridEnhancer };
     return (
         <div className="user-group-grid">
             <div className="user-dialog-group-grid">
-                <SummaryGrid
-                    storeFactory={store} fields={fields} pageName={pageName} disableViewTopic
-                    title="GROUP USERS" gridRef={gridRef} customizer={gridCustomizer}
-                    options={{ endPoint: apiEndPoint }} />
+                <PalmyraGrid endPoint={apiEndPoint}
+                    columns={fields} title="GROUP USERS" ref={gridRef} customizer={gridCustomizer} />
             </div>
             <div>
                 <div className="user-group-grid-btn-container">

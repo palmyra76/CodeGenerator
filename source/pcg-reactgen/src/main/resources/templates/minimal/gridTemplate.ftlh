@@ -1,13 +1,11 @@
 import { useRef } from "react";
-import { ColumnDefinition, IPageQueryable, } from "palmyra-rui";
 import { ServiceEndpoint } from "../../../config/ServiceEndpoints";
-import { SummaryGrid } from "palmyra-template";
-import AppStoreFactory from "../../wire/StoreFactory";
+import { ColumnDefinition, IPageQueryable } from "@palmyralabs/rt-forms";
+import { SummaryGrid } from "@palmyralabs/template-stine";
 
 const ${name}Page = () => {
     const gridRef = useRef<IPageQueryable>(null);
     const endPoint = ServiceEndpoint.${convertedName}.restApi;
-    const store = AppStoreFactory;
 
     const fields: ColumnDefinition[] = [
 <#list fields as field>
@@ -18,18 +16,26 @@ const ${name}Page = () => {
 	{
 		attribute: "${field["columnName"]}.${field["targetTableColumn"]}",
 		name: "${field.columnName}",
-		title:"${field.splitedColumnName}",
+		label:"${field.splitedColumnName}",
 		searchable: true,
       	sortable: true,
+      	<#if field.targetColumnReactType == "date">
+      	serverPattern: 'DD-MM-YYYY',
+		displayPattern: 'DD-MM-YYYY', 
+		</#if>
 		type: "${field.targetColumnReactType}"
 	}<#if field_has_next>,</#if>
 <#else>
 	{
 		attribute: "${field.columnName}",
 		name: "${field.columnName}",
-		title:"${field.splitedColumnName}",
+		label:"${field.splitedColumnName}",
 		searchable: true,
       	sortable: true,
+      	<#if field.reactDataType == "date">
+      	serverPattern: 'DD-MM-YYYY',
+		displayPattern: 'DD-MM-YYYY', 
+		</#if>
 		type: "${field.reactDataType}"
 	}<#if field_has_next>,</#if>
 </#if>
@@ -40,8 +46,8 @@ const ${name}Page = () => {
    
     return (
         <div>
-            <SummaryGrid storeFactory={store} pagination={[15,30,45]}
-                fields={fields} pageName="${name}" 
+            <SummaryGrid pageSize={[15,30,45]}
+                columns={fields} pageName="${name}" 
                 title="${splitedName}" gridRef={gridRef}
                 options={{ endPoint: endPoint }} />
         </div>

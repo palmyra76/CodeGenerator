@@ -1,4 +1,4 @@
-import { IEndPoint } from "palmyra-rui"
+import { IEndPoint } from "@palmyralabs/palmyra-wire"
 
 interface IPageApiRef {
     restApi: IEndPoint

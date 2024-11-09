@@ -47,12 +47,50 @@
     --disable-link-color: var(--disabled-color);
 
     /**  App Specific configuration starts - used in few places / exception items */
-    --dashboard-heading-text-color: var(--dark-bgcolor);
-    --dashboard-container-boxshadow: rgba(var(--dark-bgcolor-rgb), 0.15) 0px 1px 2px 0px, rgba(var(--dark-bgcolor-rgb), 0.15) 0px 1px 3px 1px;
-    --dashboard-container-bgcolor: var(--default-bgcolor);
-    --dashboard-header-icon-bgcolor: rgb(120, 75, 255, 0.2);
-    --dashboard-header-icon-color: rgb(120, 75, 255);
-    --card-header-bgcolor: rgb(189, 221, 236);
+    --status-opacity: 0.25;
+    --status-hover-opacity: 0.65;
+
+    --status-um-color: rgb(255, 98, 0);
+    --status-um-color-rgb: 255, 98, 0;
+    --status-occ-color: blue;
+    --status-occ-color-rgb: 0, 0, 255;
+    --status-avl-color: green;
+    --status-avl-color-rgb: 0, 128, 0;
+    --status-cls-color: red;
+    --status-cls-color-rgb: 255, 0, 0;
+
+    --status-pp-color: rgb(220, 160, 0);
+    --status-pp-color-rgb: 220, 160, 0;
+    --status-fp-color: green;
+    --status-fp-color-rgb: 0, 128, 0;
+    --status-up-color: red;
+    --status-up-color-rgb: 255, 0, 0;
+
+    --status-pen-color: rgb(255, 98, 0);
+    --status-pen-color-rgb: 255, 98, 0;
+    --status-cin-color: blue;
+    --status-cin-color-rgb: 0, 0, 255;
+    --status-cout-color: rgb(144, 0, 255);
+    --status-cout-color-rgb: 144, 0, 255;
+    --status-wait-color: rgb(255, 217, 0);
+    --status-wait-color-rgb: 255, 217, 0;
+    --status-cfrm-color: green;
+    --status-cfrm-color-rgb: 0, 128, 0;
+    --status-cancel-color: red;
+    --status-cancel-color-rgb: 255, 0, 0;
+
+    --status-order-bgcolor: rgba(var(--status-order-color-rgb), var(--status-opacity));
+    --status-inprogress-bgcolor: rgba(var(--status-inprogress-color-rgb), var(--status-opacity));
+    --status-shipped-bgcolor: rgba(var(--status-shipped-color-rgb), var(--status-opacity));
+    --status-delivered-bgcolor: rgba(var(--status-delivered-color-rgb), var(--status-opacity));
+    --status-cancelled-bgcolor: rgba(var(--status-cancelled-color-rgb), var(--status-opacity));
+
+    --status-order-hover-bgcolor: rgba(var(--status-order-color-rgb), var(--status-hover-opacity));
+    --status-inprogress-hover-bgcolor: rgba(var(--status-inprogress-color-rgb), var(--status-hover-opacity));
+    --status-shipped-hover-bgcolor: rgba(var(--status-shipped-color-rgb), var(--status-hover-opacity));
+    --status-delivered-hover-bgcolor: rgba(var(--status-delivered-color-rgb), var(--status-hover-opacity));
+    --status-cancelled-hover-bgcolor: rgba(var(--status-cancelled-color-rgb), var(--status-hover-opacity));
+
 
     --cancel-btn-bgcolor: rgba(255, 0, 0, 0.08);
     --cancel-button-bgcolor: var(--default-bgcolor);
