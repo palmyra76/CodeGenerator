@@ -33,7 +33,7 @@ For Linux,
 |   -h         | --help    | -    |Print the Help message |
 |   -f         | --framwork   | Yes / -     |Specify the Framework (Spring/React) |
 |   -b       | --build | No / Gradle for Spring and Vite for React |Build tool option |
-|   -m       | --mode | No / Full |Code Generation mode (Minimal / Full / Extended) |
+|   -m       | --mode | No / Minimal |Code Generation mode (Minimal / Full / Extended) |
 |   -n       | --project | Yes / - | Specify the project name |
 |   -g       | --package | Yes (for spring) / - | Specify the package name |
 |   -o       | --output | No / Current Path | Specify the Output Path |
