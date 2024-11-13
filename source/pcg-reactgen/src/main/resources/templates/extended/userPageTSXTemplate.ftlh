@@ -98,9 +98,9 @@ const UserPage = (props: UserPageInput) => {
         columns={fields} customizer={gridCustomizer}
         title="USERS GROUPS" ref={gridRef} endPoint={endPoint} getPluginOptions={getPluginOptions} />
 
-      <Dialog open={open} onClose={close}
+      <Dialog open={open} onClose={() => setOpen(false)}
         title="Group Dialog">
-        <GroupUserGrid groupId={groupId} gridRefresh={gridRefresh} onClose={close} />
+        <GroupUserGrid groupId={groupId} gridRefresh={gridRefresh} onClose={() => setOpen(false)} />
       </Dialog>
 
       <DeleteConfirmDialog userData={data} onDelete={onDelete}

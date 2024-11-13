@@ -67,7 +67,7 @@ const LoginInput = () => {
         })
         .then(function (res) {
           localStorage.removeItem("palmyra.rui.sidemenu.expanded.selected");
-          const displayPage = res.data.homeMenu;
+          const displayPage = res.data.displayPage;
           navigate('/app/' + displayPage)
         })
         .catch(function (error) {

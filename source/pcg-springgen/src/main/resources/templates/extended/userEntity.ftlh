@@ -33,8 +33,8 @@ public class UserEntity {
 	private String loginName;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "home_menu")
-	private MenuEntity homeMenu;
+	@JoinColumn(name = "display_page")
+	private MenuEntity displayPage;
 
 	@Column(name = "home_custom", length = 1)
 	private String homeCustom;

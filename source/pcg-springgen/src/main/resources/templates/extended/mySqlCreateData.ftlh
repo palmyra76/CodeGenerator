@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `xpm_user` (
   `user_type` int(11) unsigned NOT NULL,
   `phone_number` varchar(64) NULL,
   `address` varchar(255) NULL,
-  `home_menu` int(11) unsigned NULL,
+  `display_page` int(11) unsigned NULL,
   `home_custom` varchar(128) NULL,
   `random` varchar(128) NULL,
   `salt` varchar(128) NULL,
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `xpm_user` (
   UNIQUE KEY `uq_xpm_user_email` (`email`),
   UNIQUE KEY `uq_first_name_last_name` (`first_name`, `last_name`),
   CONSTRAINT `FK_xpm_user_mst_user_type` FOREIGN KEY (`user_type`) REFERENCES `mst_user_type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_xpm_user_mst_display_page` FOREIGN KEY (`home_menu`) REFERENCES `xpm_menu` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_xpm_user_mst_display_page` FOREIGN KEY (`display_page`) REFERENCES `xpm_menu` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `xpm_group` (

@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class LoginResponse {
 
-	private String homeMenu;
+	private String displayPage;
 
 	private String loginName;
 }

@@ -1,4 +1,4 @@
-package com.palmyralabs.pcg.spring.full;
+package com.palmyralabs.pcg.spring.extended;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -11,7 +11,7 @@ import com.palmyralabs.pcg.commons.UserOptions;
 import com.palmyralabs.pcg.template.generator.DefaultTemplateInfo;
 import com.palmyralabs.pcg.template.processor.SimpleTemplateProcessor;
 
-public class DefaultModelTemplateProcessor extends SimpleTemplateProcessor {
+public class ExtDefaultModelTemplateProcessor extends SimpleTemplateProcessor {
 
 	@Override
 	public List<TemplateInfo> getTemplates() {
@@ -21,7 +21,7 @@ public class DefaultModelTemplateProcessor extends SimpleTemplateProcessor {
 		templates.add(errorResponse);
 
 		TemplateInfo userManagementModel = new DefaultTemplateInfo("UserManagementModel.java",
-				"templates/full/userManagementModel.ftlh");
+				"templates/extended/userManagementModel.ftlh");
 		templates.add(userManagementModel);
 		
 		TemplateInfo userTypeModel = new DefaultTemplateInfo("UserTypeModel.java",

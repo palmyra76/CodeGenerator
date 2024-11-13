@@ -119,10 +119,10 @@ const UsersGroup = (props: UserPageInput) => {
                 columns={fields} customizer={gridCustomizer}
                 title="USERS GROUPS" ref={gridRef} endPoint={apiEndPoint} getPluginOptions={getPluginOptions} />
 
-            <Dialog open={open} onClose={close}
+            <Dialog open={open} onClose={() => setOpen(false)}
                 title="Group Dialog"
                 >
-                <UserGroupGrid userId={userId} gridRefresh={gridRefresh} onClose={close} />
+                <UserGroupGrid userId={userId} gridRefresh={gridRefresh} onClose={() => setOpen(false)} />
             </Dialog>
             <DeleteConfirmDialog groupData={data} onDelete={onDelete}
                 isOpen={showDeletePopup} onClose={() => { setShowDeletePopup(false) }} />

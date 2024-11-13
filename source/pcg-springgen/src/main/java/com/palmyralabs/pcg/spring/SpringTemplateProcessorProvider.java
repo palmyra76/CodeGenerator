@@ -10,6 +10,7 @@ import com.palmyralabs.pcg.commons.options.Mode;
 import com.palmyralabs.pcg.spring.extended.AclHandlerTemplateProcessor;
 import com.palmyralabs.pcg.spring.extended.AclModelTemplateProcessor;
 import com.palmyralabs.pcg.spring.extended.ExtAuthenticationTemplateProcessor;
+import com.palmyralabs.pcg.spring.extended.ExtDefaultModelTemplateProcessor;
 import com.palmyralabs.pcg.spring.extended.ExtEntityTemplateProcessor;
 import com.palmyralabs.pcg.spring.extended.ExtGradleTemplateProcessor;
 import com.palmyralabs.pcg.spring.extended.ExtMySqlDataTemplateProcessor;
@@ -17,7 +18,7 @@ import com.palmyralabs.pcg.spring.extended.ExtSecurityConfigTemplateProcessor;
 import com.palmyralabs.pcg.spring.full.ApplicationTemplateProcessor;
 import com.palmyralabs.pcg.spring.full.ControllerTemplateProcessor;
 import com.palmyralabs.pcg.spring.full.DefaultHandlerTemplateProcessor;
-import com.palmyralabs.pcg.spring.full.DefaultModelTemplateProcessor;
+import com.palmyralabs.pcg.spring.full.FullDefaultModelTemplateProcessor;
 import com.palmyralabs.pcg.spring.full.FullAuthenticationTemplateProcessor;
 import com.palmyralabs.pcg.spring.full.FullEntityTemplateProcessor;
 import com.palmyralabs.pcg.spring.full.FullMySqlDataTemplateProcessor;
@@ -51,7 +52,8 @@ public class SpringTemplateProcessorProvider implements TemplateProcessorProvide
 			result.add(new ExtEntityTemplateProcessor());
 			result.add(new ServiceTemplateProcessor());
 			result.add(new ExtAuthenticationTemplateProcessor());
-
+			result.add(new ExtDefaultModelTemplateProcessor());
+			
 			result.add(new AclHandlerTemplateProcessor());
 			result.add(new AclModelTemplateProcessor());
 
@@ -65,10 +67,10 @@ public class SpringTemplateProcessorProvider implements TemplateProcessorProvide
 				result.add(new FullEntityTemplateProcessor());
 				result.add(new FullSecurityConfigTemplateProcessor());
 				result.add(new FullAuthenticationTemplateProcessor());
+				result.add(new FullDefaultModelTemplateProcessor());
 			}
-
+			
 			result.add(new DefaultHandlerTemplateProcessor());
-			result.add(new DefaultModelTemplateProcessor());
 			result.add(new ControllerTemplateProcessor());
 			result.add(new RepoTemplateProcessor());
 			result.add(new FullMainClassTemplateProcessor());

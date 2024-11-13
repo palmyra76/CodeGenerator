@@ -24,7 +24,7 @@ values
 </#list>;
 
 
-INSERT INTO `xpm_user` (display_name,login_name, email, gender, dob, first_name, last_name, user_type, phone_number, address, home_menu, random, salt, created_by, created_on, last_upd_by, last_upd_on) VALUES
+INSERT INTO `xpm_user` (display_name,login_name, email, gender, dob, first_name, last_name, user_type, phone_number, address, display_page, random, salt, created_by, created_on, last_upd_by, last_upd_on) VALUES
     ('Admin', 'admin@gmail.com','admin@gmail.com', 'M', '2023-09-04', 'Admin', 'A', 1,'000002345','0/001,West Street,Chennai - 001', 1, NULL, 'ad', 'raja', current_timestamp(), NULL, NULL);
    
    

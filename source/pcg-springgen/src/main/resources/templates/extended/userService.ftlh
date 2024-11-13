@@ -21,11 +21,11 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public void setLoginNameAndDisplayPage(String email, String loginName, MenuEntity homeMenu) {
+    public void setLoginNameAndDisplayPage(String email, String loginName, MenuEntity displayPage) {
         Optional<UserEntity> userOptional = userRepository.findByEmail(email);
         userOptional.ifPresent(user -> {
             user.setLoginName(loginName);
-            user.setHomeMenu(homeMenu);
+            user.setDisplayPage(displayPage);
             userRepository.save(user);
         });
     }
@@ -37,9 +37,9 @@ public class UserService {
             LoginResponse loginResponse = new LoginResponse();
             loginResponse.setLoginName(user.getLoginName());
             if (null != user.getHomeCustom() && user.getHomeCustom().length() > 0)
-                loginResponse.setHomeMenu(user.getHomeCustom());
-            else if(null != user.getHomeMenu())    
-                loginResponse.setHomeMenu(user.getHomeMenu().getCode());
+                loginResponse.setDisplayPage(user.getHomeCustom());
+            else if(null != user.getDisplayPage())    
+                loginResponse.setDisplayPage(user.getDisplayPage().getCode());
             return loginResponse;
         }
         return null;

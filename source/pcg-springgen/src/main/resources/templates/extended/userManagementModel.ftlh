@@ -23,7 +23,7 @@ public class UserManagementModel {
     private String displayName;
 
     @PalmyraField
-    private AclMenuModel homeMenu;
+    private AclMenuModel displayPage;
 
     @PalmyraField
     private String homeCustom;
