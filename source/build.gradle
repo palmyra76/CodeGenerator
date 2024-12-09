@@ -9,6 +9,9 @@ apply from: './deps.gradle'
 repositories {
 	mavenLocal()
 	mavenCentral()
+	maven {
+        url "https://repo.palmyralabs.com/releases"
+    }
 }
 
 allprojects {
@@ -29,6 +32,9 @@ subprojects {
 	repositories {
 		mavenLocal()
 		mavenCentral()
+		maven {
+        	url "https://repo.palmyralabs.com/releases"
+    	}
 	}
 	
 	tasks.withType(JavaCompile) {

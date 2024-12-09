@@ -2,7 +2,7 @@ def versions = [ spring_boot: '3.2.1',spring:'6.1.2',
     HikariCP:'5.0.1',log4j2:'2.22.0',
     persistence_api:'3.1.0',servlet_api:'5.0.0', 
     jackson:'2.15.2', slf4j:"2.0.9", jetty:'11.0.16',
-    lombok:'1.18.30', jdbc_mariadb:'3.2.0',sqlstore:'1.0.0']
+    lombok:'1.18.30', jdbc_mariadb:'3.2.0',sqlstore:'1.2.0']
 
 def palmyra = [
     spring:"com.palmyralabs.palmyra:palmyra-spring:${r"${versions.sqlstore}"}",

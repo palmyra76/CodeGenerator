@@ -11,7 +11,7 @@ You can download or clone Code Generator from GitHub:
 
 Open terminal in the path **_CodeGenerator/source_** and run the following command:
 
-    > gradle installDist
+    gradle installDist
 
 ## Run Command
 
@@ -19,11 +19,11 @@ After installation, open terminal in the path **_CodeGenerator/source/dist/bin/_
 
 For windows,
 
-    > codeGen.bat
+    codeGen.bat
 
 For Linux,
 
-    > sh codeGen
+    sh codeGen
 
 ## Input Command Options
 
@@ -82,9 +82,9 @@ Encompasses everything from Full Mode and further includes:
 
 For windows,
 
-    > codeGen.bat -f react -b vite -m extended  -n sample -g com.palmyralabs  -d mariadb -t localhost -p 3306 -u user -c pass -s sample -o /home/project
+    codeGen.bat -f react -b vite -m extended  -n sample -g com.palmyralabs  -d mariadb -t localhost -p 3306 -u user -c pass -s sample -o /home/project
 
 For Linux,
 
-    > sh codeGen -f react -b vite -m extended  -n sample -g com.palmyralabs  -d mariadb -t localhost -p 3306 -u user -c pass -s sample -o /home/project
+    sh codeGen -f react -b vite -m extended  -n sample -g com.palmyralabs  -d mariadb -t localhost -p 3306 -u user -c pass -s sample -o /home/project
 
